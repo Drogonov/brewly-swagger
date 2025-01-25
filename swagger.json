@@ -242,6 +242,33 @@
           "Auth"
         ]
       }
+    },
+    "/onboarding/intro": {
+      "post": {
+        "operationId": "OnboardingController_getOnboarding",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns a onboarding",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OnboardingResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Onboarding response",
+        "tags": [
+          "App"
+        ]
+      }
     }
   },
   "info": {
@@ -343,6 +370,21 @@
         "required": [
           "access_token",
           "refresh_token"
+        ]
+      },
+      "OnboardingResponseDto": {
+        "type": "object",
+        "properties": {
+          "pages": {
+            "description": "Страницы из которых состоит Онбоардинг",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "pages"
         ]
       }
     }
