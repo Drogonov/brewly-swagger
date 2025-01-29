@@ -243,7 +243,7 @@
         ]
       }
     },
-    "/onboarding/intro": {
+    "/onboarding/page": {
       "post": {
         "operationId": "OnboardingController_getOnboarding",
         "parameters": [],
@@ -267,6 +267,266 @@
         "summary": "Get Onboarding response",
         "tags": [
           "App"
+        ]
+      }
+    },
+    "/samples/create/type": {
+      "post": {
+        "operationId": "SamplesController_createSampleType",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSampleTypeRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns id of the sample type after creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessIdResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Sample Type",
+        "tags": [
+          "Samples"
+        ]
+      }
+    },
+    "/samples/create/item": {
+      "post": {
+        "operationId": "SamplesController_createSampleItem",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSampleItemRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns id of the sample item after creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessIdResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Sample Item",
+        "tags": [
+          "Samples"
+        ]
+      }
+    },
+    "/samples/create": {
+      "post": {
+        "operationId": "SamplesController_createSample",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSampleRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the sample after creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SampleResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Sample",
+        "tags": [
+          "Samples"
+        ]
+      }
+    },
+    "/samples/create/roasttype": {
+      "post": {
+        "operationId": "SamplesController_createCustomRoastType",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoastTypeRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the roast type after creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoastTypeResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Custom Roast Type",
+        "tags": [
+          "Samples"
+        ]
+      }
+    },
+    "/samples/get/roasttypes": {
+      "get": {
+        "operationId": "SamplesController_getAvailiableRoastTypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the roast type after creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoastTypeResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Custom Roast Type",
+        "tags": [
+          "Samples"
+        ]
+      }
+    },
+    "/samples/create/coffeetype": {
+      "post": {
+        "operationId": "SamplesController_createCustomCoffeeType",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCoffeeTypeRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the coffee type after creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoffeeTypeResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Custom Coffee Type",
+        "tags": [
+          "Samples"
+        ]
+      }
+    },
+    "/samples/get/coffeetypes": {
+      "get": {
+        "operationId": "SamplesController_getAvailiableCoffeeTypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the coffee type after creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CoffeeTypeResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Custom Coffee Type",
+        "tags": [
+          "Samples"
+        ]
+      }
+    },
+    "/samples/search/type": {
+      "get": {
+        "operationId": "SamplesController_searchForSampleType",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the coffee types from library",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SearchSampleTypeResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Search for coffee type from library",
+        "tags": [
+          "Samples"
+        ]
+      }
+    },
+    "/samples/search/item": {
+      "get": {
+        "operationId": "SamplesController_searchForSampleItem",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the coffee items from warehouse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SearchSampleTypeResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Search for coffee items from warehouse",
+        "tags": [
+          "Samples"
         ]
       }
     }
@@ -385,6 +645,273 @@
         },
         "required": [
           "pages"
+        ]
+      },
+      "CreateSampleTypeRequestDto": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "companyName": {
+            "type": "string",
+            "example": "Tasty Coffee"
+          },
+          "sampleName": {
+            "type": "string",
+            "example": "Irgachiff 4"
+          },
+          "roastType": {
+            "type": "string",
+            "example": "Medium"
+          },
+          "coffeeType": {
+            "type": "string",
+            "example": "Blend"
+          }
+        },
+        "required": [
+          "companyId",
+          "companyName",
+          "sampleName",
+          "roastType",
+          "coffeeType"
+        ]
+      },
+      "SuccessIdResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": "666"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "CreateSampleItemRequestDto": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "roastDate": {
+            "format": "date-time",
+            "type": "string",
+            "example": "20.12.2021"
+          },
+          "openDate": {
+            "format": "date-time",
+            "type": "string",
+            "example": "26.12.2021"
+          },
+          "wheight": {
+            "type": "number",
+            "description": "Wheight in gramms",
+            "example": 250
+          },
+          "barCode": {
+            "type": "string",
+            "example": "666666"
+          }
+        },
+        "required": [
+          "companyId",
+          "roastDate",
+          "openDate",
+          "wheight",
+          "barCode"
+        ]
+      },
+      "CreateSampleRequestDto": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "type": {
+            "description": "Type describing sample",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CreateSampleTypeRequestDto"
+              }
+            ]
+          },
+          "item": {
+            "example": "Properties of current sample",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CreateSampleItemRequestDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "companyId",
+          "type",
+          "item"
+        ]
+      },
+      "SampleResponseDto": {
+        "type": "object",
+        "properties": {
+          "sampleTypeId": {
+            "type": "number",
+            "example": "666"
+          },
+          "compnayName": {
+            "type": "string",
+            "example": "Tasty Coffee"
+          },
+          "sampleName": {
+            "type": "string",
+            "example": "Brazilia Cerrado"
+          },
+          "roastType": {
+            "type": "string",
+            "example": "Medium"
+          },
+          "coffeeType": {
+            "type": "string",
+            "example": "Blend"
+          },
+          "sampleItemId": {
+            "type": "number",
+            "example": "777"
+          },
+          "roastDate": {
+            "type": "string",
+            "example": "13.12.2021"
+          },
+          "openDate": {
+            "type": "string",
+            "example": "21.12.2021"
+          },
+          "wheight": {
+            "type": "number",
+            "description": "Wheight in gramms",
+            "example": "250"
+          },
+          "barCode": {
+            "type": "string",
+            "example": "666777"
+          }
+        },
+        "required": [
+          "sampleTypeId",
+          "compnayName",
+          "sampleName",
+          "roastType",
+          "coffeeType",
+          "sampleItemId",
+          "roastDate",
+          "openDate",
+          "wheight",
+          "barCode"
+        ]
+      },
+      "CreateRoastTypeRequestDto": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "value": {
+            "type": "string",
+            "example": "Natural"
+          }
+        },
+        "required": [
+          "companyId",
+          "value"
+        ]
+      },
+      "RoastTypeResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": "666"
+          },
+          "value": {
+            "type": "string",
+            "example": "Medium+"
+          }
+        },
+        "required": [
+          "id",
+          "value"
+        ]
+      },
+      "CreateCoffeeTypeRequestDto": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "value": {
+            "type": "string",
+            "example": "Medium+"
+          }
+        },
+        "required": [
+          "companyId",
+          "value"
+        ]
+      },
+      "CoffeeTypeResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": "666"
+          },
+          "value": {
+            "type": "string",
+            "example": "Natural"
+          }
+        },
+        "required": [
+          "id",
+          "value"
+        ]
+      },
+      "SearchSampleTypeResponseDto": {
+        "type": "object",
+        "properties": {
+          "sampleTypeId": {
+            "type": "number",
+            "example": "666"
+          },
+          "compnayName": {
+            "type": "string",
+            "example": "Tasty Coffee"
+          },
+          "sampleName": {
+            "type": "string",
+            "example": "Brazilia Cerrado"
+          },
+          "roastType": {
+            "type": "string",
+            "example": "Medium"
+          },
+          "coffeeType": {
+            "type": "string",
+            "example": "Blend"
+          }
+        },
+        "required": [
+          "sampleTypeId",
+          "compnayName",
+          "sampleName",
+          "roastType",
+          "coffeeType"
         ]
       }
     }
