@@ -243,6 +243,38 @@
         ]
       }
     },
+    "/cupping/create": {
+      "post": {
+        "operationId": "CuppingController_getOnboarding",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCuppingRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Cupping with following DTO",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessIdResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Cupping",
+        "tags": [
+          "Cupping"
+        ]
+      }
+    },
     "/onboarding/page": {
       "post": {
         "operationId": "OnboardingController_getOnboarding",
@@ -529,6 +561,50 @@
           "Samples"
         ]
       }
+    },
+    "/user/search": {
+      "get": {
+        "operationId": "UserController_createCustomRoastType",
+        "parameters": [
+          {
+            "name": "companyId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": 666,
+              "type": "number"
+            }
+          },
+          {
+            "name": "str",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "John",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the users from company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SearchUserResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Search for users",
+        "tags": [
+          "User"
+        ]
+      }
     }
   },
   "info": {
@@ -632,6 +708,112 @@
           "refresh_token"
         ]
       },
+      "CuppingSettingsRequestDto": {
+        "type": "object",
+        "properties": {
+          "userdId": {
+            "type": "number",
+            "example": 666
+          },
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "randomSamplesOrder": {
+            "type": "boolean",
+            "example": true
+          },
+          "openSampleNameCupping": {
+            "type": "boolean",
+            "example": true
+          },
+          "singleUserCupping": {
+            "type": "boolean",
+            "example": true
+          },
+          "inviteAllTeammates": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "userdId",
+          "companyId",
+          "randomSamplesOrder",
+          "openSampleNameCupping",
+          "singleUserCupping",
+          "inviteAllTeammates"
+        ]
+      },
+      "CreateCuppingRequestDto": {
+        "type": "object",
+        "properties": {
+          "cuppingCreatorId": {
+            "type": "number",
+            "example": 666
+          },
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "sampleItemsId": {
+            "description": "IDs of sample items from warehouse witch are included to cupping",
+            "example": [
+              1,
+              3,
+              777
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "settings": {
+            "description": "Cupping Settings",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CuppingSettingsRequestDto"
+              }
+            ]
+          },
+          "invitedUsersId": {
+            "description": "IDs of Users who will be invited to cupping",
+            "example": [
+              1,
+              3,
+              777
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cuppingName": {
+            "type": "string",
+            "example": "Cupping 1"
+          }
+        },
+        "required": [
+          "cuppingCreatorId",
+          "companyId",
+          "sampleItemsId",
+          "settings",
+          "invitedUsersId",
+          "cuppingName"
+        ]
+      },
+      "SuccessIdResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": "666"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
       "OnboardingResponseDto": {
         "type": "object",
         "properties": {
@@ -677,18 +859,6 @@
           "sampleName",
           "roastType",
           "coffeeType"
-        ]
-      },
-      "SuccessIdResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number",
-            "example": "666"
-          }
-        },
-        "required": [
-          "id"
         ]
       },
       "CreateSampleItemRequestDto": {
@@ -912,6 +1082,38 @@
           "sampleName",
           "roastType",
           "coffeeType"
+        ]
+      },
+      "SearchUserResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number",
+            "example": 666
+          },
+          "userName": {
+            "type": "string",
+            "example": "John Wayne"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "isChief": {
+            "type": "boolean",
+            "example": true
+          },
+          "isOwner": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "userId",
+          "userName",
+          "email",
+          "isChief",
+          "isOwner"
         ]
       }
     }
