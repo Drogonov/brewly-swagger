@@ -594,6 +594,28 @@
         ]
       }
     },
+    "/settings/user": {
+      "get": {
+        "operationId": "SettingsController_getUserSettings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns detailed about availiable user settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserSettingsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get user settings",
+        "tags": [
+          "Settings"
+        ]
+      }
+    },
     "/user/search": {
       "get": {
         "operationId": "UserController_createCustomRoastType",
@@ -1164,6 +1186,44 @@
           "sampleName",
           "roastType",
           "coffeeType"
+        ]
+      },
+      "GetUserSettingsResponseDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Settings 1"
+          },
+          "registerUserText": {
+            "type": "string",
+            "example": "Register Brewly Account"
+          },
+          "userInfo": {
+            "type": "object",
+            "description": "User Information"
+          },
+          "friendsBlock": {
+            "type": "object",
+            "description": "Friends Info"
+          },
+          "teamMatesBlock": {
+            "type": "object",
+            "description": "Teammates Info"
+          },
+          "onboardingBlock": {
+            "type": "object",
+            "description": "Onboarding Info"
+          },
+          "cuppingDefaultSettingsText": {
+            "type": "string",
+            "example": "Cupping Default Settings"
+          }
+        },
+        "required": [
+          "title",
+          "userInfo",
+          "cuppingDefaultSettingsText"
         ]
       },
       "SearchUserResponseDto": {
