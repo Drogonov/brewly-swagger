@@ -616,6 +616,60 @@
         ]
       }
     },
+    "/settings/save-cupping-setings": {
+      "post": {
+        "operationId": "SettingsController_saveDefaultCuppingSettings",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveDefaultCuppingSettingsRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save new cupping settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Save default cupping settings",
+        "tags": [
+          "Settings"
+        ]
+      }
+    },
+    "/settings/get-cupping-setings": {
+      "get": {
+        "operationId": "SettingsController_getDefaultCuppingSettings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns current default cupping settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDefaultCuppingSettingsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get default cupping settings",
+        "tags": [
+          "Settings"
+        ]
+      }
+    },
     "/user/search": {
       "get": {
         "operationId": "UserController_createCustomRoastType",
@@ -1224,6 +1278,74 @@
           "title",
           "userInfo",
           "cuppingDefaultSettingsText"
+        ]
+      },
+      "SaveDefaultCuppingSettingsRequestDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number",
+            "example": 666
+          },
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "randomSamplesOrder": {
+            "type": "boolean",
+            "example": true
+          },
+          "openSampleNameCupping": {
+            "type": "boolean",
+            "example": true
+          },
+          "singleUserCupping": {
+            "type": "boolean",
+            "example": true
+          },
+          "inviteAllTeammates": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "userId",
+          "companyId",
+          "randomSamplesOrder",
+          "openSampleNameCupping",
+          "singleUserCupping",
+          "inviteAllTeammates"
+        ]
+      },
+      "GetDefaultCuppingSettingsResponseDto": {
+        "type": "object",
+        "properties": {
+          "randomSamplesOrder": {
+            "type": "boolean",
+            "description": "Will order for each user will be unique",
+            "example": true
+          },
+          "openSampleNameCupping": {
+            "type": "boolean",
+            "description": "Sample names wont be hidden",
+            "example": true
+          },
+          "singleUserCupping": {
+            "type": "boolean",
+            "description": "Is that cupping only for you?",
+            "example": true
+          },
+          "inviteAllTeammates": {
+            "type": "boolean",
+            "description": "Invite all your team mates from current company",
+            "example": true
+          }
+        },
+        "required": [
+          "randomSamplesOrder",
+          "openSampleNameCupping",
+          "singleUserCupping",
+          "inviteAllTeammates"
         ]
       },
       "SearchUserResponseDto": {
