@@ -672,23 +672,13 @@
     },
     "/user/search": {
       "get": {
-        "operationId": "UserController_createCustomRoastType",
+        "operationId": "UserController_searchForUsers",
         "parameters": [
-          {
-            "name": "companyId",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "example": 666,
-              "type": "number"
-            }
-          },
           {
             "name": "str",
             "required": true,
             "in": "query",
             "schema": {
-              "example": "John",
               "type": "string"
             }
           }
@@ -699,10 +689,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SearchUserResponseDto"
-                  }
+                  "$ref": "#/components/schemas/SearchUsersResponseDto"
                 }
               }
             }
@@ -1348,36 +1335,19 @@
           "inviteAllTeammates"
         ]
       },
-      "SearchUserResponseDto": {
+      "SearchUsersResponseDto": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "number",
-            "example": 666
-          },
-          "userName": {
-            "type": "string",
-            "example": "John Wayne"
-          },
-          "email": {
-            "type": "string",
-            "example": "test@test.com"
-          },
-          "isChief": {
-            "type": "boolean",
-            "example": true
-          },
-          "isOwner": {
-            "type": "boolean",
-            "example": true
+          "users": {
+            "description": "Array of users",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
-          "userId",
-          "userName",
-          "email",
-          "isChief",
-          "isOwner"
+          "users"
         ]
       }
     }
