@@ -670,6 +670,28 @@
         ]
       }
     },
+    "/settings/profile": {
+      "get": {
+        "operationId": "SettingsController_getUserProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns user profile information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserProfileResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get user profile",
+        "tags": [
+          "Settings"
+        ]
+      }
+    },
     "/user/search": {
       "get": {
         "operationId": "UserController_searchForUsers",
@@ -1333,6 +1355,55 @@
           "openSampleNameCupping",
           "singleUserCupping",
           "inviteAllTeammates"
+        ]
+      },
+      "GetUserProfileResponseDto": {
+        "type": "object",
+        "properties": {
+          "userInfo": {
+            "type": "object",
+            "description": "Information about user"
+          },
+          "companies": {
+            "description": "Companies of the user",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createNewCompanyText": {
+            "type": "string",
+            "example": "Create New Company"
+          },
+          "rulesForOwner": {
+            "description": "Rules which owner add fo himself",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rulesForChief": {
+            "description": "Rules for chief added by owner or other chiefs",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rulesForBarista": {
+            "description": "Rules for barista added by owner or chief",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "userInfo",
+          "companies",
+          "createNewCompanyText",
+          "rulesForOwner",
+          "rulesForChief",
+          "rulesForBarista"
         ]
       },
       "SearchUsersResponseDto": {
