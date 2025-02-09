@@ -771,6 +771,10 @@
           "status": {
             "type": "string",
             "example": "Successful"
+          },
+          "description": {
+            "type": "string",
+            "example": "Some text about status"
           }
         },
         "required": [
@@ -1292,13 +1296,9 @@
       "SaveDefaultCuppingSettingsRequestDto": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "number",
-            "example": 666
-          },
-          "companyId": {
-            "type": "number",
-            "example": 666
+          "defaultCuppingName": {
+            "type": "string",
+            "example": "Cupping Name"
           },
           "randomSamplesOrder": {
             "type": "boolean",
@@ -1318,8 +1318,7 @@
           }
         },
         "required": [
-          "userId",
-          "companyId",
+          "defaultCuppingName",
           "randomSamplesOrder",
           "openSampleNameCupping",
           "singleUserCupping",
@@ -1329,6 +1328,11 @@
       "GetDefaultCuppingSettingsResponseDto": {
         "type": "object",
         "properties": {
+          "defaultCuppingName": {
+            "type": "string",
+            "description": "Default property to create new cupping with name",
+            "example": "Cupping Name"
+          },
           "randomSamplesOrder": {
             "type": "boolean",
             "description": "Will order for each user will be unique",
