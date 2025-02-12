@@ -697,17 +697,27 @@
         "operationId": "UserController_searchForUsers",
         "parameters": [
           {
-            "name": "str",
+            "name": "searchStr",
             "required": true,
             "in": "query",
             "schema": {
+              "example": "Vlad Emeliyanov",
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "friendsList",
               "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Returns DTO of the users from company",
+            "description": "Returns DTO with users search result array",
             "content": {
               "application/json": {
                 "schema": {
@@ -718,6 +728,37 @@
           }
         },
         "summary": "Search for users",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/list": {
+      "get": {
+        "operationId": "UserController_getUsersList",
+        "parameters": [
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns DTO with users list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchUsersResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get Users list",
         "tags": [
           "User"
         ]
