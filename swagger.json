@@ -763,6 +763,47 @@
           "User"
         ]
       }
+    },
+    "/user/get": {
+      "get": {
+        "operationId": "UserController_getUser",
+        "parameters": [
+          {
+            "name": "userdId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": 666,
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "friendsList",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns DTO with user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get User",
+        "tags": [
+          "User"
+        ]
+      }
     }
   },
   "info": {
@@ -1464,6 +1505,38 @@
         },
         "required": [
           "users"
+        ]
+      },
+      "GetUserResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number",
+            "example": 666
+          },
+          "userName": {
+            "type": "string",
+            "example": "John Wayne"
+          },
+          "userImageURL": {
+            "type": "string",
+            "description": "Image of the user",
+            "example": "https://picsum.photos/seed/picsum/200/300"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "role": {
+            "type": "string",
+            "example": "barista"
+          }
+        },
+        "required": [
+          "userId",
+          "userName",
+          "email",
+          "role"
         ]
       }
     }
