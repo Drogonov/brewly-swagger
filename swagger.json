@@ -769,7 +769,7 @@
         "operationId": "UserController_getUser",
         "parameters": [
           {
-            "name": "userdId",
+            "name": "userId",
             "required": true,
             "in": "query",
             "schema": {
