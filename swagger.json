@@ -1527,16 +1527,33 @@
             "type": "string",
             "example": "test@test.com"
           },
+          "comment": {
+            "type": "string",
+            "example": "Some info about user"
+          },
           "role": {
             "type": "string",
             "example": "barista"
+          },
+          "status": {
+            "type": "string",
+            "example": "Friend, teammate"
+          },
+          "actions": {
+            "description": "user interaction actions",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
           "userId",
           "userName",
           "email",
-          "role"
+          "role",
+          "status",
+          "actions"
         ]
       }
     }
