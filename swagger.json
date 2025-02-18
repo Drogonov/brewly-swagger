@@ -804,6 +804,56 @@
           "User"
         ]
       }
+    },
+    "/user/action": {
+      "post": {
+        "operationId": "UserController_makeUserAction",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": 666,
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "addToFriends",
+              "type": "string"
+            }
+          },
+          {
+            "name": "switchIsOn",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns status of user interaction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Some action made by user",
+        "tags": [
+          "User"
+        ]
+      }
     }
   },
   "info": {
