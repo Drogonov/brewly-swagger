@@ -1410,6 +1410,10 @@
             "type": "object",
             "description": "Teammates Info"
           },
+          "requestsBlock": {
+            "type": "object",
+            "description": "Sended requests"
+          },
           "onboardingBlock": {
             "type": "object",
             "description": "Onboarding Info"
