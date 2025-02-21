@@ -854,6 +854,59 @@
           "User"
         ]
       }
+    },
+    "/user/requests": {
+      "get": {
+        "operationId": "UserController_getUserSendedRequests",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the requests sended by user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserSendedRequestsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get user sended requests",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/reject": {
+      "post": {
+        "operationId": "UserController_rejectUserSendedRequest",
+        "parameters": [
+          {
+            "name": "requestId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns status of user request rejection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Reject user sended request",
+        "tags": [
+          "User"
+        ]
+      }
     }
   },
   "info": {
@@ -1608,6 +1661,21 @@
           "role",
           "status",
           "actions"
+        ]
+      },
+      "GetUserSendedRequestsResponseDto": {
+        "type": "object",
+        "properties": {
+          "requests": {
+            "description": "Array of requests",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "requests"
         ]
       }
     }
