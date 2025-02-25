@@ -805,6 +805,28 @@
         ]
       }
     },
+    "/user/data": {
+      "get": {
+        "operationId": "UserController_getUserData",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the current user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserDataResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get self User data",
+        "tags": [
+          "User"
+        ]
+      }
+    },
     "/user/action": {
       "post": {
         "operationId": "UserController_makeUserAction",
@@ -925,6 +947,56 @@
           }
         },
         "summary": "Get user notifications",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/edit": {
+      "post": {
+        "operationId": "UserController_saveEditUser",
+        "parameters": [
+          {
+            "name": "userName",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "Jon Wayne",
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "test@test.com",
+              "type": "string"
+            }
+          },
+          {
+            "name": "about",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "Some Info",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns DTO with status of edit operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Edit user info",
         "tags": [
           "User"
         ]
@@ -1683,6 +1755,37 @@
           "role",
           "status",
           "actions"
+        ]
+      },
+      "GetUserDataResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number",
+            "example": 666
+          },
+          "userName": {
+            "type": "string",
+            "example": "John Wayne"
+          },
+          "userImageURL": {
+            "type": "string",
+            "description": "Image of the user",
+            "example": "https://picsum.photos/seed/picsum/200/300"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "about": {
+            "type": "string",
+            "example": "Some info about user"
+          }
+        },
+        "required": [
+          "userId",
+          "userName",
+          "email"
         ]
       },
       "GetUserSendedRequestsResponseDto": {
