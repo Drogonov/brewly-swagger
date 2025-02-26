@@ -243,6 +243,90 @@
         ]
       }
     },
+    "/company/get-user-companies": {
+      "get": {
+        "operationId": "CompanyController_getUserCompanies",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns user companies information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserCompaniesResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get user companies",
+        "tags": [
+          "Company"
+        ]
+      }
+    },
+    "/company/delete": {
+      "delete": {
+        "operationId": "CompanyController_deleteCompany",
+        "parameters": [
+          {
+            "name": "companyId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of the action to delete company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete company",
+        "tags": [
+          "Company"
+        ]
+      }
+    },
+    "/company/data": {
+      "get": {
+        "operationId": "CompanyController_getCompanyData",
+        "parameters": [
+          {
+            "name": "companyId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns data of the company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCompanyDataResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get company data",
+        "tags": [
+          "Company"
+        ]
+      }
+    },
     "/cupping/create": {
       "post": {
         "operationId": "CuppingController_getOnboarding",
@@ -670,28 +754,6 @@
         ]
       }
     },
-    "/settings/profile": {
-      "get": {
-        "operationId": "SettingsController_getUserProfile",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Returns user profile information",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetUserProfileResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Get user profile",
-        "tags": [
-          "Settings"
-        ]
-      }
-    },
     "/settings/get-company-rules": {
       "get": {
         "operationId": "SettingsController_getCompanyRules",
@@ -818,9 +880,9 @@
         ]
       }
     },
-    "/user/get": {
+    "/user/get-card": {
       "get": {
-        "operationId": "UserController_getUser",
+        "operationId": "UserController_getUserCard",
         "parameters": [
           {
             "name": "userId",
@@ -847,7 +909,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUserResponseDto"
+                  "$ref": "#/components/schemas/GetUserCardResponseDto"
                 }
               }
             }
@@ -859,7 +921,7 @@
         ]
       }
     },
-    "/user/data": {
+    "/user/info": {
       "get": {
         "operationId": "UserController_getUserData",
         "parameters": [],
@@ -869,13 +931,57 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUserDataResponseDto"
+                  "$ref": "#/components/schemas/UserInfoResponseDto"
                 }
               }
             }
           }
         },
         "summary": "Get self User data",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/requests": {
+      "get": {
+        "operationId": "UserController_getUserSendedRequests",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the requests sended by user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserSendedRequestsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get user sended requests",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/notifications": {
+      "get": {
+        "operationId": "UserController_getUserNotifications",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the user notifications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserNotificationsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get user notifications",
         "tags": [
           "User"
         ]
@@ -931,28 +1037,6 @@
         ]
       }
     },
-    "/user/requests": {
-      "get": {
-        "operationId": "UserController_getUserSendedRequests",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Returns DTO of the requests sended by user",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetUserSendedRequestsResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Get user sended requests",
-        "tags": [
-          "User"
-        ]
-      }
-    },
     "/user/reject": {
       "post": {
         "operationId": "UserController_rejectUserSendedRequest",
@@ -979,28 +1063,6 @@
           }
         },
         "summary": "Reject user sended request",
-        "tags": [
-          "User"
-        ]
-      }
-    },
-    "/user/notifications": {
-      "get": {
-        "operationId": "UserController_getUserNotifications",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Returns DTO of the user notifications",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetUserNotificationsResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "summary": "Get user notifications",
         "tags": [
           "User"
         ]
@@ -1160,6 +1222,46 @@
         "required": [
           "access_token",
           "refresh_token"
+        ]
+      },
+      "GetUserCompaniesResponseDto": {
+        "type": "object",
+        "properties": {
+          "currentCompany": {
+            "type": "object",
+            "description": "Current company of the user"
+          },
+          "companies": {
+            "description": "Other companies of the user",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "currentCompany",
+          "companies"
+        ]
+      },
+      "GetCompanyDataResponseDto": {
+        "type": "object",
+        "properties": {
+          "companyInfo": {
+            "type": "object",
+            "description": "Info about Company"
+          },
+          "team": {
+            "description": "Team of the company with all roles",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "companyInfo",
+          "team"
         ]
       },
       "CuppingSettingsRequestDto": {
@@ -1591,17 +1693,13 @@
       "GetUserSettingsResponseDto": {
         "type": "object",
         "properties": {
-          "title": {
-            "type": "string",
-            "example": "Settings 1"
-          },
-          "registerUserText": {
-            "type": "string",
-            "example": "Register Brewly Account"
-          },
           "userInfo": {
             "type": "object",
             "description": "User Information"
+          },
+          "companyInfo": {
+            "type": "object",
+            "description": "Company Information"
           },
           "friendsBlock": {
             "type": "object",
@@ -1625,8 +1723,8 @@
           }
         },
         "required": [
-          "title",
           "userInfo",
+          "companyInfo",
           "cuppingDefaultSettingsText"
         ]
       },
@@ -1698,31 +1796,6 @@
           "inviteAllTeammates"
         ]
       },
-      "GetUserProfileResponseDto": {
-        "type": "object",
-        "properties": {
-          "userInfo": {
-            "type": "object",
-            "description": "Information about user"
-          },
-          "companies": {
-            "description": "Companies of the user",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "createNewCompanyText": {
-            "type": "string",
-            "example": "Create New Company"
-          }
-        },
-        "required": [
-          "userInfo",
-          "companies",
-          "createNewCompanyText"
-        ]
-      },
       "GetCompanyRulesResponseDto": {
         "type": "object",
         "properties": {
@@ -1789,33 +1862,12 @@
           "users"
         ]
       },
-      "GetUserResponseDto": {
+      "GetUserCardResponseDto": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "number",
-            "example": 666
-          },
-          "userName": {
-            "type": "string",
-            "example": "John Wayne"
-          },
-          "userImageURL": {
-            "type": "string",
-            "description": "Image of the user",
-            "example": "https://picsum.photos/seed/picsum/200/300"
-          },
-          "email": {
-            "type": "string",
-            "example": "test@test.com"
-          },
-          "comment": {
-            "type": "string",
-            "example": "Some info about user"
-          },
-          "role": {
-            "type": "string",
-            "example": "barista"
+          "userInfo": {
+            "type": "object",
+            "description": "Information about user"
           },
           "status": {
             "type": "string",
@@ -1830,15 +1882,12 @@
           }
         },
         "required": [
-          "userId",
-          "userName",
-          "email",
-          "role",
+          "userInfo",
           "status",
           "actions"
         ]
       },
-      "GetUserDataResponseDto": {
+      "UserInfoResponseDto": {
         "type": "object",
         "properties": {
           "userId": {
@@ -1858,6 +1907,11 @@
             "type": "string",
             "example": "test@test.com"
           },
+          "role": {
+            "type": "string",
+            "description": "will be achieved if we provide company for user",
+            "example": "barista"
+          },
           "about": {
             "type": "string",
             "example": "Some info about user"
@@ -1866,7 +1920,9 @@
         "required": [
           "userId",
           "userName",
-          "email"
+          "email",
+          "role",
+          "about"
         ]
       },
       "GetUserSendedRequestsResponseDto": {
