@@ -692,6 +692,60 @@
         ]
       }
     },
+    "/settings/get-company-rules": {
+      "get": {
+        "operationId": "SettingsController_getCompanyRules",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns list of rules for user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCompanyRulesResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get availiable rules for user to change",
+        "tags": [
+          "Settings"
+        ]
+      }
+    },
+    "/settings/save-company-rules": {
+      "post": {
+        "operationId": "SettingsController_saveCompanyRules",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveCompanyRulesRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save list of changed fules by user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Save rules for the company",
+        "tags": [
+          "Settings"
+        ]
+      }
+    },
     "/user/search": {
       "get": {
         "operationId": "UserController_searchForUsers",
@@ -1661,6 +1715,20 @@
           "createNewCompanyText": {
             "type": "string",
             "example": "Create New Company"
+          }
+        },
+        "required": [
+          "userInfo",
+          "companies",
+          "createNewCompanyText"
+        ]
+      },
+      "GetCompanyRulesResponseDto": {
+        "type": "object",
+        "properties": {
+          "companyName": {
+            "type": "string",
+            "description": "Company name"
           },
           "rulesForOwner": {
             "description": "Rules which owner add fo himself",
@@ -1685,12 +1753,25 @@
           }
         },
         "required": [
-          "userInfo",
-          "companies",
-          "createNewCompanyText",
+          "companyName",
           "rulesForOwner",
           "rulesForChief",
           "rulesForBarista"
+        ]
+      },
+      "SaveCompanyRulesRequestDto": {
+        "type": "object",
+        "properties": {
+          "rules": {
+            "description": "Rules to save",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "rules"
         ]
       },
       "SearchUsersResponseDto": {
