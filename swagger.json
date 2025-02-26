@@ -700,7 +700,7 @@
         ]
       }
     },
-    "/settings/save-cupping-setings": {
+    "/settings/save-cupping-settings": {
       "post": {
         "operationId": "SettingsController_saveDefaultCuppingSettings",
         "parameters": [],
@@ -732,7 +732,7 @@
         ]
       }
     },
-    "/settings/get-cupping-setings": {
+    "/settings/get-cupping-settings": {
       "get": {
         "operationId": "SettingsController_getDefaultCuppingSettings",
         "parameters": [],
@@ -810,7 +810,7 @@
     },
     "/user/search": {
       "get": {
-        "operationId": "UserController_searchForUsers",
+        "operationId": "UserController_searchUsers",
         "parameters": [
           {
             "name": "searchStr",
@@ -923,7 +923,7 @@
     },
     "/user/info": {
       "get": {
-        "operationId": "UserController_getUserData",
+        "operationId": "UserController_getUserInfo",
         "parameters": [],
         "responses": {
           "200": {
@@ -1716,16 +1716,11 @@
           "onboardingBlock": {
             "type": "object",
             "description": "Onboarding Info"
-          },
-          "cuppingDefaultSettingsText": {
-            "type": "string",
-            "example": "Cupping Default Settings"
           }
         },
         "required": [
           "userInfo",
-          "companyInfo",
-          "cuppingDefaultSettingsText"
+          "companyInfo"
         ]
       },
       "SaveDefaultCuppingSettingsRequestDto": {
