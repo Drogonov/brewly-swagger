@@ -327,6 +327,69 @@
         ]
       }
     },
+    "/company/change-current": {
+      "post": {
+        "operationId": "CompanyController_changeCurrentCompany",
+        "parameters": [
+          {
+            "name": "companyId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Change current company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Change current company",
+        "tags": [
+          "Company"
+        ]
+      }
+    },
+    "/company/edit": {
+      "post": {
+        "operationId": "CompanyController_editCompany",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditCompanyRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Edit or create if id is empty company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Edit or create company",
+        "tags": [
+          "Company"
+        ]
+      }
+    },
     "/cupping/create": {
       "post": {
         "operationId": "CuppingController_getOnboarding",
@@ -1262,6 +1325,23 @@
         "required": [
           "companyInfo",
           "team"
+        ]
+      },
+      "EditCompanyRequestDto": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "companyName": {
+            "type": "string",
+            "example": "Some Name"
+          }
+        },
+        "required": [
+          "companyId",
+          "companyName"
         ]
       },
       "CuppingSettingsRequestDto": {
