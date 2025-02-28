@@ -52,7 +52,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AuthRequestDto"
+                "$ref": "#/components/schemas/OTPRequestDto"
               }
             }
           }
@@ -1268,6 +1268,25 @@
           "errorMsg",
           "errorSubCode",
           "errorFields"
+        ]
+      },
+      "OTPRequestDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The users email",
+            "example": "test@test.com"
+          },
+          "otp": {
+            "type": "string",
+            "description": "The users password",
+            "example": "666666"
+          }
+        },
+        "required": [
+          "email",
+          "otp"
         ]
       },
       "TokensResponseDto": {
