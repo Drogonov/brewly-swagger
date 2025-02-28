@@ -1462,7 +1462,7 @@
         "properties": {
           "id": {
             "type": "number",
-            "example": "666"
+            "example": 666
           }
         },
         "required": [
