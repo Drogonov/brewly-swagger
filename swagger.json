@@ -1109,7 +1109,17 @@
             "required": true,
             "in": "query",
             "schema": {
+              "example": 666,
               "type": "number"
+            }
+          },
+          {
+            "name": "requestType",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "friend",
+              "type": "string"
             }
           }
         ],
