@@ -1825,6 +1825,10 @@
           "onboardingBlock": {
             "type": "object",
             "description": "Onboarding Info"
+          },
+          "isUserHaveNewNotifications": {
+            "type": "boolean",
+            "description": "True if user have new notifications"
           }
         },
         "required": [
