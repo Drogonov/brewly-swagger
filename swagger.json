@@ -820,7 +820,17 @@
     "/settings/get-company-rules": {
       "get": {
         "operationId": "SettingsController_getCompanyRules",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "companyId",
+            "required": true,
+            "in": "query",
+            "description": "id for rule",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Returns list of rules for user",
@@ -1186,6 +1196,80 @@
           }
         },
         "summary": "Edit user info",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/verify-new-email": {
+      "post": {
+        "operationId": "UserController_verifyNewEmail",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OTPRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns status of email change",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Verify OTP to change users email",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/resend-new-email-otp": {
+      "post": {
+        "operationId": "UserController_resendNewEmailOTP",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns operation status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Resend OTP and update it for user",
         "tags": [
           "User"
         ]
@@ -1943,6 +2027,10 @@
       "SaveCompanyRulesRequestDto": {
         "type": "object",
         "properties": {
+          "companyId": {
+            "type": "number",
+            "description": "Rules to save"
+          },
           "rules": {
             "description": "Rules to save",
             "type": "array",
@@ -1952,6 +2040,7 @@
           }
         },
         "required": [
+          "companyId",
           "rules"
         ]
       },
