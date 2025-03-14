@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/auth/local/signUp": {
+    "/auth/local/sign-up": {
       "post": {
         "operationId": "AuthController_signupLocal",
         "parameters": [],
@@ -39,11 +39,11 @@
         },
         "summary": "Sign up with email and password",
         "tags": [
-          "Auth"
+          "auth"
         ]
       }
     },
-    "/auth/local/verifyOTP": {
+    "/auth/local/verify-otp": {
       "post": {
         "operationId": "AuthController_verifyOTP",
         "parameters": [],
@@ -81,11 +81,11 @@
         },
         "summary": "Verify OTP and authenticate user",
         "tags": [
-          "Auth"
+          "auth"
         ]
       }
     },
-    "/auth/local/resendOTP": {
+    "/auth/local/resend-otp": {
       "post": {
         "operationId": "AuthController_resendOTP",
         "parameters": [],
@@ -123,11 +123,11 @@
         },
         "summary": "Resend OTP and update it for user",
         "tags": [
-          "Auth"
+          "auth"
         ]
       }
     },
-    "/auth/local/signIn": {
+    "/auth/local/sign-in": {
       "post": {
         "operationId": "AuthController_signinLocal",
         "parameters": [],
@@ -165,11 +165,11 @@
         },
         "summary": "Sign in with email and password",
         "tags": [
-          "Auth"
+          "auth"
         ]
       }
     },
-    "/auth/logout": {
+    "/auth/local/logout": {
       "post": {
         "operationId": "AuthController_logout",
         "parameters": [],
@@ -202,7 +202,7 @@
         ],
         "summary": "Log out from current session",
         "tags": [
-          "Auth"
+          "auth"
         ]
       }
     },
@@ -239,7 +239,7 @@
         ],
         "summary": "Refresh access and refresh tokens",
         "tags": [
-          "Auth"
+          "auth"
         ]
       }
     },
@@ -1369,13 +1369,13 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "The users email",
+            "description": "The user's email",
             "example": "test@test.com"
           },
           "otp": {
             "type": "string",
-            "description": "The users password",
-            "example": "666666"
+            "description": "One Time Password",
+            "example": "123456"
           }
         },
         "required": [
