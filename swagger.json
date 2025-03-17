@@ -777,9 +777,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Get user settings",
         "tags": [
-          "Settings"
+          "settings"
         ]
       }
     },
@@ -809,9 +814,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Save default cupping settings",
         "tags": [
-          "Settings"
+          "settings"
         ]
       }
     },
@@ -831,9 +841,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Get default cupping settings",
         "tags": [
-          "Settings"
+          "settings"
         ]
       }
     },
@@ -863,9 +878,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Get availiable rules for user to change",
         "tags": [
-          "Settings"
+          "settings"
         ]
       }
     },
@@ -895,9 +915,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Save rules for the company",
         "tags": [
-          "Settings"
+          "settings"
         ]
       }
     },
@@ -936,9 +961,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Search for users",
         "tags": [
-          "User"
+          "user"
         ]
       }
     },
@@ -967,9 +997,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Get Users list",
         "tags": [
-          "User"
+          "user"
         ]
       }
     },
@@ -1008,9 +1043,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Get User",
         "tags": [
-          "User"
+          "user"
         ]
       }
     },
@@ -1030,9 +1070,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Get self User data",
         "tags": [
-          "User"
+          "user"
         ]
       }
     },
@@ -1052,9 +1097,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Get user sended requests",
         "tags": [
-          "User"
+          "user"
         ]
       }
     },
@@ -1074,44 +1124,31 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Get user notifications",
         "tags": [
-          "User"
+          "user"
         ]
       }
     },
     "/user/action": {
       "post": {
         "operationId": "UserController_makeUserAction",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "example": 666,
-              "type": "number"
-            }
-          },
-          {
-            "name": "type",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "example": "addToFriends",
-              "type": "string"
-            }
-          },
-          {
-            "name": "switchIsOn",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "example": false,
-              "type": "boolean"
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MakeUserActionRequest"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Returns status of user interaction",
@@ -1124,35 +1161,31 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Some action made by user",
         "tags": [
-          "User"
+          "user"
         ]
       }
     },
     "/user/reject": {
       "post": {
         "operationId": "UserController_rejectUserSendedRequest",
-        "parameters": [
-          {
-            "name": "requestId",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "example": 666,
-              "type": "number"
-            }
-          },
-          {
-            "name": "requestType",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "example": "friend",
-              "type": "string"
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectUserSendedRequestRequest"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Returns status of user request rejection",
@@ -1165,44 +1198,31 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Reject user sended request",
         "tags": [
-          "User"
+          "user"
         ]
       }
     },
     "/user/edit": {
       "post": {
         "operationId": "UserController_saveEditUser",
-        "parameters": [
-          {
-            "name": "userName",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "example": "Jon Wayne",
-              "type": "string"
-            }
-          },
-          {
-            "name": "email",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "example": "test@test.com",
-              "type": "string"
-            }
-          },
-          {
-            "name": "about",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "example": "Some Info",
-              "type": "string"
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveEditUserRequest"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Returns DTO with status of edit operation",
@@ -1215,9 +1235,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Edit user info",
         "tags": [
-          "User"
+          "user"
         ]
       }
     },
@@ -1257,9 +1282,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Verify OTP to change users email",
         "tags": [
-          "User"
+          "user"
         ]
       }
     },
@@ -1267,6 +1297,16 @@
       "post": {
         "operationId": "UserController_resendNewEmailOTP",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendNewEmailOTPRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Returns operation status",
@@ -1289,9 +1329,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Resend OTP and update it for user",
         "tags": [
-          "User"
+          "user"
         ]
       }
     }
@@ -2195,6 +2240,79 @@
         },
         "required": [
           "notifications"
+        ]
+      },
+      "MakeUserActionRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number",
+            "example": 666
+          },
+          "type": {
+            "type": "string",
+            "example": "addToFriends"
+          },
+          "switchIsOn": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "userId",
+          "type",
+          "switchIsOn"
+        ]
+      },
+      "RejectUserSendedRequestRequest": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "number",
+            "example": 666
+          },
+          "requestType": {
+            "type": "string",
+            "example": "friend"
+          }
+        },
+        "required": [
+          "requestId",
+          "requestType"
+        ]
+      },
+      "SaveEditUserRequest": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "example": "Jon Wayne"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "about": {
+            "type": "string",
+            "example": "Some Info"
+          }
+        },
+        "required": [
+          "userName",
+          "email",
+          "about"
+        ]
+      },
+      "ResendNewEmailOTPRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          }
+        },
+        "required": [
+          "email"
         ]
       }
     }
