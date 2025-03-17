@@ -259,9 +259,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Get user companies",
         "tags": [
-          "Company"
+          "company"
         ]
       }
     },
@@ -290,9 +295,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Delete company",
         "tags": [
-          "Company"
+          "company"
         ]
       }
     },
@@ -321,9 +331,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Get company data",
         "tags": [
-          "Company"
+          "company"
         ]
       }
     },
@@ -352,9 +367,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Change current company",
         "tags": [
-          "Company"
+          "company"
         ]
       }
     },
@@ -384,9 +404,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Edit or create company",
         "tags": [
-          "Company"
+          "company"
         ]
       }
     },
@@ -470,14 +495,9 @@
             }
           }
         },
-        "security": [
-          {
-            "access-token": []
-          }
-        ],
         "summary": "Get Onboarding response",
         "tags": [
-          "App"
+          "onboarding"
         ]
       }
     },
@@ -1613,6 +1633,31 @@
           "resultForSamples"
         ]
       },
+      "OnboardingPageResponseDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Onboarding 1"
+          },
+          "text": {
+            "type": "string",
+            "example": "Текст Онбоардинга"
+          },
+          "imageURL": {
+            "type": "string",
+            "example": "https://brewly.digital/images/1"
+          },
+          "buttonText": {
+            "type": "string",
+            "example": "Lets go"
+          }
+        },
+        "required": [
+          "title",
+          "text"
+        ]
+      },
       "OnboardingResponseDto": {
         "type": "object",
         "properties": {
@@ -1620,7 +1665,7 @@
             "description": "Страницы из которых состоит Онбоардинг",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/OnboardingPageResponseDto"
             }
           }
         },
