@@ -415,6 +415,42 @@
         ]
       }
     },
+    "/company/accept-team-invitation": {
+      "post": {
+        "operationId": "CompanyController_acceptTeamInvitation",
+        "parameters": [
+          {
+            "name": "notificationId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully join the team",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Accept team invitation",
+        "tags": [
+          "company"
+        ]
+      }
+    },
     "/cupping/create": {
       "post": {
         "operationId": "CuppingController_getOnboarding",
