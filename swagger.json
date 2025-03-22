@@ -477,9 +477,41 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Create Cupping",
         "tags": [
-          "Cupping"
+          "cupping"
+        ]
+      }
+    },
+    "/cupping/list": {
+      "get": {
+        "operationId": "CuppingController_getCuppingsList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get list of the all user cuppings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCuppingsListResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get cuppings list",
+        "tags": [
+          "cupping"
         ]
       }
     },
@@ -509,9 +541,14 @@
             }
           }
         },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
         "summary": "Create Cupping",
         "tags": [
-          "Cupping"
+          "cupping"
         ]
       }
     },
@@ -1662,6 +1699,21 @@
         },
         "required": [
           "id"
+        ]
+      },
+      "GetCuppingsListResponseDto": {
+        "type": "object",
+        "properties": {
+          "cuppings": {
+            "description": "array of the cuppings",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "cuppings"
         ]
       },
       "GetCuppingResultsRequestDto": {
