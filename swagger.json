@@ -611,6 +611,43 @@
         ]
       }
     },
+    "/samples/update": {
+      "post": {
+        "operationId": "SamplesController_updateSample",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSampleRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the sample after update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Update Sample",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
     "/samples/sample-info": {
       "get": {
         "operationId": "SamplesController_getSampleInfo",
