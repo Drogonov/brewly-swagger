@@ -583,7 +583,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateSampleRequestDto"
+                "$ref": "#/components/schemas/SampleRequestDto"
               }
             }
           }
@@ -620,7 +620,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateSampleRequestDto"
+                "$ref": "#/components/schemas/SampleRequestDto"
               }
             }
           }
@@ -706,6 +706,33 @@
           }
         ],
         "summary": "Get Sample types",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
+    "/samples/creation-options": {
+      "get": {
+        "operationId": "SamplesController_getSampleCreationOptions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO with options for creating a sample",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSampleCreationOptionsResponseDTO"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Sample Creation Options",
         "tags": [
           "samples"
         ]
@@ -1683,9 +1710,13 @@
           "pages"
         ]
       },
-      "CreateSampleTypeRequestDto": {
+      "SampleTypeRequestDto": {
         "type": "object",
         "properties": {
+          "sampleTypeId": {
+            "type": "number",
+            "example": 666
+          },
           "companyName": {
             "type": "string",
             "example": "Tasty Coffee"
@@ -1694,31 +1725,51 @@
             "type": "string",
             "example": "Irgachiff 4"
           },
+          "beanOriginCode": {
+            "type": "number",
+            "example": 1
+          },
+          "processingMethodCode": {
+            "type": "number",
+            "example": 2
+          },
           "roastType": {
             "type": "number",
             "description": "range from 1 to 5 of roast value",
             "example": 1
           },
-          "coffeeType": {
-            "type": "string",
-            "example": "Blend"
+          "grindType": {
+            "type": "number",
+            "description": "range from 1 to 10 of grind value",
+            "example": 1
+          },
+          "labels": {
+            "description": "Labels of the pack",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
+          "sampleTypeId",
           "companyName",
           "sampleName",
+          "beanOriginCode",
+          "processingMethodCode",
           "roastType",
-          "coffeeType"
+          "grindType",
+          "labels"
         ]
       },
-      "CreateSampleRequestDto": {
+      "SampleRequestDto": {
         "type": "object",
         "properties": {
           "sampleTypeInfo": {
             "description": "Type describing sample",
             "allOf": [
               {
-                "$ref": "#/components/schemas/CreateSampleTypeRequestDto"
+                "$ref": "#/components/schemas/SampleTypeRequestDto"
               }
             ]
           },
@@ -1768,6 +1819,21 @@
         },
         "required": [
           "sampleTypesInfo"
+        ]
+      },
+      "GetSampleCreationOptionsResponseDTO": {
+        "type": "object",
+        "properties": {
+          "options": {
+            "description": "Options to create Sample",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "options"
         ]
       },
       "GetUserSettingsResponseDto": {
