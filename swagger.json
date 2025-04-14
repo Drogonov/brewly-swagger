@@ -648,6 +648,43 @@
         ]
       }
     },
+    "/samples/archive": {
+      "post": {
+        "operationId": "SamplesController_archiveSample",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArchiveSampleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns DTO with status of sample archiving",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Update Sample",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
     "/samples/sample-info": {
       "get": {
         "operationId": "SamplesController_getSampleInfo",
@@ -1784,6 +1821,23 @@
         "required": [
           "sampleTypeInfo",
           "coffeePacksInfo"
+        ]
+      },
+      "ArchiveSampleDto": {
+        "type": "object",
+        "properties": {
+          "sampleTypeId": {
+            "type": "number",
+            "description": "Id of the sample"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "example": "Current coffee packs of that sample type"
+          }
+        },
+        "required": [
+          "sampleTypeId",
+          "isArchived"
         ]
       },
       "GetSampleInfoResponseDto": {
