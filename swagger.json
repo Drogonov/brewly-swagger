@@ -704,7 +704,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSampleInfoResponseDto"
+                  "$ref": "#/components/schemas/SampleTypeInfoResponseDto"
                 }
               }
             }
@@ -770,6 +770,45 @@
           }
         ],
         "summary": "Get Sample Creation Options",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
+    "/samples/coffee-packs-info": {
+      "get": {
+        "operationId": "SamplesController_getCoffeePacksInfo",
+        "parameters": [
+          {
+            "name": "packsIds",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the coffee packs by their ids",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCoffeePacksInfoResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Coffee packs",
         "tags": [
           "samples"
         ]
@@ -1840,24 +1879,75 @@
           "isArchived"
         ]
       },
-      "GetSampleInfoResponseDto": {
+      "SampleTypeInfoResponseDto": {
         "type": "object",
         "properties": {
-          "sampleTypeInfo": {
-            "type": "object",
-            "description": "Type describing sample"
+          "sampleTypeId": {
+            "type": "number",
+            "example": 666
           },
-          "coffeePacksInfo": {
-            "example": "Current coffee packs of that sample type",
+          "companyName": {
+            "type": "string",
+            "example": "Tasty Coffee"
+          },
+          "sampleName": {
+            "type": "string",
+            "example": "Irgachiff 4"
+          },
+          "beanOrigin": {
+            "type": "object",
+            "example": "Blend"
+          },
+          "procecingMethod": {
+            "type": "object",
+            "example": "Washed"
+          },
+          "grindType": {
+            "type": "number",
+            "example": 9
+          },
+          "labels": {
+            "example": [
+              "Decaf",
+              "Microlot"
+            ],
             "type": "array",
             "items": {
               "type": "string"
             }
+          },
+          "roastType": {
+            "type": "number",
+            "description": "range from 1 to 5 of roast value",
+            "example": 1
+          },
+          "packsInWarehouseDescription": {
+            "type": "string",
+            "description": "description about connected packs",
+            "example": "1 pack 250g"
+          },
+          "connectedPacksInfo": {
+            "description": "array of connected pack ids",
+            "example": [
+              1,
+              2,
+              666
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "isArchived": {
+            "type": "boolean",
+            "example": false
           }
         },
         "required": [
-          "sampleTypeInfo",
-          "coffeePacksInfo"
+          "sampleTypeId",
+          "companyName",
+          "sampleName",
+          "isArchived"
         ]
       },
       "GetSampleTypesResponseDto": {
@@ -1888,6 +1978,21 @@
         },
         "required": [
           "options"
+        ]
+      },
+      "GetCoffeePacksInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "coffeePacksInfo": {
+            "example": "Current coffee packs of that sample type",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "coffeePacksInfo"
         ]
       },
       "GetUserSettingsResponseDto": {
