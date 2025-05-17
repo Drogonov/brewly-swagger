@@ -905,6 +905,33 @@
         ]
       }
     },
+    "/settings/current-cupping-settings": {
+      "get": {
+        "operationId": "SettingsController_getCurrentCuppingSettings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get Cupping settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentCuppingSettingsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Settings of the current cupping",
+        "tags": [
+          "settings"
+        ]
+      }
+    },
     "/settings/get-company-rules": {
       "get": {
         "operationId": "SettingsController_getCompanyRules",
@@ -2098,6 +2125,24 @@
           "openSampleNameCupping",
           "singleUserCupping",
           "inviteAllTeammates"
+        ]
+      },
+      "GetCurrentCuppingSettingsResponseDto": {
+        "type": "object",
+        "properties": {
+          "cuppingNumber": {
+            "type": "string",
+            "description": "Number to add to the cupping name",
+            "example": "123"
+          },
+          "chosenUsersAmount": {
+            "type": "number",
+            "description": "Amount of users invited by default",
+            "example": 6
+          }
+        },
+        "required": [
+          "chosenUsersAmount"
         ]
       },
       "GetCompanyRulesResponseDto": {
