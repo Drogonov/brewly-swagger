@@ -453,7 +453,7 @@
     },
     "/cupping/create": {
       "post": {
-        "operationId": "CuppingController_getOnboarding",
+        "operationId": "CuppingController_createCupping",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1605,13 +1605,9 @@
       "CuppingSettingsRequestDto": {
         "type": "object",
         "properties": {
-          "userdId": {
-            "type": "number",
-            "example": 666
-          },
-          "companyId": {
-            "type": "number",
-            "example": 666
+          "cuppingName": {
+            "type": "string",
+            "example": "Cupping 123"
           },
           "randomSamplesOrder": {
             "type": "boolean",
@@ -1631,8 +1627,7 @@
           }
         },
         "required": [
-          "userdId",
-          "companyId",
+          "cuppingName",
           "randomSamplesOrder",
           "openSampleNameCupping",
           "singleUserCupping",
@@ -1642,21 +1637,8 @@
       "CreateCuppingRequestDto": {
         "type": "object",
         "properties": {
-          "cuppingCreatorId": {
-            "type": "number",
-            "example": 666
-          },
-          "companyId": {
-            "type": "number",
-            "example": 666
-          },
-          "sampleItemsId": {
+          "samples": {
             "description": "IDs of sample items from warehouse witch are included to cupping",
-            "example": [
-              1,
-              3,
-              777
-            ],
             "type": "array",
             "items": {
               "type": "string"
@@ -1670,7 +1652,7 @@
               }
             ]
           },
-          "invitedUsersId": {
+          "chosenUserIds": {
             "description": "IDs of Users who will be invited to cupping",
             "example": [
               1,
@@ -1679,21 +1661,14 @@
             ],
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "number"
             }
-          },
-          "cuppingName": {
-            "type": "string",
-            "example": "Cupping 1"
           }
         },
         "required": [
-          "cuppingCreatorId",
-          "companyId",
-          "sampleItemsId",
+          "samples",
           "settings",
-          "invitedUsersId",
-          "cuppingName"
+          "chosenUserIds"
         ]
       },
       "SuccessIdResponseDto": {
