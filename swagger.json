@@ -515,27 +515,26 @@
         ]
       }
     },
-    "/cupping/results": {
+    "/cupping/get-cupping": {
       "post": {
-        "operationId": "CuppingController_getCuppingResult",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCuppingResultsRequestDto"
-              }
+        "operationId": "CuppingController_getCupping",
+        "parameters": [
+          {
+            "name": "cuppingId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "Create Cupping with following DTO",
+            "description": "Start cupping with your friends",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetCuppingResultsResponseDto"
+                  "$ref": "#/components/schemas/GetCuppingResponseDto"
                 }
               }
             }
@@ -546,7 +545,7 @@
             "access-token": []
           }
         ],
-        "summary": "Create Cupping",
+        "summary": "Start Cupping",
         "tags": [
           "cupping"
         ]
@@ -1698,44 +1697,31 @@
           "cuppings"
         ]
       },
-      "GetCuppingResultsRequestDto": {
+      "GetCuppingResponseDto": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "number",
-            "example": 666
+          "status": {
+            "type": "string",
+            "description": "Status of the cupping, type is important for frontend"
           },
-          "companyId": {
-            "type": "number",
-            "example": 666
+          "eventDate": {
+            "type": "string",
+            "description": "Date of the event start"
           },
-          "cuppingId": {
-            "type": "number",
-            "example": 666
-          }
-        },
-        "required": [
-          "userId",
-          "companyId",
-          "cuppingId"
-        ]
-      },
-      "GetCuppingResultsResponseDto": {
-        "type": "object",
-        "properties": {
-          "cuppingId": {
-            "type": "number",
-            "description": "Id of the sample testing",
-            "example": 666
+          "endDate": {
+            "type": "string",
+            "description": "Date when cupping will end"
           },
-          "cuppingTimeInSeconds": {
-            "type": "number",
-            "description": "Id of the sample item from warehouse",
-            "example": 666
+          "canUserStartCupiing": {
+            "type": "boolean",
+            "description": "Flag for chiefs of owners"
           },
-          "resultForSamples": {
-            "description": "Sample name. Can be covered with placeholder to hide origin name",
-            "example": "Sample 1",
+          "canUserEndCupiing": {
+            "type": "boolean",
+            "description": "Flag for chiefs of owners"
+          },
+          "samples": {
+            "description": "Array with samples Data",
             "type": "array",
             "items": {
               "type": "string"
@@ -1743,9 +1729,12 @@
           }
         },
         "required": [
-          "cuppingId",
-          "cuppingTimeInSeconds",
-          "resultForSamples"
+          "status",
+          "eventDate",
+          "endDate",
+          "canUserStartCupiing",
+          "canUserEndCupiing",
+          "samples"
         ]
       },
       "OnboardingPageResponseDto": {
