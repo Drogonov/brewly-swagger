@@ -516,8 +516,44 @@
       }
     },
     "/cupping/get-cupping": {
-      "post": {
+      "get": {
         "operationId": "CuppingController_getCupping",
+        "parameters": [
+          {
+            "name": "cuppingId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get cupping info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCuppingResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Cupping",
+        "tags": [
+          "cupping"
+        ]
+      }
+    },
+    "/cupping/get-cupping-type": {
+      "get": {
+        "operationId": "CuppingController_getCuppingType",
         "parameters": [
           {
             "name": "cuppingId",
@@ -534,7 +570,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetCuppingResponseDto"
+                  "type": "string"
                 }
               }
             }
@@ -545,7 +581,81 @@
             "access-token": []
           }
         ],
-        "summary": "Start Cupping",
+        "summary": "Get Cupping type",
+        "tags": [
+          "cupping"
+        ]
+      }
+    },
+    "/cupping/set-cupping-status": {
+      "post": {
+        "operationId": "CuppingController_setCuppingStatus",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetCuppingTypeRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Get cupping status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Set Cupping status by user who has permissions",
+        "tags": [
+          "cupping"
+        ]
+      }
+    },
+    "/cupping/set-cupping-test": {
+      "post": {
+        "operationId": "CuppingController_setCuppingTests",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetCuppingTestsRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Set cupping test info by user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Set Cupping tests",
         "tags": [
           "cupping"
         ]
@@ -1735,6 +1845,97 @@
           "canUserStartCupiing",
           "canUserEndCupiing",
           "samples"
+        ]
+      },
+      "SetCuppingTypeRequestDto": {
+        "type": "object",
+        "properties": {
+          "cuppingId": {
+            "type": "number",
+            "example": 1
+          },
+          "cuppingType": {
+            "type": "string",
+            "enum": [
+              "CREATED",
+              "STARTED",
+              "ARCHIVED"
+            ]
+          }
+        },
+        "required": [
+          "cuppingId",
+          "cuppingType"
+        ]
+      },
+      "PropertyDto": {
+        "type": "object",
+        "properties": {
+          "propertyTypeId": {
+            "type": "number",
+            "example": 1
+          },
+          "intensity": {
+            "type": "number",
+            "example": 5
+          },
+          "quality": {
+            "type": "number",
+            "example": 4
+          },
+          "comment": {
+            "type": "string",
+            "example": "Nice aromas"
+          }
+        },
+        "required": [
+          "propertyTypeId",
+          "intensity",
+          "quality",
+          "comment"
+        ]
+      },
+      "SetCuppingTestRequestDto": {
+        "type": "object",
+        "properties": {
+          "cuppingId": {
+            "type": "number",
+            "example": 1
+          },
+          "coffeePackId": {
+            "type": "number",
+            "example": 10
+          },
+          "userTestingTimeInSeconds": {
+            "type": "number",
+            "example": 120
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PropertyDto"
+            }
+          }
+        },
+        "required": [
+          "cuppingId",
+          "coffeePackId",
+          "userTestingTimeInSeconds",
+          "properties"
+        ]
+      },
+      "SetCuppingTestsRequestDto": {
+        "type": "object",
+        "properties": {
+          "tests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SetCuppingTestRequestDto"
+            }
+          }
+        },
+        "required": [
+          "tests"
         ]
       },
       "OnboardingPageResponseDto": {
