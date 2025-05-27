@@ -551,9 +551,9 @@
         ]
       }
     },
-    "/cupping/get-cupping-type": {
+    "/cupping/get-cupping-status": {
       "get": {
-        "operationId": "CuppingController_getCuppingType",
+        "operationId": "CuppingController_getCuppingStatus",
         "parameters": [
           {
             "name": "cuppingId",
@@ -566,11 +566,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Start cupping with your friends",
+            "description": "Get cupping status after some changes",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/GetCuppingStatusResponseDto"
                 }
               }
             }
@@ -581,7 +581,7 @@
             "access-token": []
           }
         ],
-        "summary": "Get Cupping type",
+        "summary": "Get Cupping status",
         "tags": [
           "cupping"
         ]
@@ -596,7 +596,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SetCuppingTypeRequestDto"
+                "$ref": "#/components/schemas/SetCuppingStatusRequestDto"
               }
             }
           }
@@ -1847,25 +1847,38 @@
           "samples"
         ]
       },
-      "SetCuppingTypeRequestDto": {
+      "GetCuppingStatusResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Status of the cupping, type is important for frontend"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "SetCuppingStatusRequestDto": {
         "type": "object",
         "properties": {
           "cuppingId": {
             "type": "number",
             "example": 1
           },
-          "cuppingType": {
+          "cuppingStatus": {
             "type": "string",
             "enum": [
-              "CREATED",
-              "STARTED",
-              "ARCHIVED"
+              "planned",
+              "inProgress",
+              "doneByCurrentUser",
+              "ended"
             ]
           }
         },
         "required": [
           "cuppingId",
-          "cuppingType"
+          "cuppingStatus"
         ]
       },
       "PropertyDto": {
