@@ -1881,75 +1881,9 @@
           "cuppingStatus"
         ]
       },
-      "PropertyDto": {
-        "type": "object",
-        "properties": {
-          "propertyTypeId": {
-            "type": "number",
-            "example": 1
-          },
-          "intensity": {
-            "type": "number",
-            "example": 5
-          },
-          "quality": {
-            "type": "number",
-            "example": 4
-          },
-          "comment": {
-            "type": "string",
-            "example": "Nice aromas"
-          }
-        },
-        "required": [
-          "propertyTypeId",
-          "intensity",
-          "quality",
-          "comment"
-        ]
-      },
-      "SetCuppingTestRequestDto": {
-        "type": "object",
-        "properties": {
-          "cuppingId": {
-            "type": "number",
-            "example": 1
-          },
-          "coffeePackId": {
-            "type": "number",
-            "example": 10
-          },
-          "userTestingTimeInSeconds": {
-            "type": "number",
-            "example": 120
-          },
-          "properties": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PropertyDto"
-            }
-          }
-        },
-        "required": [
-          "cuppingId",
-          "coffeePackId",
-          "userTestingTimeInSeconds",
-          "properties"
-        ]
-      },
       "SetCuppingTestsRequestDto": {
         "type": "object",
-        "properties": {
-          "tests": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SetCuppingTestRequestDto"
-            }
-          }
-        },
-        "required": [
-          "tests"
-        ]
+        "properties": {}
       },
       "OnboardingPageResponseDto": {
         "type": "object",
