@@ -1699,15 +1699,16 @@
         "properties": {
           "companyId": {
             "type": "number",
-            "example": 666
+            "example": 666,
+            "description": "When provided, edits an existing company; otherwise creates a new one."
           },
           "companyName": {
             "type": "string",
-            "example": "Some Name"
+            "example": "Some Company Name",
+            "description": "Name of the company (2–50 chars, letters/numbers/spaces/hyphens only)."
           }
         },
         "required": [
-          "companyId",
           "companyName"
         ]
       },
