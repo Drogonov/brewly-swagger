@@ -1712,12 +1712,34 @@
           "companyName"
         ]
       },
+      "CuppingSampleRequestDto": {
+        "type": "object",
+        "properties": {
+          "sampleId": {
+            "type": "number",
+            "description": "ID of the sample type"
+          },
+          "packId": {
+            "type": "number",
+            "description": "ID of the coffee pack"
+          },
+          "hiddenSampleName": {
+            "type": "string",
+            "description": "Hidden sample name (optional)"
+          }
+        },
+        "required": [
+          "sampleId",
+          "packId",
+          "hiddenSampleName"
+        ]
+      },
       "CuppingSettingsRequestDto": {
         "type": "object",
         "properties": {
           "cuppingName": {
             "type": "string",
-            "example": "Cupping 123"
+            "example": "Spring Tasting #1"
           },
           "randomSamplesOrder": {
             "type": "boolean",
@@ -1748,14 +1770,14 @@
         "type": "object",
         "properties": {
           "samples": {
-            "description": "IDs of sample items from warehouse witch are included to cupping",
+            "description": "At least one sample is required",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CuppingSampleRequestDto"
             }
           },
           "settings": {
-            "description": "Cupping Settings",
+            "description": "Cupping settings object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/CuppingSettingsRequestDto"
@@ -1763,7 +1785,7 @@
             ]
           },
           "chosenUserIds": {
-            "description": "IDs of Users who will be invited to cupping",
+            "description": "IDs of users to invite (optional)",
             "example": [
               1,
               3,
@@ -1865,7 +1887,8 @@
         "properties": {
           "cuppingId": {
             "type": "number",
-            "example": 1
+            "example": 123,
+            "description": "Numeric ID of the cupping to update"
           },
           "cuppingStatus": {
             "type": "string",
@@ -1874,7 +1897,8 @@
               "inProgress",
               "doneByCurrentUser",
               "ended"
-            ]
+            ],
+            "description": "Target status (one of: planned, inProgress, doneByCurrentUser, ended)"
           }
         },
         "required": [
@@ -1882,9 +1906,76 @@
           "cuppingStatus"
         ]
       },
+      "PropertyDto": {
+        "type": "object",
+        "properties": {
+          "testPropertyType": {
+            "type": "string",
+            "enum": [
+              "aroma",
+              "acidity",
+              "sweetness",
+              "body",
+              "aftertaste"
+            ]
+          },
+          "intensity": {
+            "type": "number",
+            "example": 5
+          },
+          "quality": {
+            "type": "number",
+            "example": 4
+          },
+          "comment": {
+            "type": "string",
+            "example": "Nice aromas"
+          }
+        },
+        "required": [
+          "testPropertyType",
+          "intensity",
+          "quality",
+          "comment"
+        ]
+      },
+      "SetCuppingTestRequestDto": {
+        "type": "object",
+        "properties": {
+          "cuppingId": {
+            "type": "number",
+            "example": 1
+          },
+          "coffeePackId": {
+            "type": "number",
+            "example": 10
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PropertyDto"
+            }
+          }
+        },
+        "required": [
+          "cuppingId",
+          "coffeePackId",
+          "properties"
+        ]
+      },
       "SetCuppingTestsRequestDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "tests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SetCuppingTestRequestDto"
+            }
+          }
+        },
+        "required": [
+          "tests"
+        ]
       },
       "OnboardingPageResponseDto": {
         "type": "object",
