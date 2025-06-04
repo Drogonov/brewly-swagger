@@ -1049,8 +1049,9 @@
             "name": "companyId",
             "required": true,
             "in": "query",
-            "description": "id for rule",
+            "description": "ID of the company whose rules you want",
             "schema": {
+              "example": 42,
               "type": "number"
             }
           }
@@ -2090,7 +2091,7 @@
           },
           "coffeePacksInfo": {
             "description": "Array of coffee‐pack details (if any)",
-            "example": "Current coffee packs of that sample type",
+            "example": [],
             "type": "array",
             "items": {
               "type": "string"
@@ -2278,27 +2279,31 @@
         "properties": {
           "defaultCuppingName": {
             "type": "string",
-            "example": "Cupping Name"
+            "description": "Optional default name for new cupping",
+            "example": "Evening Roast"
           },
           "randomSamplesOrder": {
             "type": "boolean",
+            "description": "Whether each user should receive a random order of samples",
             "example": true
           },
           "openSampleNameCupping": {
             "type": "boolean",
-            "example": true
+            "description": "Whether sample names are revealed upfront",
+            "example": false
           },
           "singleUserCupping": {
             "type": "boolean",
-            "example": true
+            "description": "Is this cupping strictly for a single user?",
+            "example": false
           },
           "inviteAllTeammates": {
             "type": "boolean",
+            "description": "Invite all teammates by default",
             "example": true
           }
         },
         "required": [
-          "defaultCuppingName",
           "randomSamplesOrder",
           "openSampleNameCupping",
           "singleUserCupping",
@@ -2320,7 +2325,7 @@
           },
           "openSampleNameCupping": {
             "type": "boolean",
-            "description": "Sample names wont be hidden",
+            "description": "Sample names won’t be hidden",
             "example": true
           },
           "singleUserCupping": {
@@ -2330,7 +2335,7 @@
           },
           "inviteAllTeammates": {
             "type": "boolean",
-            "description": "Invite all your team mates from current company",
+            "description": "Invite all your teammates from current company",
             "example": true
           }
         },
@@ -2395,18 +2400,44 @@
           "rulesForBarista"
         ]
       },
+      "CompanyRuleRequestDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Rule ID in the system",
+            "example": 123456789
+          },
+          "name": {
+            "type": "string",
+            "description": "Name (label) of the rule",
+            "example": "Can Chief change rules?"
+          },
+          "value": {
+            "type": "boolean",
+            "description": "Boolean flag: is this rule enabled?",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "value"
+        ]
+      },
       "SaveCompanyRulesRequestDto": {
         "type": "object",
         "properties": {
           "companyId": {
             "type": "number",
-            "description": "Rules to save"
+            "description": "ID of the company for which rules are being saved",
+            "example": 42
           },
           "rules": {
-            "description": "Rules to save",
+            "description": "Array of rules (each with id, name, value) to update",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CompanyRuleRequestDto"
             }
           }
         },
