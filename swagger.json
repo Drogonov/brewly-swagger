@@ -1577,7 +1577,13 @@
         "properties": {
           "status": {
             "type": "string",
-            "example": "Successful"
+            "example": "Successful",
+            "enum": [
+              "Successful",
+              "In Progress",
+              "Denied"
+            ],
+            "description": "Current status of the requested operation"
           },
           "description": {
             "type": "string",
@@ -1597,6 +1603,7 @@
           },
           "errorSubCode": {
             "type": "string",
+            "description": "Machine-readable sub-code for this business error",
             "example": "INCORRECT_EMAIL"
           },
           "errorFields": {
@@ -1615,8 +1622,7 @@
         },
         "required": [
           "errorMsg",
-          "errorSubCode",
-          "errorFields"
+          "errorSubCode"
         ]
       },
       "OTPRequestDto": {
@@ -1643,11 +1649,13 @@
         "properties": {
           "access_token": {
             "type": "string",
-            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYW50b25AdmxlemtvLmNvbSIsImlhdCI6MTczMjA5MTI4NiwiZXhwIjoxNzMyMDkyMTg2fQ.V5_gB8StUKLlBTiBrMLHNvQiLx_e3gscSF6xUYsmQzc"
+            "description": "JWT access token (short-lived)",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…"
           },
           "refresh_token": {
             "type": "string",
-            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImVtYWlsIjoidGVzdDEyM0B0ZXN0LmNvbSIsImlhdCI6MTczMTkxNDg0NCwiZXhwIjoxNzMyNTE5NjQ0fQ.sj5t3EUFMDhai_t2xyzdNtKMVjNGTRhjQYNMZtwu0Xk"
+            "description": "JWT refresh token (longer-lived)",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…"
           }
         },
         "required": [
@@ -1809,6 +1817,7 @@
         "properties": {
           "id": {
             "type": "number",
+            "description": "The generated primary key for the created resource",
             "example": 666
           }
         },
@@ -2508,8 +2517,13 @@
           },
           "role": {
             "type": "string",
-            "description": "will be achieved if we provide company for user",
-            "example": "barista"
+            "description": "User role within the company (if assigned)",
+            "example": "barista",
+            "enum": [
+              "owner",
+              "chief",
+              "barista"
+            ]
           },
           "about": {
             "type": "string",
@@ -2519,9 +2533,7 @@
         "required": [
           "userId",
           "userName",
-          "email",
-          "role",
-          "about"
+          "email"
         ]
       },
       "GetUserSendedRequestsResponseDto": {
