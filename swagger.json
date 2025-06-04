@@ -2022,28 +2022,33 @@
         "properties": {
           "sampleTypeId": {
             "type": "number",
-            "example": 666
+            "example": 666,
+            "description": "If updating an existing sample, provide its ID; otherwise omit."
           },
           "companyName": {
             "type": "string",
-            "example": "Tasty Coffee"
+            "example": "Tasty Coffee",
+            "description": "Name of the company that produced this sample"
           },
           "sampleName": {
             "type": "string",
-            "example": "Irgachiff 4"
+            "example": "Irgachiff 4",
+            "description": "Internal name for this sample"
           },
           "beanOriginCode": {
             "type": "number",
-            "example": 1
+            "example": 1,
+            "description": "Code of bean origin must be between 1 and 2 (option list)"
           },
           "processingMethodCode": {
             "type": "number",
-            "example": 2
+            "example": 2,
+            "description": "Code of processing method must be between 1 and 4 (option list)"
           },
           "roastType": {
             "type": "number",
-            "description": "range from 1 to 5 of roast value",
-            "example": 1
+            "description": "Roast level (0–5)",
+            "example": 3
           },
           "grindType": {
             "type": "number",
@@ -2051,7 +2056,11 @@
             "example": 1
           },
           "labels": {
-            "description": "Labels of the pack",
+            "description": "Labels of the pack (e.g. [\"Microlot\", \"Decaf\"])",
+            "example": [
+              "Microlot",
+              "Decaf"
+            ],
             "type": "array",
             "items": {
               "type": "string"
@@ -2065,15 +2074,14 @@
           "beanOriginCode",
           "processingMethodCode",
           "roastType",
-          "grindType",
-          "labels"
+          "grindType"
         ]
       },
       "SampleRequestDto": {
         "type": "object",
         "properties": {
           "sampleTypeInfo": {
-            "description": "Type describing sample",
+            "description": "Object describing the sample type details",
             "allOf": [
               {
                 "$ref": "#/components/schemas/SampleTypeRequestDto"
@@ -2081,6 +2089,7 @@
             ]
           },
           "coffeePacksInfo": {
+            "description": "Array of coffee‐pack details (if any)",
             "example": "Current coffee packs of that sample type",
             "type": "array",
             "items": {
@@ -2098,11 +2107,12 @@
         "properties": {
           "sampleTypeId": {
             "type": "number",
-            "description": "Id of the sample"
+            "description": "ID of the sample to archive/unarchive"
           },
           "isArchived": {
             "type": "boolean",
-            "example": "Current coffee packs of that sample type"
+            "example": "true",
+            "description": "Set to true to archive; false to unarchive"
           }
         },
         "required": [
