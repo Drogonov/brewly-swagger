@@ -1847,6 +1847,10 @@
             "type": "string",
             "description": "Status of the cupping, type is important for frontend"
           },
+          "cuppingName": {
+            "type": "string",
+            "description": "Name of the cupping"
+          },
           "eventDate": {
             "type": "string",
             "description": "Date of the event start"
@@ -1873,6 +1877,7 @@
         },
         "required": [
           "status",
+          "cuppingName",
           "eventDate",
           "endDate",
           "canUserStartCupiing",
