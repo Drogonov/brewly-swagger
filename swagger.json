@@ -1565,11 +1565,17 @@
             "type": "string",
             "description": "The users password",
             "example": "qqqqqqqq"
+          },
+          "language": {
+            "type": "string",
+            "description": "The user system language",
+            "example": "en"
           }
         },
         "required": [
           "email",
-          "password"
+          "password",
+          "language"
         ]
       },
       "StatusResponseDto": {
@@ -1637,11 +1643,17 @@
             "type": "string",
             "description": "One Time Password",
             "example": "123456"
+          },
+          "language": {
+            "type": "string",
+            "description": "The user system language",
+            "example": "en"
           }
         },
         "required": [
           "email",
-          "otp"
+          "otp",
+          "language"
         ]
       },
       "TokensResponseDto": {
