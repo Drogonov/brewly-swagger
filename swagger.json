@@ -243,6 +243,52 @@
         ]
       }
     },
+    "/auth/refresh-language": {
+      "post": {
+        "operationId": "AuthController_refreshTokensWithLanguage",
+        "parameters": [
+          {
+            "name": "language",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns new access and refresh tokens with sended language",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokensResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "refresh-token": []
+          }
+        ],
+        "summary": "Refresh access and refresh tokens with new language",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
     "/company/get-user-companies": {
       "get": {
         "operationId": "CompanyController_getUserCompanies",
