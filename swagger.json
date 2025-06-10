@@ -2053,25 +2053,25 @@
       "OnboardingPageResponseDto": {
         "type": "object",
         "properties": {
-          "title": {
+          "pageNumber": {
+            "type": "number",
+            "example": "Page number"
+          },
+          "subtitle": {
             "type": "string",
-            "example": "Onboarding 1"
+            "example": "Subtitle for the text"
           },
           "text": {
-            "type": "string",
-            "example": "Текст Онбоардинга"
-          },
-          "imageURL": {
-            "type": "string",
-            "example": "https://brewly.digital/images/1"
-          },
-          "buttonText": {
-            "type": "string",
-            "example": "Lets go"
+            "example": "Text options",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
-          "title",
+          "pageNumber",
+          "subtitle",
           "text"
         ]
       },
