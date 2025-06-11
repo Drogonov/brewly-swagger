@@ -708,7 +708,7 @@
       }
     },
     "/onboarding/page": {
-      "post": {
+      "get": {
         "operationId": "OnboardingController_getOnboarding",
         "parameters": [],
         "responses": {
