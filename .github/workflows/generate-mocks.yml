@@ -21,6 +21,8 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
+        env:
+          NODE_ENV: development
         run: npm ci
 
       - name: Generate route-based JSON files

@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const $RefParser = require('json-schema-ref-parser');
+const $RefParser = require('@apidevtools/json-schema-ref-parser');
 const jsf = require('json-schema-faker');
 
 async function main() {
@@ -8,7 +8,7 @@ async function main() {
         useExamplesValue: true,
         alwaysFakeOptionals: true
     });
-    
+
     const swagger = await $RefParser.dereference('swagger.json');
 
     const outDir = path.resolve('mocks');
