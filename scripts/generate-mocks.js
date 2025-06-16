@@ -21,47 +21,92 @@ async function main() {
   }
   console.log('✅ Directories created at', outputDir);
 
-  // 2) Parse DTOs and build sample JSONs
+  // 2) Prepare DTO generation
   const schemas = rawSpec.components?.schemas || {};
-  /** @type {{ [dtoName: string]: object }} */
-  const dtoJsons = {};
+  const mainDict = {};               // Fully resolved DTOs
+  const tempDict = {};               // DTOs waiting on dependencies
 
-  for (const [dtoName, schema] of Object.entries(schemas)) {
+  // Helper: build sample and track missing refs
+  function buildSample(schema) {
     const sample = {};
+    const missing = new Set();
     const props = schema.properties || {};
+
     for (const [propName, propSchema] of Object.entries(props)) {
-      // Use example if provided
+      // Example has highest priority
       if (propSchema.example !== undefined) {
         sample[propName] = propSchema.example;
-      } else {
-        // Fallback defaults by type
-        switch (propSchema.type) {
-          case 'string':
-            sample[propName] = '';
-            break;
-          case 'number':
-          case 'integer':
-            sample[propName] = 0;
-            break;
-          case 'boolean':
-            sample[propName] = false;
-            break;
-          case 'array':
-            sample[propName] = [];
-            break;
-          case 'object':
-            sample[propName] = {};
-            break;
-          default:
-            sample[propName] = null;
+        continue;
+      }
+      // Direct $ref to another DTO
+      if (propSchema.$ref) {
+        const refName = propSchema.$ref.replace('#/components/schemas/', '');
+        if (mainDict[refName]) {
+          sample[propName] = mainDict[refName];
+        } else {
+          missing.add(refName);
+          sample[propName] = null;
         }
+        continue;
+      }
+      // Array of refs
+      if (propSchema.type === 'array' && propSchema.items?.$ref) {
+        const refName = propSchema.items.$ref.replace('#/components/schemas/', '');
+        if (mainDict[refName]) sample[propName] = [ mainDict[refName] ];
+        else {
+          missing.add(refName);
+          sample[propName] = [];
+        }
+        continue;
+      }
+      // Primitive types
+      switch (propSchema.type) {
+        case 'string':    sample[propName] = '';    break;
+        case 'number':
+        case 'integer':   sample[propName] = 0;     break;
+        case 'boolean':   sample[propName] = false; break;
+        case 'array':     sample[propName] = [];    break;
+        case 'object':    sample[propName] = {};    break;
+        default:          sample[propName] = null;  break;
       }
     }
-    dtoJsons[dtoName] = sample;
+
+    return { sample, missing };
+  }
+
+  // First pass: fill what we can, else to temp
+  for (const [dtoName, schema] of Object.entries(schemas)) {
+    const { sample, missing } = buildSample(schema);
+    if (missing.size === 0) {
+      mainDict[dtoName] = sample;
+    } else {
+      tempDict[dtoName] = { schema, missing };
+    }
+  }
+
+  // Resolve dependencies iteratively
+  let progress = true;
+  while (progress && Object.keys(tempDict).length > 0) {
+    progress = false;
+
+    for (const [dtoName, { schema }] of Object.entries(tempDict)) {
+      const { sample, missing } = buildSample(schema);
+      if (missing.size === 0) {
+        mainDict[dtoName] = sample;
+        delete tempDict[dtoName];
+        progress = true;
+      } else {
+        tempDict[dtoName].missing = missing;
+      }
+    }
+  }
+
+  if (Object.keys(tempDict).length > 0) {
+    console.warn('⚠️ Could not resolve all DTOs due to circular or missing refs:', Object.keys(tempDict));
   }
 
   // 3) Print the DTO JSON dictionary
-  console.log('📦 DTO JSONs:', JSON.stringify(dtoJsons, null, 2));
+  console.log('📦 DTO JSONs:', JSON.stringify(mainDict, null, 2));
 }
 
 main().catch(err => {
