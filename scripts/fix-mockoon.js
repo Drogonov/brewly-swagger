@@ -1,3 +1,4 @@
+// File: scripts/fix-mockoon.js
 const fs = require('fs-extra');
 const path = require('path');
 const envPath = 'mocks/mockoon.json';
@@ -20,26 +21,43 @@ const envPath = 'mocks/mockoon.json';
     // Remove inline TEXT responses
     route.responses = route.responses.filter(resp => resp.bodyType !== 'TEXT');
 
+    // Attach file-based responses
     route.responses.forEach(resp => {
-      // Determine HTTP method and endpoint
       const method = route.method.toUpperCase();
       const endpointSafe = route.endpoint.replace(/\//g, '_').replace(/^_+/, '');
       const code = resp.statusCode || resp.status;
-
-      // Build a regex to match the file: METHOD_endpointSafe_<DTO>-<code>.json
-      const pattern = new RegExp(`^${method}_${endpointSafe}_.+-${code}\.json$`);
+      const pattern = new RegExp(`^${method}_${endpointSafe}_.+-${code}\\.json$`);
       const match = files.find(f => pattern.test(f));
 
       if (match) {
-        // Attach file
         resp.bodyType = 'FILE';
         resp.filePath = `./endpoints/${match}`;
       } else {
         console.warn(`Mock file not found for ${method} ${route.endpoint} status ${code}`);
       }
     });
+
+    // Deduplicate responses by filePath
+    const seen = new Set();
+    route.responses = route.responses.filter(resp => {
+      if (resp.filePath && seen.has(resp.filePath)) return false;
+      seen.add(resp.filePath);
+      return true;
+    });
   });
 
+  // Remove routes that have no file-based responses
+  env.routes = env.routes.filter(route => {
+    const hasFileResp = route.responses.some(r => r.bodyType === 'FILE');
+    if (!hasFileResp) {
+      console.log(`Removing route ${route.endpoint} - no file-based responses`);
+    }
+    return hasFileResp;
+  });
+
+  // Write updated environment
   await fs.writeJson(envPath, env, { spaces: 2 });
-  console.log('✅ Cleaned up mockoon.json');
+  console.log('✅ Cleaned up and pruned mockoon.json');
+(envPath, env, { spaces: 2 });
+  console.log('✅ Cleaned up and pruned mockoon.json');
 })();

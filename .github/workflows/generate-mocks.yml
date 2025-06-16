@@ -24,28 +24,25 @@ jobs:
           persist-credentials: true
           fetch-depth: 0
 
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-      # - name: Install dependencies
-      #   env:
-      #     NODE_ENV: development
-      #   run: npm ci
+      - name: Install dependencies
+        env:
+          NODE_ENV: development
+        run: npm ci
 
-      # - name: Generate route-based JSON files
-      #   run: npm run generate-mocks
+      - name: Generate route-based JSON files
+        run: npm run generate
 
-      # - name: Generate Mockoon export
-      #   run: npm run mockoon-export
-
-      # - name: Commit generated artifacts
-      #   uses: EndBug/add-and-commit@v9
-      #   with:
-      #     author_name: 'github-actions'
-      #     author_email: 'actions@github.com'
-      #     message: 'chore: update generated mocks and Mockoon export'
-      #     add: |
-      #       mocks/
-      #       mockoon-export.json
+      - name: Commit generated mocks
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: 'github-actions'
+          author_email: 'actions@github.com'
+          message: 'chore: update generated mocks and Mockoon export'
+          add: |
+            mocks/
+            mockoon-export.json

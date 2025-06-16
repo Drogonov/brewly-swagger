@@ -28,6 +28,4 @@ pnpm-debug.log*
 *.swp
 *.swo
 
-mocks/
-
 swagger-linked.json
