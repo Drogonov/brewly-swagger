@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "generate-mocks": "node scripts/generate-mocks.js",
-    "mockoon-export": "npx openapi-to-mockoon -i swagger.json -o mockoon-export.json --dataStrategy body-file-path --dataFolder mocks",
+    "mockoon-export": "npx mockoon-cli import --input ./swagger.json --output ./mockoon-export.json",
     "build": "npm run generate-mocks && npm run mockoon-export",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,8 +13,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@apidevtools/json-schema-ref-parser": "^13.0.5",
+    "@mockoon/cli": "^9.2.0",
     "fs-extra": "^11.3.0",
-    "json-schema-faker": "^0.5.9",
-    "json-schema-ref-parser": "^9.0.9"
+    "json-schema-faker": "^0.5.9"
   }
 }
