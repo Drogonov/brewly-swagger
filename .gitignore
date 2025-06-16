@@ -20,10 +20,6 @@ pnpm-debug.log*
 .env.local
 .env.*.local
 
-# Build output
-mockoon-export.json
-mocks/
-
 # IDE/editor settings
 .vscode/
 .idea/
