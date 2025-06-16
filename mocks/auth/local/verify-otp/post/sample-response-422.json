@@ -1,0 +1,10 @@
+{
+  "errorMsg": "This email isnt email please check it",
+  "errorSubCode": "INCORRECT_EMAIL",
+  "errorFields": [
+    {
+      "fieldCode": "email",
+      "errorMsg": "This email isnt email please check it"
+    }
+  ]
+}
