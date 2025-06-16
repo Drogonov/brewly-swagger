@@ -1,20 +1,42 @@
 const fs = require('fs-extra');
+const path = require('path');
 const envPath = 'mocks/mockoon.json';
 
 (async () => {
   const env = await fs.readJson(envPath);
+  const envDir = path.dirname(envPath);
+  const endpointsDir = path.join(envDir, 'endpoints');
+
+  // Pre-read the endpoints directory
+  let files = [];
+  try {
+    files = fs.readdirSync(endpointsDir);
+  } catch (err) {
+    console.error(`Could not read endpoints directory: ${endpointsDir}`, err);
+    process.exit(1);
+  }
 
   env.routes.forEach(route => {
-    // 1) Drop the default inline response
-    route.responses = route.responses.slice(1);
+    // Remove inline TEXT responses
+    route.responses = route.responses.filter(resp => resp.bodyType !== 'TEXT');
 
-    // 2) For each remaining response, set filePath from its label
     route.responses.forEach(resp => {
-      // assume label === '<DtoName>' so we know which mock file to pick
-      const [dtoName, code] = resp.label.split('–') // e.g. 'StatusResponseDto-200'
-      const filename = `${route.method.toUpperCase()}_${route.endpoint.replace(/\//g, '_')}_${dtoName}-${code}.json`;
-      resp.bodyType = 'FILE';
-      resp.filePath = `./mocks/endpoints/${filename}`;
+      // Determine HTTP method and endpoint
+      const method = route.method.toUpperCase();
+      const endpointSafe = route.endpoint.replace(/\//g, '_').replace(/^_+/, '');
+      const code = resp.statusCode || resp.status;
+
+      // Build a regex to match the file: METHOD_endpointSafe_<DTO>-<code>.json
+      const pattern = new RegExp(`^${method}_${endpointSafe}_.+-${code}\.json$`);
+      const match = files.find(f => pattern.test(f));
+
+      if (match) {
+        // Attach file
+        resp.bodyType = 'FILE';
+        resp.filePath = `./endpoints/${match}`;
+      } else {
+        console.warn(`Mock file not found for ${method} ${route.endpoint} status ${code}`);
+      }
     });
   });
 

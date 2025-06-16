@@ -6,12 +6,14 @@ const path = require('path');
   const paths = spec.paths || {};
 
   Object.entries(paths).forEach(([route, methods]) => {
+    // sanitize route for filename
+    const safeRoute = route.replace(/[{}]/g, '').split('/').filter(Boolean).join('_');
+
     Object.entries(methods).forEach(([method, op]) => {
       Object.entries(op.responses || {}).forEach(([code, resp]) => {
         const ref = resp.content?.['application/json']?.schema?.$ref;
         if (ref) {
           const name = ref.split('/').pop();
-          const safeRoute = route.replace(/[^a-zA-Z0-9]/g, '_').replace(/^_+|_+$/g, '');
           const filePath = `./mocks/endpoints/${method.toUpperCase()}_${safeRoute}_${name}-${code}.json`;
 
           if (fs.existsSync(path.resolve(filePath))) {
