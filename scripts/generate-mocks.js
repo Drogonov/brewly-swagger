@@ -1,48 +1,70 @@
 const fs = require('fs-extra');
 const path = require('path');
-const $RefParser = require('@apidevtools/json-schema-ref-parser');
-const jsf = require('json-schema-faker');
 
 async function main() {
-    jsf.option({
-        useExamplesValue: true,
-        alwaysFakeOptionals: true
-    });
+  // Define project root and paths
+  const projectRoot = path.resolve(__dirname, '..');
+  const specPath = path.join(projectRoot, 'swagger.json');
+  const outputDir = path.join(projectRoot, 'mocks');
 
-    const swagger = await $RefParser.dereference('swagger.json');
+  // Load the raw OpenAPI spec
+  const rawSpec = await fs.readJson(specPath);
 
-    const outDir = path.resolve('mocks');
-    await fs.emptyDir(outDir);
-
-    for (const [route, methods] of Object.entries(swagger.paths)) {
-        for (const [method, op] of Object.entries(methods)) {
-            const segments = route.replace(/^\//, '').split('/');
-            const dir = path.join(outDir, ...segments, method.toLowerCase());
-            await fs.ensureDir(dir);
-
-            if (op.requestBody?.content?.['application/json']?.schema) {
-                const schema = op.requestBody.content['application/json'].schema;
-                const sample = jsf.generate(schema);
-                await fs.writeJson(path.join(dir, 'sample-request.json'), sample, { spaces: 2 });
-            }
-
-            if (op.responses) {
-                for (const [status, resp] of Object.entries(op.responses)) {
-                    const schema = resp.content?.['application/json']?.schema;
-                    if (schema) {
-                        const sample = jsf.generate(schema);
-                        const file = `sample-response-${status}.json`;
-                        await fs.writeJson(path.join(dir, file), sample, { spaces: 2 });
-                    }
-                }
-            }
-        }
+  // 1) Create directories for each route/method
+  for (const [route, methods] of Object.entries(rawSpec.paths || {})) {
+    for (const [method] of Object.entries(methods)) {
+      const methodName = method.toLowerCase();
+      const segments = route.replace(/^\//, '').split('/');
+      const dir = path.join(outputDir, ...segments, methodName);
+      await fs.ensureDir(dir);
     }
+  }
+  console.log('✅ Directories created at', outputDir);
 
-    console.log('✅ Route-based JSON files generated under /mocks');
+  // 2) Parse DTOs and build sample JSONs
+  const schemas = rawSpec.components?.schemas || {};
+  /** @type {{ [dtoName: string]: object }} */
+  const dtoJsons = {};
+
+  for (const [dtoName, schema] of Object.entries(schemas)) {
+    const sample = {};
+    const props = schema.properties || {};
+    for (const [propName, propSchema] of Object.entries(props)) {
+      // Use example if provided
+      if (propSchema.example !== undefined) {
+        sample[propName] = propSchema.example;
+      } else {
+        // Fallback defaults by type
+        switch (propSchema.type) {
+          case 'string':
+            sample[propName] = '';
+            break;
+          case 'number':
+          case 'integer':
+            sample[propName] = 0;
+            break;
+          case 'boolean':
+            sample[propName] = false;
+            break;
+          case 'array':
+            sample[propName] = [];
+            break;
+          case 'object':
+            sample[propName] = {};
+            break;
+          default:
+            sample[propName] = null;
+        }
+      }
+    }
+    dtoJsons[dtoName] = sample;
+  }
+
+  // 3) Print the DTO JSON dictionary
+  console.log('📦 DTO JSONs:', JSON.stringify(dtoJsons, null, 2));
 }
 
 main().catch(err => {
-    console.error(err);
-    process.exit(1);
+  console.error(err);
+  process.exit(1);
 });

@@ -1,8 +1,0 @@
-{
-  "userId": 666,
-  "userName": "John Wayne",
-  "userImageURL": "https://picsum.photos/seed/picsum/200/300",
-  "email": "test@test.com",
-  "role": "barista",
-  "about": "Some info about user"
-}
