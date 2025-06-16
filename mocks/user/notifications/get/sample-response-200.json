@@ -1,9 +1,27 @@
 {
-  "quis_2ac": false,
-  "do8dd": -15656254,
+  "tempor_13": -41425540.73979774,
+  "ut4": "do labore dolore ipsum",
+  "velitbd8": -31380606,
   "notifications": [
-    "ut cillum minim id",
-    "dolore elit ut nostrud",
-    "amet"
+    {
+      "notificationId": 666,
+      "notificationDate": "2025-01-01T00:00:00Z",
+      "iconName": "trash",
+      "description": "… description …",
+      "type": "friendRequest",
+      "senderId": 666,
+      "cuppingId": 666,
+      "wasLoadedByReceiver": false
+    },
+    {
+      "notificationId": 666,
+      "notificationDate": "2025-01-01T00:00:00Z",
+      "iconName": "trash",
+      "description": "… description …",
+      "type": "friendRequest",
+      "senderId": 666,
+      "cuppingId": 666,
+      "wasLoadedByReceiver": false
+    }
   ]
 }

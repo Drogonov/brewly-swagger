@@ -1,9 +1,29 @@
 {
-  "incididuntedd": "ut deserunt consectetur",
-  "culpa4": true,
-  "culpa_3": "nisi sint deserunt in enim",
-  "sint9": "velit id esse dolore",
-  "elit_fe4": "in",
-  "sunt_f76": 95485533.30689663,
-  "coffeePacksInfo": "Current coffee packs of that sample type"
+  "magnac71": false,
+  "coffeePacksInfo": [
+    {
+      "id": 666,
+      "roastDate": "2025-01-01T00:00:00Z",
+      "openDate": "2025-01-01T00:00:00Z",
+      "weight": 250,
+      "barCode": "Lorem sunt labore sit",
+      "packIsOver": true
+    },
+    {
+      "id": 666,
+      "roastDate": "2025-01-01T00:00:00Z",
+      "openDate": "2025-01-01T00:00:00Z",
+      "weight": 250,
+      "barCode": "eu minim sed",
+      "packIsOver": true
+    },
+    {
+      "id": 666,
+      "roastDate": "2025-01-01T00:00:00Z",
+      "openDate": "2025-01-01T00:00:00Z",
+      "weight": 250,
+      "barCode": "laborum",
+      "packIsOver": true
+    }
+  ]
 }

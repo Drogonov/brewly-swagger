@@ -1,4 +1,37 @@
 {
-  "cillum_2": true,
-  "users": []
+  "sed2": false,
+  "users": [
+    {
+      "userId": 666,
+      "userName": "John Wayne",
+      "userImageURL": "https://picsum.photos/200/300",
+      "email": "test@test.com",
+      "role": "barista",
+      "about": "Some info about user"
+    },
+    {
+      "userId": 666,
+      "userName": "John Wayne",
+      "userImageURL": "https://picsum.photos/200/300",
+      "email": "test@test.com",
+      "role": "barista",
+      "about": "Some info about user"
+    },
+    {
+      "userId": 666,
+      "userName": "John Wayne",
+      "userImageURL": "https://picsum.photos/200/300",
+      "email": "test@test.com",
+      "role": "barista",
+      "about": "Some info about user"
+    },
+    {
+      "userId": 666,
+      "userName": "John Wayne",
+      "userImageURL": "https://picsum.photos/200/300",
+      "email": "test@test.com",
+      "role": "barista",
+      "about": "Some info about user"
+    }
+  ]
 }

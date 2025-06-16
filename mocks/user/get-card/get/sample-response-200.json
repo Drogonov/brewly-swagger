@@ -1,11 +1,38 @@
 {
-  "eu_3c": 29923073,
+  "nulla0": "Duis tempor aliqua nostrud irure",
   "userInfo": {
-    "eu_995": -44812018.79004107,
-    "dolor_29b": 51748918.18920457,
-    "eu_9": 66349729.414909095,
-    "in_1": "elit exercitation Excepteur Duis"
+    "userId": 666,
+    "userName": "John Wayne",
+    "userImageURL": "https://picsum.photos/200/300",
+    "email": "test@test.com",
+    "role": "barista",
+    "about": "Some info about user"
   },
   "status": "Friend, teammate",
-  "actions": []
+  "actions": [
+    {
+      "type": "acceptFriendRequest",
+      "title": "Add to Friends",
+      "isEnabled": true,
+      "switchIsOn": false
+    },
+    {
+      "type": "acceptFriendRequest",
+      "title": "Add to Friends",
+      "isEnabled": true,
+      "switchIsOn": false
+    },
+    {
+      "type": "acceptFriendRequest",
+      "title": "Add to Friends",
+      "isEnabled": true,
+      "switchIsOn": false
+    },
+    {
+      "type": "acceptFriendRequest",
+      "title": "Add to Friends",
+      "isEnabled": true,
+      "switchIsOn": false
+    }
+  ]
 }

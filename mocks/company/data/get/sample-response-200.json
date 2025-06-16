@@ -1,12 +1,35 @@
 {
-  "in_f54": false,
-  "velit_68a": -85197612.02669169,
-  "companyInfo": {},
+  "companyInfo": {
+    "companyId": 666,
+    "ownerId": 777,
+    "companyName": "cillum aliqua deserunt",
+    "companyImageURL": "https://picsum.photos/seed/picsum/200/300",
+    "isPersonal": false
+  },
   "team": [
-    "sed deserunt tempor irure",
-    "deserunt laboris quis ipsum et",
-    "amet ex laboris fugiat exercitation",
-    "proident ipsum anim",
-    "ut"
+    {
+      "userId": 666,
+      "userName": "John Wayne",
+      "userImageURL": "https://picsum.photos/200/300",
+      "email": "test@test.com",
+      "role": "barista",
+      "about": "Some info about user"
+    },
+    {
+      "userId": 666,
+      "userName": "John Wayne",
+      "userImageURL": "https://picsum.photos/200/300",
+      "email": "test@test.com",
+      "role": "barista",
+      "about": "Some info about user"
+    },
+    {
+      "userId": 666,
+      "userName": "John Wayne",
+      "userImageURL": "https://picsum.photos/200/300",
+      "email": "test@test.com",
+      "role": "barista",
+      "about": "Some info about user"
+    }
   ]
 }

@@ -1,21 +1,58 @@
 {
-  "incididunt_fa3": -25719402,
-  "suntd7e": 5055661,
-  "aliqua_52": 2732954.1958650798,
-  "sed_9e": false,
-  "companyName": "aliqua Excepteur sit",
+  "companyName": "sit",
   "rulesForOwner": [
-    "quis consectetur sunt",
-    "irure ut do magna"
+    {
+      "id": 123456789,
+      "name": "Can Chief make Chief",
+      "value": true
+    },
+    {
+      "nisi_b7b": -46023318.604315564,
+      "voluptateb_6": "sunt quis velit aliqua in",
+      "incididunt_7f": false,
+      "temporc": -48334759.0834772,
+      "ea58": "in ad",
+      "occaecat_9e": false,
+      "dolorea0c": "aute",
+      "id": 123456789,
+      "name": "Can Chief make Chief",
+      "value": true
+    }
   ],
   "rulesForChief": [
-    "dolore Duis ut",
-    "aute Duis culpa adipisicing mollit",
-    "velit cillum labore",
-    "ut qui cupidatat veniam nulla"
+    {
+      "id": 123456789,
+      "name": "Can Chief make Chief",
+      "value": true
+    },
+    {
+      "est_05": 4313066,
+      "id": 123456789,
+      "name": "Can Chief make Chief",
+      "value": true
+    }
   ],
   "rulesForBarista": [
-    "minim non in",
-    "consectetur sed enim"
+    {
+      "ipsum_6": true,
+      "esse_a": "exercitation do nostrud in officia",
+      "in_f": -77211985.0017504,
+      "dolore_9e": "anim proident est dolor",
+      "id": 123456789,
+      "name": "Can Chief make Chief",
+      "value": true
+    },
+    {
+      "anim9": false,
+      "Lorem_271": -75083349.77093133,
+      "aliqua__": "nostrud",
+      "cillum1": true,
+      "inc": "cupidatat occaecat",
+      "nostrud_23": true,
+      "eu_9e": -52210696.5364419,
+      "id": 123456789,
+      "name": "Can Chief make Chief",
+      "value": true
+    }
   ]
 }

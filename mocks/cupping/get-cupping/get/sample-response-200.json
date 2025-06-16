@@ -1,23 +1,76 @@
 {
-  "euf": 10853994.18585737,
-  "aute9ae": "non nostrud culpa sunt",
-  "commodo8a5": "exercitation aute nulla",
-  "eu_44": 9385533.970397651,
-  "dolora": false,
-  "elit_d0": "amet ullamco nulla cupidatat voluptate",
-  "aliquip772": -86194122,
-  "aliqua_681": "do amet sunt",
-  "amet_599": 50446562.39985886,
-  "non0": -14211426,
-  "status": "consequat in dolore",
-  "cuppingName": "quis deserunt magna qui",
-  "eventDate": "sunt ad magna",
-  "endDate": "fugiat eiusmod velit",
-  "canUserStartCupiing": true,
-  "canUserEndCupiing": false,
+  "ipsum0": -86588231,
+  "eu5": "elit voluptate irure",
+  "magna0_a": true,
+  "quis_7d": -60979418,
+  "status": "planned",
+  "cuppingName": "sint",
+  "eventDate": "Duis ut esse Ut",
+  "endDate": "commodo laborum ex voluptate",
+  "canUserStartCupiing": false,
+  "canUserEndCupiing": true,
   "samples": [
-    "anim ad ut ipsum",
-    "fugiat pariatur veniam reprehenderit deserunt",
-    "ex ut"
+    {
+      "sampleTypeId": 90557531.25507101,
+      "hiddenSampleName": "adipisicing",
+      "companyName": "irure tempor",
+      "sampleName": "laboris deserunt",
+      "beanOrigin": {
+        "type": "BEAN_ORIGIN",
+        "currentOption": {
+          "code": 0,
+          "value": "Mono"
+        },
+        "options": [
+          {
+            "exercitatione77": "elit aute Excepteur culpa cillum",
+            "laborum_1": true,
+            "ipsum750": "incididunt et fugiat",
+            "code": 0,
+            "value": "Mono"
+          },
+          {
+            "code": 0,
+            "value": "Mono"
+          }
+        ]
+      },
+      "procecingMethod": {
+        "type": "BEAN_ORIGIN",
+        "currentOption": {
+          "code": 0,
+          "value": "Mono"
+        },
+        "options": [
+          {
+            "ipsum_a": -90697685.687033,
+            "code": 0,
+            "value": "Mono"
+          },
+          {
+            "nostrud7": -20887732,
+            "fugiat_7e1": -96866764,
+            "code": 0,
+            "value": "Mono"
+          },
+          {
+            "occaecat1f": -54320978,
+            "cillum_ef": false,
+            "nisi9b": true,
+            "code": 0,
+            "value": "Mono"
+          }
+        ]
+      },
+      "roastType": -4422184.207071826,
+      "grindType": -73496871.04927623,
+      "packId": -56104936.86185869,
+      "roastDate": "ipsum in nisi ut officia",
+      "openDate": "aliquip anim fugiat Ut",
+      "weight": 11697637.211633965,
+      "barCode": "id veniam dolore ipsum",
+      "averageScore": -11593506.73155655,
+      "test": []
+    }
   ]
 }

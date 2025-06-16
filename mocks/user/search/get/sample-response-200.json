@@ -1,9 +1,33 @@
 {
+  "est_625": "cupidatat quis ullamco",
+  "pariaturbf8": false,
+  "amet7": -21025607,
+  "labore_2": false,
+  "aliquip_a": -12963738.353870943,
   "users": [
-    "enim",
-    "anim sed eu id",
-    "sunt nostrud",
-    "dolore voluptate in",
-    "consectetur tempor voluptate"
+    {
+      "userId": 666,
+      "userName": "John Wayne",
+      "userImageURL": "https://picsum.photos/200/300",
+      "email": "test@test.com",
+      "role": "barista",
+      "about": "Some info about user"
+    },
+    {
+      "userId": 666,
+      "userName": "John Wayne",
+      "userImageURL": "https://picsum.photos/200/300",
+      "email": "test@test.com",
+      "role": "barista",
+      "about": "Some info about user"
+    },
+    {
+      "userId": 666,
+      "userName": "John Wayne",
+      "userImageURL": "https://picsum.photos/200/300",
+      "email": "test@test.com",
+      "role": "barista",
+      "about": "Some info about user"
+    }
   ]
 }

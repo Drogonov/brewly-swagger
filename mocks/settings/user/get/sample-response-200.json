@@ -1,27 +1,38 @@
 {
   "userInfo": {
-    "mollitb": "reprehenderit consectetur",
-    "ut55": false
+    "userId": 666,
+    "userName": "John Wayne",
+    "userImageURL": "https://picsum.photos/200/300",
+    "email": "test@test.com",
+    "role": "barista",
+    "about": "Some info about user"
   },
-  "companyInfo": {},
+  "companyInfo": {
+    "companyId": 666,
+    "ownerId": 777,
+    "companyName": "qui elit exercitation",
+    "companyImageURL": "https://picsum.photos/seed/picsum/200/300",
+    "isPersonal": false
+  },
   "friendsBlock": {
-    "dolor_8ad": -72248189,
-    "nisi_c": "dolor labore nostrud pariatur cupidatat",
-    "pariatur6c": true,
-    "reprehenderit_f": 13749838.046396777
+    "iconName": "ic_24_attention",
+    "text": "Текст",
+    "number": 1
   },
   "teamMatesBlock": {
-    "magna287": "qui aliqua Duis irure eiusmod",
-    "in_c": true,
-    "culpa_b6": "ut"
+    "iconName": "ic_24_attention",
+    "text": "Текст",
+    "number": 1
   },
   "requestsBlock": {
-    "amet__c": -87303790,
-    "consectetur_c_2": true
+    "iconName": "ic_24_attention",
+    "text": "Текст",
+    "number": 1
   },
   "onboardingBlock": {
-    "cillum5c": -41307634.28005508,
-    "ea_b_": -73633690.31919102
+    "iconName": "ic_24_attention",
+    "text": "Текст",
+    "number": 1
   },
   "isUserHaveNewNotifications": true
 }

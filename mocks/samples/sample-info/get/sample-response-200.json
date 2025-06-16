@@ -2,19 +2,64 @@
   "sampleTypeId": 666,
   "companyName": "Tasty Coffee",
   "sampleName": "Irgachiff 4",
-  "beanOrigin": "Blend",
-  "procecingMethod": "Washed",
-  "grindType": 9,
+  "beanOrigin": {
+    "type": "BEAN_ORIGIN",
+    "currentOption": {
+      "code": 0,
+      "value": "Mono"
+    },
+    "options": []
+  },
+  "procecingMethod": {
+    "type": "BEAN_ORIGIN",
+    "currentOption": {
+      "sunt2": false,
+      "dolore_b": false,
+      "pariatur_a0c": 92739880.51445556,
+      "consecteturb": 85034998.41934797,
+      "code": 0,
+      "value": "Mono"
+    },
+    "options": [
+      {
+        "code": 0,
+        "value": "Mono"
+      },
+      {
+        "minim9": false,
+        "code": 0,
+        "value": "Mono"
+      },
+      {
+        "code": 0,
+        "value": "Mono"
+      }
+    ]
+  },
+  "roastType": 9,
+  "grindType": 7,
   "labels": [
     "Decaf",
     "Microlot"
   ],
-  "roastType": 1,
   "packsInWarehouseDescription": "1 pack 250g",
   "connectedPacksInfo": [
-    1,
-    2,
-    666
+    {
+      "id": 666,
+      "roastDate": "2025-01-01T00:00:00Z",
+      "openDate": "2025-01-01T00:00:00Z",
+      "weight": 250,
+      "barCode": "ullamco commodo voluptate",
+      "packIsOver": true
+    },
+    {
+      "id": 666,
+      "roastDate": "2025-01-01T00:00:00Z",
+      "openDate": "2025-01-01T00:00:00Z",
+      "weight": 250,
+      "barCode": "sit Ut",
+      "packIsOver": true
+    }
   ],
   "isArchived": false
 }
