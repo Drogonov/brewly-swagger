@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with: 
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -30,6 +32,16 @@ jobs:
 
       - name: Generate Mockoon export
         run: npm run mockoon-export
+
+      - name: Commit generated artifacts
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: 'github-actions'
+          author_email: 'actions@github.com'
+          message: 'chore: update generated mocks and Mockoon export'
+          add: |
+            mocks/
+            mockoon-export.json
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
