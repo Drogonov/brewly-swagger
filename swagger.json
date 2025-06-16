@@ -1646,6 +1646,27 @@
           "status"
         ]
       },
+      "ErrorFieldResponseDto": {
+        "type": "object",
+        "properties": {
+          "fieldCode": {
+            "type": "string",
+            "example": "email",
+            "enum": [
+              "email",
+              "password"
+            ]
+          },
+          "errorMsg": {
+            "type": "string",
+            "example": "This email isnt email please check it"
+          }
+        },
+        "required": [
+          "fieldCode",
+          "errorMsg"
+        ]
+      },
       "ErrorResponseDto": {
         "type": "object",
         "properties": {
@@ -1668,7 +1689,7 @@
             ],
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/ErrorFieldResponseDto"
             }
           }
         },
@@ -1721,44 +1742,122 @@
           "refresh_token"
         ]
       },
+      "CompanyInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "ownerId": {
+            "type": "number",
+            "example": 777
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Current user company name"
+          },
+          "companyImageURL": {
+            "type": "string",
+            "description": "Image of the company",
+            "example": "https://picsum.photos/seed/picsum/200/300"
+          },
+          "isPersonal": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "companyId",
+          "ownerId",
+          "isPersonal"
+        ]
+      },
       "GetUserCompaniesResponseDto": {
         "type": "object",
         "properties": {
           "currentCompany": {
-            "type": "object",
-            "description": "Current company of the user"
+            "description": "Current company of the user",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CompanyInfoResponseDto"
+              }
+            ]
           },
           "companies": {
             "description": "Other companies of the user",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CompanyInfoResponseDto"
             }
           }
         },
         "required": [
-          "currentCompany",
-          "companies"
+          "currentCompany"
+        ]
+      },
+      "UserInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number",
+            "example": 666
+          },
+          "userName": {
+            "type": "string",
+            "example": "John Wayne"
+          },
+          "userImageURL": {
+            "type": "string",
+            "description": "Image of the user",
+            "example": "https://picsum.photos/200/300"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "role": {
+            "type": "string",
+            "description": "User role within the company (if assigned)",
+            "example": "barista",
+            "enum": [
+              "owner",
+              "chief",
+              "barista"
+            ]
+          },
+          "about": {
+            "type": "string",
+            "example": "Some info about user"
+          }
+        },
+        "required": [
+          "userId",
+          "userName",
+          "email"
         ]
       },
       "GetCompanyDataResponseDto": {
         "type": "object",
         "properties": {
           "companyInfo": {
-            "type": "object",
-            "description": "Info about Company"
+            "description": "Info about Company",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CompanyInfoResponseDto"
+              }
+            ]
           },
           "team": {
             "description": "Team of the company with all roles",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/UserInfoResponseDto"
             }
           }
         },
         "required": [
-          "companyInfo",
-          "team"
+          "companyInfo"
         ]
       },
       "EditCompanyRequestDto": {
@@ -1898,12 +1997,211 @@
           "cuppings"
         ]
       },
+      "LocalizedOptionDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 0,
+            "description": "Code of the option"
+          },
+          "value": {
+            "type": "string",
+            "example": "Mono",
+            "description": "Value of option for current language"
+          }
+        },
+        "required": [
+          "code",
+          "value"
+        ]
+      },
+      "OptionListResponseDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of the list",
+            "example": "BEAN_ORIGIN"
+          },
+          "currentOption": {
+            "description": "Current option to preset what user should choose",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LocalizedOptionDto"
+              }
+            ]
+          },
+          "options": {
+            "description": "Array of options to choose",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocalizedOptionDto"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "options"
+        ]
+      },
+      "GetCuppingSampleTestDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Test type"
+          },
+          "intensivityUserRate": {
+            "type": "number",
+            "description": "Rate of the user"
+          },
+          "intensivityAverageRate": {
+            "type": "number",
+            "description": "Average Rate of the test"
+          },
+          "intensivityChiefRate": {
+            "type": "number",
+            "description": "Chief Rate of the test"
+          },
+          "qualityUserRate": {
+            "type": "number",
+            "description": "Rate of the user"
+          },
+          "qualityAverageRate": {
+            "type": "number",
+            "description": "Average Rate of the test"
+          },
+          "qualityChiefRate": {
+            "type": "number",
+            "description": "Chief Rate of the test"
+          },
+          "commentUser": {
+            "type": "string",
+            "description": "Comment left by user"
+          },
+          "commentUsers": {
+            "description": "Comments left by other users",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "intensivityUserRate",
+          "intensivityAverageRate",
+          "intensivityChiefRate",
+          "qualityUserRate",
+          "qualityAverageRate",
+          "qualityChiefRate",
+          "commentUser"
+        ]
+      },
+      "GetCuppingSampleResponseDto": {
+        "type": "object",
+        "properties": {
+          "sampleTypeId": {
+            "type": "number",
+            "description": "Id of the sample type"
+          },
+          "hiddenSampleName": {
+            "type": "string",
+            "description": "Name for the hidden cuppings"
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Name for the company"
+          },
+          "sampleName": {
+            "type": "string",
+            "description": "Name for the sample"
+          },
+          "beanOrigin": {
+            "description": "Bean origin as an option list",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OptionListResponseDto"
+              }
+            ]
+          },
+          "procecingMethod": {
+            "description": "Procecing method for coffee",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OptionListResponseDto"
+              }
+            ]
+          },
+          "roastType": {
+            "type": "number",
+            "description": "Roast type value"
+          },
+          "grindType": {
+            "type": "number",
+            "description": "Grind type value"
+          },
+          "packId": {
+            "type": "number",
+            "description": "Id of the pack"
+          },
+          "roastDate": {
+            "type": "string",
+            "description": "Roast date of the pack"
+          },
+          "openDate": {
+            "type": "string",
+            "description": "Open date of the pack"
+          },
+          "weight": {
+            "type": "number",
+            "description": "Weight of the pack"
+          },
+          "barCode": {
+            "type": "string",
+            "description": "Bar code of the pack"
+          },
+          "averageScore": {
+            "type": "number",
+            "description": "Average score of the pack"
+          },
+          "test": {
+            "description": "Test result entries for this pack",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetCuppingSampleTestDto"
+            }
+          }
+        },
+        "required": [
+          "sampleTypeId",
+          "hiddenSampleName",
+          "companyName",
+          "sampleName",
+          "roastType",
+          "grindType",
+          "packId",
+          "roastDate",
+          "openDate",
+          "weight",
+          "barCode",
+          "averageScore"
+        ]
+      },
       "GetCuppingResponseDto": {
         "type": "object",
         "properties": {
           "status": {
             "type": "string",
-            "description": "Status of the cupping, type is important for frontend"
+            "description": "Status of the cupping, type is important for frontend",
+            "enum": [
+              "planned",
+              "inProgress",
+              "doneByCurrentUser",
+              "ended"
+            ],
+            "example": "planned"
           },
           "cuppingName": {
             "type": "string",
@@ -1929,7 +2227,7 @@
             "description": "Array with samples Data",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/GetCuppingSampleResponseDto"
             }
           }
         },
@@ -1948,7 +2246,14 @@
         "properties": {
           "status": {
             "type": "string",
-            "description": "Status of the cupping, type is important for frontend"
+            "description": "Status of the cupping, type is important for frontend",
+            "enum": [
+              "planned",
+              "inProgress",
+              "doneByCurrentUser",
+              "ended"
+            ],
+            "example": "inProgress"
           }
         },
         "required": [
@@ -1990,26 +2295,29 @@
               "sweetness",
               "body",
               "aftertaste"
-            ]
+            ],
+            "description": "Which property is being rated"
           },
           "intensity": {
             "type": "number",
-            "example": 5
+            "example": 5,
+            "description": "Intensity rating"
           },
           "quality": {
             "type": "number",
-            "example": 4
+            "example": 5,
+            "description": "Quality rating"
           },
           "comment": {
             "type": "string",
-            "example": "Nice aromas"
+            "example": "Nice aromas",
+            "description": "Optional comment by user"
           }
         },
         "required": [
           "testPropertyType",
           "intensity",
-          "quality",
-          "comment"
+          "quality"
         ]
       },
       "SetCuppingTestRequestDto": {
@@ -2040,6 +2348,7 @@
         "type": "object",
         "properties": {
           "tests": {
+            "description": "One or more individual cupping test entries",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SetCuppingTestRequestDto"
@@ -2150,6 +2459,45 @@
           "grindType"
         ]
       },
+      "CoffeePackRequestDto": {
+        "type": "object",
+        "properties": {
+          "packId": {
+            "type": "number",
+            "example": 666,
+            "description": "If updating an existing pack, its ID."
+          },
+          "roastDate": {
+            "type": "string",
+            "example": "2025-01-01T00:00:00Z",
+            "description": "Roast date in ISO 8601 format"
+          },
+          "openDate": {
+            "type": "string",
+            "example": "2025-01-05T00:00:00Z",
+            "description": "Open date (ISO 8601). If not yet opened, omit."
+          },
+          "packIsOver": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether this pack is finished/over."
+          },
+          "weight": {
+            "type": "number",
+            "example": 250,
+            "description": "Weight in grams."
+          },
+          "barCode": {
+            "type": "string",
+            "example": "ABC123XYZ",
+            "description": "Optional barcode string."
+          }
+        },
+        "required": [
+          "roastDate",
+          "weight"
+        ]
+      },
       "SampleRequestDto": {
         "type": "object",
         "properties": {
@@ -2166,13 +2514,12 @@
             "example": [],
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CoffeePackRequestDto"
             }
           }
         },
         "required": [
-          "sampleTypeInfo",
-          "coffeePacksInfo"
+          "sampleTypeInfo"
         ]
       },
       "ArchiveSampleDto": {
@@ -2193,6 +2540,41 @@
           "isArchived"
         ]
       },
+      "CoffeePackInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "pack id",
+            "example": 666
+          },
+          "roastDate": {
+            "type": "string",
+            "example": "2025-01-01T00:00:00Z"
+          },
+          "openDate": {
+            "type": "string",
+            "example": "2025-01-01T00:00:00Z"
+          },
+          "weight": {
+            "type": "number",
+            "description": "weight in gramms",
+            "example": 250
+          },
+          "barCode": {
+            "type": "string",
+            "description": "Pack bar code"
+          },
+          "packIsOver": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "weight"
+        ]
+      },
       "SampleTypeInfoResponseDto": {
         "type": "object",
         "properties": {
@@ -2209,16 +2591,28 @@
             "example": "Irgachiff 4"
           },
           "beanOrigin": {
-            "type": "object",
-            "example": "Blend"
+            "description": "Bean origin as an option list",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OptionListResponseDto"
+              }
+            ]
           },
           "procecingMethod": {
-            "type": "object",
-            "example": "Washed"
+            "description": "Processing method as an option list",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OptionListResponseDto"
+              }
+            ]
+          },
+          "roastType": {
+            "type": "number",
+            "example": 9
           },
           "grindType": {
             "type": "number",
-            "example": 9
+            "example": 7
           },
           "labels": {
             "example": [
@@ -2230,26 +2624,16 @@
               "type": "string"
             }
           },
-          "roastType": {
-            "type": "number",
-            "description": "range from 1 to 5 of roast value",
-            "example": 1
-          },
           "packsInWarehouseDescription": {
             "type": "string",
-            "description": "description about connected packs",
+            "description": "Description of packs in warehouse",
             "example": "1 pack 250g"
           },
           "connectedPacksInfo": {
-            "description": "array of connected pack ids",
-            "example": [
-              1,
-              2,
-              666
-            ],
+            "description": "Array of connected coffee pack info",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CoffeePackInfoResponseDto"
             }
           },
           "isArchived": {
@@ -2268,10 +2652,10 @@
         "type": "object",
         "properties": {
           "sampleTypesInfo": {
-            "description": "Availiable sample types",
+            "description": "Available sample types",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/SampleTypeInfoResponseDto"
             }
           }
         },
@@ -2286,7 +2670,7 @@
             "description": "Options to create Sample",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/OptionListResponseDto"
             }
           }
         },
@@ -2298,10 +2682,10 @@
         "type": "object",
         "properties": {
           "coffeePacksInfo": {
-            "example": "Current coffee packs of that sample type",
+            "description": "Current coffee packs of that sample type",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CoffeePackInfoResponseDto"
             }
           }
         },
@@ -2309,41 +2693,87 @@
           "coffeePacksInfo"
         ]
       },
+      "IconTextNumberInfoBlockResponseDto": {
+        "type": "object",
+        "properties": {
+          "iconName": {
+            "type": "string",
+            "description": "Identifier of the icon in design system",
+            "example": "ic_24_attention"
+          },
+          "text": {
+            "type": "string",
+            "description": "Text of the block",
+            "example": "Текст"
+          },
+          "number": {
+            "type": "number",
+            "description": "Number sent in block",
+            "example": 1
+          }
+        }
+      },
       "GetUserSettingsResponseDto": {
         "type": "object",
         "properties": {
           "userInfo": {
-            "type": "object",
-            "description": "User Information"
+            "description": "User Information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserInfoResponseDto"
+              }
+            ]
           },
           "companyInfo": {
-            "type": "object",
-            "description": "Company Information"
+            "description": "Company Information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CompanyInfoResponseDto"
+              }
+            ]
           },
           "friendsBlock": {
-            "type": "object",
-            "description": "Friends Info"
+            "description": "Friends Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IconTextNumberInfoBlockResponseDto"
+              }
+            ]
           },
           "teamMatesBlock": {
-            "type": "object",
-            "description": "Teammates Info"
+            "description": "Teammates Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IconTextNumberInfoBlockResponseDto"
+              }
+            ]
           },
           "requestsBlock": {
-            "type": "object",
-            "description": "Sended requests"
+            "description": "Sent requests",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IconTextNumberInfoBlockResponseDto"
+              }
+            ]
           },
           "onboardingBlock": {
-            "type": "object",
-            "description": "Onboarding Info"
+            "description": "Onboarding Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IconTextNumberInfoBlockResponseDto"
+              }
+            ]
           },
           "isUserHaveNewNotifications": {
             "type": "boolean",
-            "description": "True if user have new notifications"
+            "description": "True if user have new notifications",
+            "example": true
           }
         },
         "required": [
           "userInfo",
-          "companyInfo"
+          "companyInfo",
+          "isUserHaveNewNotifications"
         ]
       },
       "SaveDefaultCuppingSettingsRequestDto": {
@@ -2433,7 +2863,32 @@
           }
         },
         "required": [
-          "chosenUsersAmount"
+          "cuppingNumber"
+        ]
+      },
+      "CompanyRuleResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Rule id in the system",
+            "example": 123456789
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the rule",
+            "example": "Can Chief make Chief"
+          },
+          "value": {
+            "type": "boolean",
+            "description": "Value of the rule",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "value"
         ]
       },
       "GetCompanyRulesResponseDto": {
@@ -2447,21 +2902,21 @@
             "description": "Rules which owner add fo himself",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CompanyRuleResponseDto"
             }
           },
           "rulesForChief": {
             "description": "Rules for chief added by owner or other chiefs",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CompanyRuleResponseDto"
             }
           },
           "rulesForBarista": {
             "description": "Rules for barista added by owner or chief",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CompanyRuleResponseDto"
             }
           }
         },
@@ -2525,7 +2980,7 @@
             "description": "Array of users",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/UserInfoResponseDto"
             }
           }
         },
@@ -2533,22 +2988,62 @@
           "users"
         ]
       },
+      "GetUserActionDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of the user action",
+            "enum": [
+              "addToFriends",
+              "addToTeam",
+              "removeFromFriends",
+              "removeFromTeam",
+              "makeChief",
+              "acceptFriendRequest",
+              "acceptTeamRequest"
+            ],
+            "example": "acceptFriendRequest"
+          },
+          "title": {
+            "type": "string",
+            "example": "Add to Friends"
+          },
+          "isEnabled": {
+            "type": "boolean",
+            "example": true
+          },
+          "switchIsOn": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "type",
+          "title",
+          "isEnabled"
+        ]
+      },
       "GetUserCardResponseDto": {
         "type": "object",
         "properties": {
           "userInfo": {
-            "type": "object",
-            "description": "Information about user"
+            "description": "Information about user",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserInfoResponseDto"
+              }
+            ]
           },
           "status": {
             "type": "string",
             "example": "Friend, teammate"
           },
           "actions": {
-            "description": "user interaction actions",
+            "description": "User interaction actions",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/GetUserActionDto"
             }
           }
         },
@@ -2558,45 +3053,47 @@
           "actions"
         ]
       },
-      "UserInfoResponseDto": {
+      "RequestTypeEnum": {
+        "type": "string",
+        "enum": [
+          "friend",
+          "team"
+        ]
+      },
+      "GetUserSendedRequestResponseDto": {
         "type": "object",
         "properties": {
-          "userId": {
+          "requestId": {
             "type": "number",
             "example": 666
           },
-          "userName": {
+          "requestDate": {
             "type": "string",
-            "example": "John Wayne"
+            "example": "2025-01-01T00:00:00Z",
+            "description": "ISO8601 format date"
           },
-          "userImageURL": {
+          "description": {
             "type": "string",
-            "description": "Image of the user",
-            "example": "https://picsum.photos/seed/picsum/200/300"
+            "example": "Friend request to John"
           },
-          "email": {
-            "type": "string",
-            "example": "test@test.com"
-          },
-          "role": {
-            "type": "string",
-            "description": "User role within the company (if assigned)",
-            "example": "barista",
-            "enum": [
-              "owner",
-              "chief",
-              "barista"
+          "type": {
+            "example": "friend",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RequestTypeEnum"
+              }
             ]
           },
-          "about": {
+          "status": {
             "type": "string",
-            "example": "Some info about user"
+            "example": "pending"
           }
         },
         "required": [
-          "userId",
-          "userName",
-          "email"
+          "requestId",
+          "requestDate",
+          "description",
+          "type"
         ]
       },
       "GetUserSendedRequestsResponseDto": {
@@ -2606,7 +3103,7 @@
             "description": "Array of requests",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/GetUserSendedRequestResponseDto"
             }
           }
         },
@@ -2614,14 +3111,68 @@
           "requests"
         ]
       },
+      "GetUserNotificationResponseDto": {
+        "type": "object",
+        "properties": {
+          "notificationId": {
+            "type": "number",
+            "example": 666
+          },
+          "notificationDate": {
+            "type": "string",
+            "example": "2025-01-01T00:00:00Z",
+            "description": "ISO8601 date"
+          },
+          "iconName": {
+            "type": "string",
+            "example": "trash"
+          },
+          "description": {
+            "type": "string",
+            "example": "… description …"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the notification",
+            "enum": [
+              "friendRequest",
+              "teamInvitation",
+              "cuppingInvitation",
+              "teamStatusChanged"
+            ],
+            "example": "friendRequest"
+          },
+          "senderId": {
+            "type": "number",
+            "example": 666
+          },
+          "cuppingId": {
+            "type": "number",
+            "example": 666
+          },
+          "wasLoadedByReceiver": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "notificationId",
+          "notificationDate",
+          "iconName",
+          "description",
+          "type",
+          "senderId",
+          "wasLoadedByReceiver"
+        ]
+      },
       "GetUserNotificationsResponseDto": {
         "type": "object",
         "properties": {
           "notifications": {
-            "description": "Array of requests",
+            "description": "Array of notifications",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/GetUserNotificationResponseDto"
             }
           }
         },
