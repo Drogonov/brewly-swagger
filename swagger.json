@@ -1982,6 +1982,38 @@
           "id"
         ]
       },
+      "CuppingResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 666
+          },
+          "title": {
+            "type": "string",
+            "example": "Cupping 1"
+          },
+          "creationDate": {
+            "type": "string",
+            "example": "2025-01-15T12:00:00Z"
+          },
+          "eventDate": {
+            "type": "string",
+            "example": "2025-02-01T00:00:00Z"
+          },
+          "status": {
+            "type": "string",
+            "example": "inProgress"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "creationDate",
+          "eventDate",
+          "status"
+        ]
+      },
       "GetCuppingsListResponseDto": {
         "type": "object",
         "properties": {
@@ -1989,7 +2021,7 @@
             "description": "array of the cuppings",
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/CuppingResponseDto"
             }
           }
         },
