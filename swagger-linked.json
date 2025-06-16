@@ -1,0 +1,3290 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/auth/local/sign-up": {
+      "post": {
+        "operationId": "AuthController_signupLocal",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns status if successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Sign up with email and password",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/local/verify-otp": {
+      "post": {
+        "operationId": "AuthController_verifyOTP",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OTPRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns access and refresh tokens",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokensResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Verify OTP and authenticate user",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/local/resend-otp": {
+      "post": {
+        "operationId": "AuthController_resendOTP",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns operation status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Resend OTP and update it for user",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/local/sign-in": {
+      "post": {
+        "operationId": "AuthController_signinLocal",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns access and refresh tokens",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokensResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Sign in with email and password",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/local/logout": {
+      "post": {
+        "operationId": "AuthController_logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns status if successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "refresh-token": []
+          }
+        ],
+        "summary": "Log out from current session",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "operationId": "AuthController_refreshTokens",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns new access and refresh tokens",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokensResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "refresh-token": []
+          }
+        ],
+        "summary": "Refresh access and refresh tokens",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/refresh-language": {
+      "post": {
+        "operationId": "AuthController_refreshTokensWithLanguage",
+        "parameters": [
+          {
+            "name": "language",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns new access and refresh tokens with sended language",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokensResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "refresh-token": []
+          }
+        ],
+        "summary": "Refresh access and refresh tokens with new language",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/company/get-user-companies": {
+      "get": {
+        "operationId": "CompanyController_getUserCompanies",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns user companies information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserCompaniesResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get user companies",
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/company/delete": {
+      "delete": {
+        "operationId": "CompanyController_deleteCompany",
+        "parameters": [
+          {
+            "name": "companyId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of the action to delete company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Delete company",
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/company/data": {
+      "get": {
+        "operationId": "CompanyController_getCompanyData",
+        "parameters": [
+          {
+            "name": "companyId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns data of the company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCompanyDataResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get company data",
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/company/change-current": {
+      "post": {
+        "operationId": "CompanyController_changeCurrentCompany",
+        "parameters": [
+          {
+            "name": "companyId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Change current company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Change current company",
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/company/edit": {
+      "post": {
+        "operationId": "CompanyController_editCompany",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditCompanyRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Edit or create if id is empty company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Edit or create company",
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/company/accept-team-invitation": {
+      "post": {
+        "operationId": "CompanyController_acceptTeamInvitation",
+        "parameters": [
+          {
+            "name": "notificationId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully join the team",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Accept team invitation",
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/cupping/create": {
+      "post": {
+        "operationId": "CuppingController_createCupping",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCuppingRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Cupping with following DTO",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessIdResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Create Cupping",
+        "tags": [
+          "cupping"
+        ]
+      }
+    },
+    "/cupping/list": {
+      "get": {
+        "operationId": "CuppingController_getCuppingsList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get list of the all user cuppings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCuppingsListResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get cuppings list",
+        "tags": [
+          "cupping"
+        ]
+      }
+    },
+    "/cupping/get-cupping": {
+      "get": {
+        "operationId": "CuppingController_getCupping",
+        "parameters": [
+          {
+            "name": "cuppingId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get cupping info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCuppingResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Cupping",
+        "tags": [
+          "cupping"
+        ]
+      }
+    },
+    "/cupping/get-cupping-status": {
+      "get": {
+        "operationId": "CuppingController_getCuppingStatus",
+        "parameters": [
+          {
+            "name": "cuppingId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get cupping status after some changes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCuppingStatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Cupping status",
+        "tags": [
+          "cupping"
+        ]
+      }
+    },
+    "/cupping/set-cupping-status": {
+      "post": {
+        "operationId": "CuppingController_setCuppingStatus",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetCuppingStatusRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Get cupping status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Set Cupping status by user who has permissions",
+        "tags": [
+          "cupping"
+        ]
+      }
+    },
+    "/cupping/set-cupping-test": {
+      "post": {
+        "operationId": "CuppingController_setCuppingTests",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetCuppingTestsRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Set cupping test info by user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Set Cupping tests",
+        "tags": [
+          "cupping"
+        ]
+      }
+    },
+    "/onboarding/page": {
+      "get": {
+        "operationId": "OnboardingController_getOnboarding",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns a onboarding",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OnboardingResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get Onboarding response",
+        "tags": [
+          "onboarding"
+        ]
+      }
+    },
+    "/samples/create": {
+      "post": {
+        "operationId": "SamplesController_createSample",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SampleRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the sample after creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Create Sample",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
+    "/samples/update": {
+      "post": {
+        "operationId": "SamplesController_updateSample",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SampleRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the sample after update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Update Sample",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
+    "/samples/archive": {
+      "post": {
+        "operationId": "SamplesController_archiveSample",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArchiveSampleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns DTO with status of sample archiving",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Update Sample",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
+    "/samples/sample-info": {
+      "get": {
+        "operationId": "SamplesController_getSampleInfo",
+        "parameters": [
+          {
+            "name": "sampleId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the sample info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SampleTypeInfoResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Sample type info",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
+    "/samples/types": {
+      "get": {
+        "operationId": "SamplesController_getSampleTypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the sample types with comments about warehouse packs storage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSampleTypesResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Sample types",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
+    "/samples/creation-options": {
+      "get": {
+        "operationId": "SamplesController_getSampleCreationOptions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO with options for creating a sample",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSampleCreationOptionsResponseDTO"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Sample Creation Options",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
+    "/samples/coffee-packs-info": {
+      "get": {
+        "operationId": "SamplesController_getCoffeePacksInfo",
+        "parameters": [
+          {
+            "name": "packsIds",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the coffee packs by their ids",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCoffeePacksInfoResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Coffee packs",
+        "tags": [
+          "samples"
+        ]
+      }
+    },
+    "/settings/user": {
+      "get": {
+        "operationId": "SettingsController_getUserSettings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns detailed about availiable user settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserSettingsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get user settings",
+        "tags": [
+          "settings"
+        ]
+      }
+    },
+    "/settings/save-cupping-settings": {
+      "post": {
+        "operationId": "SettingsController_saveDefaultCuppingSettings",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveDefaultCuppingSettingsRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save new cupping settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Save default cupping settings",
+        "tags": [
+          "settings"
+        ]
+      }
+    },
+    "/settings/get-cupping-settings": {
+      "get": {
+        "operationId": "SettingsController_getDefaultCuppingSettings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns current default cupping settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDefaultCuppingSettingsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get default cupping settings",
+        "tags": [
+          "settings"
+        ]
+      }
+    },
+    "/settings/current-cupping-settings": {
+      "get": {
+        "operationId": "SettingsController_getCurrentCuppingSettings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Get Cupping settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentCuppingSettingsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Settings of the current cupping",
+        "tags": [
+          "settings"
+        ]
+      }
+    },
+    "/settings/get-company-rules": {
+      "get": {
+        "operationId": "SettingsController_getCompanyRules",
+        "parameters": [
+          {
+            "name": "companyId",
+            "required": true,
+            "in": "query",
+            "description": "ID of the company whose rules you want",
+            "schema": {
+              "example": 42,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns list of rules for user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCompanyRulesResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get availiable rules for user to change",
+        "tags": [
+          "settings"
+        ]
+      }
+    },
+    "/settings/save-company-rules": {
+      "post": {
+        "operationId": "SettingsController_saveCompanyRules",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveCompanyRulesRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save list of changed fules by user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Save rules for the company",
+        "tags": [
+          "settings"
+        ]
+      }
+    },
+    "/user/search": {
+      "get": {
+        "operationId": "UserController_searchUsers",
+        "parameters": [
+          {
+            "name": "searchStr",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "Vlad Emeliyanov",
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "friendsList",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns DTO with users search result array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchUsersResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Search for users",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/user/list": {
+      "get": {
+        "operationId": "UserController_getUsersList",
+        "parameters": [
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns DTO with users list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchUsersResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get Users list",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/user/get-card": {
+      "get": {
+        "operationId": "UserController_getUserCard",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": 666,
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "example": "friendsList",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns DTO with user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserCardResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get User",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/user/info": {
+      "get": {
+        "operationId": "UserController_getUserInfo",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the current user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfoResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get self User data",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/user/requests": {
+      "get": {
+        "operationId": "UserController_getUserSendedRequests",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the requests sended by user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserSendedRequestsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get user sended requests",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/user/notifications": {
+      "get": {
+        "operationId": "UserController_getUserNotifications",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO of the user notifications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserNotificationsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Get user notifications",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/user/action": {
+      "post": {
+        "operationId": "UserController_makeUserAction",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MakeUserActionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns status of user interaction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Some action made by user",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/user/reject": {
+      "post": {
+        "operationId": "UserController_rejectUserSendedRequest",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectUserSendedRequestRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns status of user request rejection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Reject user sended request",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/user/edit": {
+      "post": {
+        "operationId": "UserController_saveEditUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveEditUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns DTO with status of edit operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Edit user info",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/user/verify-new-email": {
+      "post": {
+        "operationId": "UserController_verifyNewEmail",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OTPRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns status of email change",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Verify OTP to change users email",
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/user/resend-new-email-otp": {
+      "post": {
+        "operationId": "UserController_resendNewEmailOTP",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendNewEmailOTPRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns operation status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Returns business top layer error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Resend OTP and update it for user",
+        "tags": [
+          "user"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "App API",
+    "description": "API documentation for the application",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "access-token": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      },
+      "refresh-token": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "AuthRequestDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The users email",
+            "example": "test@test.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "The users password",
+            "example": "qqqqqqqq"
+          },
+          "language": {
+            "type": "string",
+            "description": "The user system language",
+            "example": "en"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "language"
+        ]
+      },
+      "StatusResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "Successful",
+            "enum": [
+              "Successful",
+              "In Progress",
+              "Denied"
+            ],
+            "description": "Current status of the requested operation"
+          },
+          "description": {
+            "type": "string",
+            "example": "Some text about status"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ErrorFieldResponseDto": {
+        "type": "object",
+        "properties": {
+          "fieldCode": {
+            "type": "string",
+            "example": "email",
+            "enum": [
+              "email",
+              "password"
+            ]
+          },
+          "errorMsg": {
+            "type": "string",
+            "example": "This email isnt email please check it"
+          }
+        },
+        "required": [
+          "fieldCode",
+          "errorMsg"
+        ]
+      },
+      "ErrorResponseDto": {
+        "type": "object",
+        "properties": {
+          "errorMsg": {
+            "type": "string",
+            "example": "This email isnt email please check it"
+          },
+          "errorSubCode": {
+            "type": "string",
+            "description": "Machine-readable sub-code for this business error",
+            "example": "INCORRECT_EMAIL"
+          },
+          "errorFields": {
+            "description": "Array of fields with specified errors",
+            "example": [
+              {
+                "fieldCode": "email",
+                "errorMsg": "This email isnt email please check it"
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErrorFieldResponseDto"
+            }
+          }
+        },
+        "required": [
+          "errorMsg",
+          "errorSubCode"
+        ]
+      },
+      "OTPRequestDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The user's email",
+            "example": "test@test.com"
+          },
+          "otp": {
+            "type": "string",
+            "description": "One Time Password",
+            "example": "123456"
+          },
+          "language": {
+            "type": "string",
+            "description": "The user system language",
+            "example": "en"
+          }
+        },
+        "required": [
+          "email",
+          "otp",
+          "language"
+        ]
+      },
+      "TokensResponseDto": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "description": "JWT access token (short-lived)",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…"
+          },
+          "refresh_token": {
+            "type": "string",
+            "description": "JWT refresh token (longer-lived)",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…"
+          }
+        },
+        "required": [
+          "access_token",
+          "refresh_token"
+        ]
+      },
+      "CompanyInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "example": 666
+          },
+          "ownerId": {
+            "type": "number",
+            "example": 777
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Current user company name"
+          },
+          "companyImageURL": {
+            "type": "string",
+            "description": "Image of the company",
+            "example": "https://picsum.photos/seed/picsum/200/300"
+          },
+          "isPersonal": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "companyId",
+          "ownerId",
+          "isPersonal"
+        ]
+      },
+      "GetUserCompaniesResponseDto": {
+        "type": "object",
+        "properties": {
+          "currentCompany": {
+            "description": "Current company of the user",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CompanyInfoResponseDto"
+              }
+            ]
+          },
+          "companies": {
+            "description": "Other companies of the user",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyInfoResponseDto"
+            }
+          }
+        },
+        "required": [
+          "currentCompany"
+        ]
+      },
+      "UserInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number",
+            "example": 666
+          },
+          "userName": {
+            "type": "string",
+            "example": "John Wayne"
+          },
+          "userImageURL": {
+            "type": "string",
+            "description": "Image of the user",
+            "example": "https://picsum.photos/200/300"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "role": {
+            "type": "string",
+            "description": "User role within the company (if assigned)",
+            "example": "barista",
+            "enum": [
+              "owner",
+              "chief",
+              "barista"
+            ]
+          },
+          "about": {
+            "type": "string",
+            "example": "Some info about user"
+          }
+        },
+        "required": [
+          "userId",
+          "userName",
+          "email"
+        ]
+      },
+      "GetCompanyDataResponseDto": {
+        "type": "object",
+        "properties": {
+          "companyInfo": {
+            "description": "Info about Company",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CompanyInfoResponseDto"
+              }
+            ]
+          },
+          "team": {
+            "description": "Team of the company with all roles",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserInfoResponseDto"
+            }
+          }
+        },
+        "required": [
+          "companyInfo"
+        ]
+      },
+      "EditCompanyRequestDto": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "example": 666,
+            "description": "When provided, edits an existing company; otherwise creates a new one."
+          },
+          "companyName": {
+            "type": "string",
+            "example": "Some Company Name",
+            "description": "Name of the company (2–50 chars, letters/numbers/spaces/hyphens only)."
+          }
+        },
+        "required": [
+          "companyName"
+        ]
+      },
+      "CuppingSampleRequestDto": {
+        "type": "object",
+        "properties": {
+          "sampleId": {
+            "type": "number",
+            "description": "ID of the sample type"
+          },
+          "packId": {
+            "type": "number",
+            "description": "ID of the coffee pack"
+          },
+          "hiddenSampleName": {
+            "type": "string",
+            "description": "Hidden sample name (optional)"
+          }
+        },
+        "required": [
+          "sampleId",
+          "packId",
+          "hiddenSampleName"
+        ]
+      },
+      "CuppingSettingsRequestDto": {
+        "type": "object",
+        "properties": {
+          "cuppingName": {
+            "type": "string",
+            "example": "Spring Tasting #1"
+          },
+          "randomSamplesOrder": {
+            "type": "boolean",
+            "example": true
+          },
+          "openSampleNameCupping": {
+            "type": "boolean",
+            "example": true
+          },
+          "singleUserCupping": {
+            "type": "boolean",
+            "example": true
+          },
+          "inviteAllTeammates": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "cuppingName",
+          "randomSamplesOrder",
+          "openSampleNameCupping",
+          "singleUserCupping",
+          "inviteAllTeammates"
+        ]
+      },
+      "CreateCuppingRequestDto": {
+        "type": "object",
+        "properties": {
+          "samples": {
+            "description": "At least one sample is required",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CuppingSampleRequestDto"
+            }
+          },
+          "settings": {
+            "description": "Cupping settings object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CuppingSettingsRequestDto"
+              }
+            ]
+          },
+          "chosenUserIds": {
+            "description": "IDs of users to invite (optional)",
+            "example": [
+              1,
+              3,
+              777
+            ],
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "required": [
+          "samples",
+          "settings",
+          "chosenUserIds"
+        ]
+      },
+      "SuccessIdResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "The generated primary key for the created resource",
+            "example": 666
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "CuppingResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 666
+          },
+          "title": {
+            "type": "string",
+            "example": "Cupping 1"
+          },
+          "creationDate": {
+            "type": "string",
+            "example": "2025-01-15T12:00:00Z"
+          },
+          "eventDate": {
+            "type": "string",
+            "example": "2025-02-01T00:00:00Z"
+          },
+          "status": {
+            "type": "string",
+            "example": "inProgress"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "creationDate",
+          "eventDate",
+          "status"
+        ]
+      },
+      "GetCuppingsListResponseDto": {
+        "type": "object",
+        "properties": {
+          "cuppings": {
+            "description": "array of the cuppings",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CuppingResponseDto"
+            }
+          }
+        },
+        "required": [
+          "cuppings"
+        ]
+      },
+      "LocalizedOptionDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "example": 0,
+            "description": "Code of the option"
+          },
+          "value": {
+            "type": "string",
+            "example": "Mono",
+            "description": "Value of option for current language"
+          }
+        },
+        "required": [
+          "code",
+          "value"
+        ]
+      },
+      "OptionListResponseDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of the list",
+            "example": "BEAN_ORIGIN"
+          },
+          "currentOption": {
+            "description": "Current option to preset what user should choose",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LocalizedOptionDto"
+              }
+            ]
+          },
+          "options": {
+            "description": "Array of options to choose",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocalizedOptionDto"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "options"
+        ]
+      },
+      "GetCuppingSampleTestDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Test type"
+          },
+          "intensivityUserRate": {
+            "type": "number",
+            "description": "Rate of the user"
+          },
+          "intensivityAverageRate": {
+            "type": "number",
+            "description": "Average Rate of the test"
+          },
+          "intensivityChiefRate": {
+            "type": "number",
+            "description": "Chief Rate of the test"
+          },
+          "qualityUserRate": {
+            "type": "number",
+            "description": "Rate of the user"
+          },
+          "qualityAverageRate": {
+            "type": "number",
+            "description": "Average Rate of the test"
+          },
+          "qualityChiefRate": {
+            "type": "number",
+            "description": "Chief Rate of the test"
+          },
+          "commentUser": {
+            "type": "string",
+            "description": "Comment left by user"
+          },
+          "commentUsers": {
+            "description": "Comments left by other users",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "intensivityUserRate",
+          "intensivityAverageRate",
+          "intensivityChiefRate",
+          "qualityUserRate",
+          "qualityAverageRate",
+          "qualityChiefRate",
+          "commentUser"
+        ]
+      },
+      "GetCuppingSampleResponseDto": {
+        "type": "object",
+        "properties": {
+          "sampleTypeId": {
+            "type": "number",
+            "description": "Id of the sample type"
+          },
+          "hiddenSampleName": {
+            "type": "string",
+            "description": "Name for the hidden cuppings"
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Name for the company"
+          },
+          "sampleName": {
+            "type": "string",
+            "description": "Name for the sample"
+          },
+          "beanOrigin": {
+            "description": "Bean origin as an option list",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OptionListResponseDto"
+              }
+            ]
+          },
+          "procecingMethod": {
+            "description": "Procecing method for coffee",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OptionListResponseDto"
+              }
+            ]
+          },
+          "roastType": {
+            "type": "number",
+            "description": "Roast type value"
+          },
+          "grindType": {
+            "type": "number",
+            "description": "Grind type value"
+          },
+          "packId": {
+            "type": "number",
+            "description": "Id of the pack"
+          },
+          "roastDate": {
+            "type": "string",
+            "description": "Roast date of the pack"
+          },
+          "openDate": {
+            "type": "string",
+            "description": "Open date of the pack"
+          },
+          "weight": {
+            "type": "number",
+            "description": "Weight of the pack"
+          },
+          "barCode": {
+            "type": "string",
+            "description": "Bar code of the pack"
+          },
+          "averageScore": {
+            "type": "number",
+            "description": "Average score of the pack"
+          },
+          "test": {
+            "description": "Test result entries for this pack",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetCuppingSampleTestDto"
+            }
+          }
+        },
+        "required": [
+          "sampleTypeId",
+          "hiddenSampleName",
+          "companyName",
+          "sampleName",
+          "roastType",
+          "grindType",
+          "packId",
+          "roastDate",
+          "openDate",
+          "weight",
+          "barCode",
+          "averageScore"
+        ]
+      },
+      "GetCuppingResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Status of the cupping, type is important for frontend",
+            "enum": [
+              "planned",
+              "inProgress",
+              "doneByCurrentUser",
+              "ended"
+            ],
+            "example": "planned"
+          },
+          "cuppingName": {
+            "type": "string",
+            "description": "Name of the cupping"
+          },
+          "eventDate": {
+            "type": "string",
+            "description": "Date of the event start"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Date when cupping will end"
+          },
+          "canUserStartCupiing": {
+            "type": "boolean",
+            "description": "Flag for chiefs of owners"
+          },
+          "canUserEndCupiing": {
+            "type": "boolean",
+            "description": "Flag for chiefs of owners"
+          },
+          "samples": {
+            "description": "Array with samples Data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetCuppingSampleResponseDto"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "cuppingName",
+          "eventDate",
+          "endDate",
+          "canUserStartCupiing",
+          "canUserEndCupiing",
+          "samples"
+        ]
+      },
+      "GetCuppingStatusResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Status of the cupping, type is important for frontend",
+            "enum": [
+              "planned",
+              "inProgress",
+              "doneByCurrentUser",
+              "ended"
+            ],
+            "example": "inProgress"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "SetCuppingStatusRequestDto": {
+        "type": "object",
+        "properties": {
+          "cuppingId": {
+            "type": "number",
+            "example": 123,
+            "description": "Numeric ID of the cupping to update"
+          },
+          "cuppingStatus": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "inProgress",
+              "doneByCurrentUser",
+              "ended"
+            ],
+            "description": "Target status (one of: planned, inProgress, doneByCurrentUser, ended)"
+          }
+        },
+        "required": [
+          "cuppingId",
+          "cuppingStatus"
+        ]
+      },
+      "PropertyDto": {
+        "type": "object",
+        "properties": {
+          "testPropertyType": {
+            "type": "string",
+            "enum": [
+              "aroma",
+              "acidity",
+              "sweetness",
+              "body",
+              "aftertaste"
+            ],
+            "description": "Which property is being rated"
+          },
+          "intensity": {
+            "type": "number",
+            "example": 5,
+            "description": "Intensity rating"
+          },
+          "quality": {
+            "type": "number",
+            "example": 5,
+            "description": "Quality rating"
+          },
+          "comment": {
+            "type": "string",
+            "example": "Nice aromas",
+            "description": "Optional comment by user"
+          }
+        },
+        "required": [
+          "testPropertyType",
+          "intensity",
+          "quality"
+        ]
+      },
+      "SetCuppingTestRequestDto": {
+        "type": "object",
+        "properties": {
+          "cuppingId": {
+            "type": "number",
+            "example": 1
+          },
+          "coffeePackId": {
+            "type": "number",
+            "example": 10
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PropertyDto"
+            }
+          }
+        },
+        "required": [
+          "cuppingId",
+          "coffeePackId",
+          "properties"
+        ]
+      },
+      "SetCuppingTestsRequestDto": {
+        "type": "object",
+        "properties": {
+          "tests": {
+            "description": "One or more individual cupping test entries",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SetCuppingTestRequestDto"
+            }
+          }
+        },
+        "required": [
+          "tests"
+        ]
+      },
+      "OnboardingPageResponseDto": {
+        "type": "object",
+        "properties": {
+          "pageNumber": {
+            "type": "number",
+            "example": "Page number"
+          },
+          "subtitle": {
+            "type": "string",
+            "example": "Subtitle for the text"
+          },
+          "text": {
+            "example": "Text options",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "pageNumber",
+          "subtitle",
+          "text"
+        ]
+      },
+      "OnboardingResponseDto": {
+        "type": "object",
+        "properties": {
+          "pages": {
+            "description": "Страницы из которых состоит Онбоардинг",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OnboardingPageResponseDto"
+            }
+          }
+        },
+        "required": [
+          "pages"
+        ]
+      },
+      "SampleTypeRequestDto": {
+        "type": "object",
+        "properties": {
+          "sampleTypeId": {
+            "type": "number",
+            "example": 666,
+            "description": "If updating an existing sample, provide its ID; otherwise omit."
+          },
+          "companyName": {
+            "type": "string",
+            "example": "Tasty Coffee",
+            "description": "Name of the company that produced this sample"
+          },
+          "sampleName": {
+            "type": "string",
+            "example": "Irgachiff 4",
+            "description": "Internal name for this sample"
+          },
+          "beanOriginCode": {
+            "type": "number",
+            "example": 1,
+            "description": "Code of bean origin must be between 1 and 2 (option list)"
+          },
+          "processingMethodCode": {
+            "type": "number",
+            "example": 2,
+            "description": "Code of processing method must be between 1 and 4 (option list)"
+          },
+          "roastType": {
+            "type": "number",
+            "description": "Roast level (0–5)",
+            "example": 3
+          },
+          "grindType": {
+            "type": "number",
+            "description": "range from 1 to 10 of grind value",
+            "example": 1
+          },
+          "labels": {
+            "description": "Labels of the pack (e.g. [\"Microlot\", \"Decaf\"])",
+            "example": [
+              "Microlot",
+              "Decaf"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "sampleTypeId",
+          "companyName",
+          "sampleName",
+          "beanOriginCode",
+          "processingMethodCode",
+          "roastType",
+          "grindType"
+        ]
+      },
+      "CoffeePackRequestDto": {
+        "type": "object",
+        "properties": {
+          "packId": {
+            "type": "number",
+            "example": 666,
+            "description": "If updating an existing pack, its ID."
+          },
+          "roastDate": {
+            "type": "string",
+            "example": "2025-01-01T00:00:00Z",
+            "description": "Roast date in ISO 8601 format"
+          },
+          "openDate": {
+            "type": "string",
+            "example": "2025-01-05T00:00:00Z",
+            "description": "Open date (ISO 8601). If not yet opened, omit."
+          },
+          "packIsOver": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether this pack is finished/over."
+          },
+          "weight": {
+            "type": "number",
+            "example": 250,
+            "description": "Weight in grams."
+          },
+          "barCode": {
+            "type": "string",
+            "example": "ABC123XYZ",
+            "description": "Optional barcode string."
+          }
+        },
+        "required": [
+          "roastDate",
+          "weight"
+        ]
+      },
+      "SampleRequestDto": {
+        "type": "object",
+        "properties": {
+          "sampleTypeInfo": {
+            "description": "Object describing the sample type details",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SampleTypeRequestDto"
+              }
+            ]
+          },
+          "coffeePacksInfo": {
+            "description": "Array of coffee‐pack details (if any)",
+            "example": [],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoffeePackRequestDto"
+            }
+          }
+        },
+        "required": [
+          "sampleTypeInfo"
+        ]
+      },
+      "ArchiveSampleDto": {
+        "type": "object",
+        "properties": {
+          "sampleTypeId": {
+            "type": "number",
+            "description": "ID of the sample to archive/unarchive"
+          },
+          "isArchived": {
+            "type": "boolean",
+            "example": "true",
+            "description": "Set to true to archive; false to unarchive"
+          }
+        },
+        "required": [
+          "sampleTypeId",
+          "isArchived"
+        ]
+      },
+      "CoffeePackInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "pack id",
+            "example": 666
+          },
+          "roastDate": {
+            "type": "string",
+            "example": "2025-01-01T00:00:00Z"
+          },
+          "openDate": {
+            "type": "string",
+            "example": "2025-01-01T00:00:00Z"
+          },
+          "weight": {
+            "type": "number",
+            "description": "weight in gramms",
+            "example": 250
+          },
+          "barCode": {
+            "type": "string",
+            "description": "Pack bar code"
+          },
+          "packIsOver": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "weight"
+        ]
+      },
+      "SampleTypeInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "sampleTypeId": {
+            "type": "number",
+            "example": 666
+          },
+          "companyName": {
+            "type": "string",
+            "example": "Tasty Coffee"
+          },
+          "sampleName": {
+            "type": "string",
+            "example": "Irgachiff 4"
+          },
+          "beanOrigin": {
+            "description": "Bean origin as an option list",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OptionListResponseDto"
+              }
+            ]
+          },
+          "procecingMethod": {
+            "description": "Processing method as an option list",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OptionListResponseDto"
+              }
+            ]
+          },
+          "roastType": {
+            "type": "number",
+            "example": 9
+          },
+          "grindType": {
+            "type": "number",
+            "example": 7
+          },
+          "labels": {
+            "example": [
+              "Decaf",
+              "Microlot"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "packsInWarehouseDescription": {
+            "type": "string",
+            "description": "Description of packs in warehouse",
+            "example": "1 pack 250g"
+          },
+          "connectedPacksInfo": {
+            "description": "Array of connected coffee pack info",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoffeePackInfoResponseDto"
+            }
+          },
+          "isArchived": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "sampleTypeId",
+          "companyName",
+          "sampleName",
+          "isArchived"
+        ]
+      },
+      "GetSampleTypesResponseDto": {
+        "type": "object",
+        "properties": {
+          "sampleTypesInfo": {
+            "description": "Available sample types",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SampleTypeInfoResponseDto"
+            }
+          }
+        },
+        "required": [
+          "sampleTypesInfo"
+        ]
+      },
+      "GetSampleCreationOptionsResponseDTO": {
+        "type": "object",
+        "properties": {
+          "options": {
+            "description": "Options to create Sample",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptionListResponseDto"
+            }
+          }
+        },
+        "required": [
+          "options"
+        ]
+      },
+      "GetCoffeePacksInfoResponseDto": {
+        "type": "object",
+        "properties": {
+          "coffeePacksInfo": {
+            "description": "Current coffee packs of that sample type",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoffeePackInfoResponseDto"
+            }
+          }
+        },
+        "required": [
+          "coffeePacksInfo"
+        ]
+      },
+      "IconTextNumberInfoBlockResponseDto": {
+        "type": "object",
+        "properties": {
+          "iconName": {
+            "type": "string",
+            "description": "Identifier of the icon in design system",
+            "example": "ic_24_attention"
+          },
+          "text": {
+            "type": "string",
+            "description": "Text of the block",
+            "example": "Текст"
+          },
+          "number": {
+            "type": "number",
+            "description": "Number sent in block",
+            "example": 1
+          }
+        }
+      },
+      "GetUserSettingsResponseDto": {
+        "type": "object",
+        "properties": {
+          "userInfo": {
+            "description": "User Information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserInfoResponseDto"
+              }
+            ]
+          },
+          "companyInfo": {
+            "description": "Company Information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CompanyInfoResponseDto"
+              }
+            ]
+          },
+          "friendsBlock": {
+            "description": "Friends Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IconTextNumberInfoBlockResponseDto"
+              }
+            ]
+          },
+          "teamMatesBlock": {
+            "description": "Teammates Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IconTextNumberInfoBlockResponseDto"
+              }
+            ]
+          },
+          "requestsBlock": {
+            "description": "Sent requests",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IconTextNumberInfoBlockResponseDto"
+              }
+            ]
+          },
+          "onboardingBlock": {
+            "description": "Onboarding Info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IconTextNumberInfoBlockResponseDto"
+              }
+            ]
+          },
+          "isUserHaveNewNotifications": {
+            "type": "boolean",
+            "description": "True if user have new notifications",
+            "example": true
+          }
+        },
+        "required": [
+          "userInfo",
+          "companyInfo",
+          "isUserHaveNewNotifications"
+        ]
+      },
+      "SaveDefaultCuppingSettingsRequestDto": {
+        "type": "object",
+        "properties": {
+          "defaultCuppingName": {
+            "type": "string",
+            "description": "Optional default name for new cupping",
+            "example": "Evening Roast"
+          },
+          "randomSamplesOrder": {
+            "type": "boolean",
+            "description": "Whether each user should receive a random order of samples",
+            "example": true
+          },
+          "openSampleNameCupping": {
+            "type": "boolean",
+            "description": "Whether sample names are revealed upfront",
+            "example": false
+          },
+          "singleUserCupping": {
+            "type": "boolean",
+            "description": "Is this cupping strictly for a single user?",
+            "example": false
+          },
+          "inviteAllTeammates": {
+            "type": "boolean",
+            "description": "Invite all teammates by default",
+            "example": true
+          }
+        },
+        "required": [
+          "randomSamplesOrder",
+          "openSampleNameCupping",
+          "singleUserCupping",
+          "inviteAllTeammates"
+        ]
+      },
+      "GetDefaultCuppingSettingsResponseDto": {
+        "type": "object",
+        "properties": {
+          "defaultCuppingName": {
+            "type": "string",
+            "description": "Default property to create new cupping with name",
+            "example": "Cupping Name"
+          },
+          "randomSamplesOrder": {
+            "type": "boolean",
+            "description": "Will order for each user will be unique",
+            "example": true
+          },
+          "openSampleNameCupping": {
+            "type": "boolean",
+            "description": "Sample names won’t be hidden",
+            "example": true
+          },
+          "singleUserCupping": {
+            "type": "boolean",
+            "description": "Is that cupping only for you?",
+            "example": true
+          },
+          "inviteAllTeammates": {
+            "type": "boolean",
+            "description": "Invite all your teammates from current company",
+            "example": true
+          }
+        },
+        "required": [
+          "randomSamplesOrder",
+          "openSampleNameCupping",
+          "singleUserCupping",
+          "inviteAllTeammates"
+        ]
+      },
+      "GetCurrentCuppingSettingsResponseDto": {
+        "type": "object",
+        "properties": {
+          "cuppingNumber": {
+            "type": "string",
+            "description": "Number to add to the cupping name",
+            "example": "123"
+          },
+          "chosenUsersAmount": {
+            "type": "number",
+            "description": "Amount of users invited by default",
+            "example": 6
+          }
+        },
+        "required": [
+          "cuppingNumber"
+        ]
+      },
+      "CompanyRuleResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Rule id in the system",
+            "example": 123456789
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the rule",
+            "example": "Can Chief make Chief"
+          },
+          "value": {
+            "type": "boolean",
+            "description": "Value of the rule",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "value"
+        ]
+      },
+      "GetCompanyRulesResponseDto": {
+        "type": "object",
+        "properties": {
+          "companyName": {
+            "type": "string",
+            "description": "Company name"
+          },
+          "rulesForOwner": {
+            "description": "Rules which owner add fo himself",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyRuleResponseDto"
+            }
+          },
+          "rulesForChief": {
+            "description": "Rules for chief added by owner or other chiefs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyRuleResponseDto"
+            }
+          },
+          "rulesForBarista": {
+            "description": "Rules for barista added by owner or chief",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyRuleResponseDto"
+            }
+          }
+        },
+        "required": [
+          "companyName",
+          "rulesForOwner",
+          "rulesForChief",
+          "rulesForBarista"
+        ]
+      },
+      "CompanyRuleRequestDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Rule ID in the system",
+            "example": 123456789
+          },
+          "name": {
+            "type": "string",
+            "description": "Name (label) of the rule",
+            "example": "Can Chief change rules?"
+          },
+          "value": {
+            "type": "boolean",
+            "description": "Boolean flag: is this rule enabled?",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "value"
+        ]
+      },
+      "SaveCompanyRulesRequestDto": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "description": "ID of the company for which rules are being saved",
+            "example": 42
+          },
+          "rules": {
+            "description": "Array of rules (each with id, name, value) to update",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyRuleRequestDto"
+            }
+          }
+        },
+        "required": [
+          "companyId",
+          "rules"
+        ]
+      },
+      "SearchUsersResponseDto": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "description": "Array of users",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserInfoResponseDto"
+            }
+          }
+        },
+        "required": [
+          "users"
+        ]
+      },
+      "GetUserActionDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of the user action",
+            "enum": [
+              "addToFriends",
+              "addToTeam",
+              "removeFromFriends",
+              "removeFromTeam",
+              "makeChief",
+              "acceptFriendRequest",
+              "acceptTeamRequest"
+            ],
+            "example": "acceptFriendRequest"
+          },
+          "title": {
+            "type": "string",
+            "example": "Add to Friends"
+          },
+          "isEnabled": {
+            "type": "boolean",
+            "example": true
+          },
+          "switchIsOn": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "type",
+          "title",
+          "isEnabled"
+        ]
+      },
+      "GetUserCardResponseDto": {
+        "type": "object",
+        "properties": {
+          "userInfo": {
+            "description": "Information about user",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserInfoResponseDto"
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "example": "Friend, teammate"
+          },
+          "actions": {
+            "description": "User interaction actions",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetUserActionDto"
+            }
+          }
+        },
+        "required": [
+          "userInfo",
+          "status",
+          "actions"
+        ]
+      },
+      "RequestTypeEnum": {
+        "type": "string",
+        "enum": [
+          "friend",
+          "team"
+        ]
+      },
+      "GetUserSendedRequestResponseDto": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "number",
+            "example": 666
+          },
+          "requestDate": {
+            "type": "string",
+            "example": "2025-01-01T00:00:00Z",
+            "description": "ISO8601 format date"
+          },
+          "description": {
+            "type": "string",
+            "example": "Friend request to John"
+          },
+          "type": {
+            "example": "friend",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RequestTypeEnum"
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "example": "pending"
+          }
+        },
+        "required": [
+          "requestId",
+          "requestDate",
+          "description",
+          "type"
+        ]
+      },
+      "GetUserSendedRequestsResponseDto": {
+        "type": "object",
+        "properties": {
+          "requests": {
+            "description": "Array of requests",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetUserSendedRequestResponseDto"
+            }
+          }
+        },
+        "required": [
+          "requests"
+        ]
+      },
+      "GetUserNotificationResponseDto": {
+        "type": "object",
+        "properties": {
+          "notificationId": {
+            "type": "number",
+            "example": 666
+          },
+          "notificationDate": {
+            "type": "string",
+            "example": "2025-01-01T00:00:00Z",
+            "description": "ISO8601 date"
+          },
+          "iconName": {
+            "type": "string",
+            "example": "trash"
+          },
+          "description": {
+            "type": "string",
+            "example": "… description …"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the notification",
+            "enum": [
+              "friendRequest",
+              "teamInvitation",
+              "cuppingInvitation",
+              "teamStatusChanged"
+            ],
+            "example": "friendRequest"
+          },
+          "senderId": {
+            "type": "number",
+            "example": 666
+          },
+          "cuppingId": {
+            "type": "number",
+            "example": 666
+          },
+          "wasLoadedByReceiver": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "notificationId",
+          "notificationDate",
+          "iconName",
+          "description",
+          "type",
+          "senderId",
+          "wasLoadedByReceiver"
+        ]
+      },
+      "GetUserNotificationsResponseDto": {
+        "type": "object",
+        "properties": {
+          "notifications": {
+            "description": "Array of notifications",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetUserNotificationResponseDto"
+            }
+          }
+        },
+        "required": [
+          "notifications"
+        ]
+      },
+      "MakeUserActionRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "number",
+            "example": 666
+          },
+          "type": {
+            "type": "string",
+            "example": "addToFriends"
+          },
+          "switchIsOn": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "userId",
+          "type",
+          "switchIsOn"
+        ]
+      },
+      "RejectUserSendedRequestRequest": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "number",
+            "example": 666
+          },
+          "requestType": {
+            "type": "string",
+            "example": "friend"
+          }
+        },
+        "required": [
+          "requestId",
+          "requestType"
+        ]
+      },
+      "SaveEditUserRequest": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "example": "Jon Wayne"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "about": {
+            "type": "string",
+            "example": "Some Info"
+          }
+        },
+        "required": [
+          "userName",
+          "email",
+          "about"
+        ]
+      },
+      "ResendNewEmailOTPRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      }
+    }
+  }
+}

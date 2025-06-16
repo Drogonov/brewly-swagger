@@ -4,10 +4,10 @@
   "description": "A swagger repo to store mocks",
   "main": "index.js",
   "scripts": {
-    "mocks":   "node scripts/generate-mocks.js",
-    "link":    "node scripts/link-swagger.js",
-    "mockoon": "node scripts/generate-mockoon.js",
-    "generate":"npm run mocks && npm run link && npm run mockoon"
+    "mocks": "node scripts/generate-mocks.js",
+    "link": "node scripts/link-swagger.js",
+    "mockoon": "node scripts/generate-mockoon.js && node scripts/fix-mockoon.js",
+    "generate": "npm run mocks && npm run link && npm run mockoon"
   },
   "keywords": [],
   "author": "",

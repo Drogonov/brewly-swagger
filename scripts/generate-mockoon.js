@@ -11,7 +11,3 @@ try {
   console.error('❌ Mockoon import failed', err);
   process.exit(1);
 }
-
-// remove the temporary linked spec
-fs.unlinkSync('swagger-linked.json');
-console.log('🧹 Removed swagger-linked.json');
