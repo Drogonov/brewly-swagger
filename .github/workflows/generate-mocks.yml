@@ -1,0 +1,44 @@
+name: Generate Route-Based Mocks & Mockoon Export
+
+on:
+  push:
+    paths:
+      - 'swagger.json'
+
+jobs:
+  build-mocks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm install json-schema-ref-parser json-schema-faker fs-extra
+
+      - name: Generate route-based JSON files
+        run: node scripts/generate-mocks.js
+
+      - name: Install Mockoon CLI
+        run: npm install -g openapi-to-mockoon
+
+      - name: Generate Mockoon export
+        run: |
+          openapi-to-mockoon \
+            -i swagger.json \
+            -o mockoon-export.json \
+            --dataStrategy body-file-path \
+            --dataFolder mocks
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mockoon-mocks
+          path: |
+            mocks/
+            mockoon-export.json
