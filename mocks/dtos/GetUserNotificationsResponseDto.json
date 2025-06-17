@@ -1,0 +1,14 @@
+{
+  "notifications": [
+    {
+      "notificationId": 666,
+      "notificationDate": "2025-01-01T00:00:00Z",
+      "iconName": "trash",
+      "description": "… description …",
+      "type": "friendRequest",
+      "senderId": 666,
+      "cuppingId": 666,
+      "wasLoadedByReceiver": false
+    }
+  ]
+}

@@ -1,0 +1,2031 @@
+{
+  "uuid": "a0f41a3d-4445-4f42-a2f2-e0cbaff53316",
+  "lastMigration": 33,
+  "name": "App API",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "892f86ea-88df-44d8-87c6-18f106a234db",
+      "type": "http",
+      "documentation": "Sign up with email and password",
+      "method": "post",
+      "endpoint": "auth/local/sign-up",
+      "responses": [
+        {
+          "uuid": "13613e11-b4d9-4959-92b1-a35dc7614eb3",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns status if successful",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_local_sign-up_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "9115399d-cf53-4578-8943-66c5f4bbbc81",
+          "body": "{\n  \"errorMsg\": \"This email isnt email please check it\",\n  \"errorSubCode\": \"INCORRECT_EMAIL\",\n  \"errorFields\": [\n    {\n      \"fieldCode\": \"email\",\n      \"errorMsg\": \"This email isnt email please check it\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 422,
+          "label": "Returns business top layer error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_local_sign-up_ErrorResponseDto-422.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "307f9f6b-2b38-49a3-893a-1ad180dc9f9a",
+      "type": "http",
+      "documentation": "Verify OTP and authenticate user",
+      "method": "post",
+      "endpoint": "auth/local/verify-otp",
+      "responses": [
+        {
+          "uuid": "570c9aa4-6be4-41ff-a84d-be2dd58784e2",
+          "body": "{\n  \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…\",\n  \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns access and refresh tokens",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_local_verify-otp_TokensResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "d3cb31d3-f4fa-4cf4-8c9c-9dab60cdca6c",
+          "body": "{\n  \"errorMsg\": \"This email isnt email please check it\",\n  \"errorSubCode\": \"INCORRECT_EMAIL\",\n  \"errorFields\": [\n    {\n      \"fieldCode\": \"email\",\n      \"errorMsg\": \"This email isnt email please check it\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 422,
+          "label": "Returns business top layer error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_local_verify-otp_ErrorResponseDto-422.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "73419f54-2bee-4409-8f4c-061ca01fca88",
+      "type": "http",
+      "documentation": "Resend OTP and update it for user",
+      "method": "post",
+      "endpoint": "auth/local/resend-otp",
+      "responses": [
+        {
+          "uuid": "b123d179-3ff7-4c6f-8f94-8526ec55ecfb",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns operation status",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_local_resend-otp_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "3f48bb61-80c7-4ece-b3e4-46aa2c70b443",
+          "body": "{\n  \"errorMsg\": \"This email isnt email please check it\",\n  \"errorSubCode\": \"INCORRECT_EMAIL\",\n  \"errorFields\": [\n    {\n      \"fieldCode\": \"email\",\n      \"errorMsg\": \"This email isnt email please check it\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 422,
+          "label": "Returns business top layer error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_local_resend-otp_ErrorResponseDto-422.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f83ff64f-b547-4e4f-ba2d-698cbd960ae7",
+      "type": "http",
+      "documentation": "Sign in with email and password",
+      "method": "post",
+      "endpoint": "auth/local/sign-in",
+      "responses": [
+        {
+          "uuid": "f214e947-9600-4372-b8d6-875d04dcab08",
+          "body": "{\n  \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…\",\n  \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns access and refresh tokens",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_local_sign-in_TokensResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "256db803-feba-4887-a7dd-da35c995f96d",
+          "body": "{\n  \"errorMsg\": \"This email isnt email please check it\",\n  \"errorSubCode\": \"INCORRECT_EMAIL\",\n  \"errorFields\": [\n    {\n      \"fieldCode\": \"email\",\n      \"errorMsg\": \"This email isnt email please check it\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 422,
+          "label": "Returns business top layer error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_local_sign-in_ErrorResponseDto-422.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3f16fdb5-109e-4bce-8c4d-d99cc0ce5330",
+      "type": "http",
+      "documentation": "Log out from current session",
+      "method": "post",
+      "endpoint": "auth/local/logout",
+      "responses": [
+        {
+          "uuid": "ca018f12-2f6d-4ae3-ae29-d7e0cd803afb",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns status if successful",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_local_logout_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "4129fe7c-ae3d-4165-b840-8a1206d4eae2",
+          "body": "{\n  \"errorMsg\": \"This email isnt email please check it\",\n  \"errorSubCode\": \"INCORRECT_EMAIL\",\n  \"errorFields\": [\n    {\n      \"fieldCode\": \"email\",\n      \"errorMsg\": \"This email isnt email please check it\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 422,
+          "label": "Returns business top layer error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_local_logout_ErrorResponseDto-422.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "47870273-3d96-493f-9b83-a817c6ccdaf9",
+      "type": "http",
+      "documentation": "Refresh access and refresh tokens",
+      "method": "post",
+      "endpoint": "auth/refresh",
+      "responses": [
+        {
+          "uuid": "3396472c-7ec5-414e-8e6a-2cf891d716bd",
+          "body": "{\n  \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…\",\n  \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns new access and refresh tokens",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_refresh_TokensResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "50aa262c-efb1-4c69-9776-64dee6d388be",
+          "body": "{\n  \"errorMsg\": \"This email isnt email please check it\",\n  \"errorSubCode\": \"INCORRECT_EMAIL\",\n  \"errorFields\": [\n    {\n      \"fieldCode\": \"email\",\n      \"errorMsg\": \"This email isnt email please check it\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 422,
+          "label": "Returns business top layer error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_refresh_ErrorResponseDto-422.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "aa415211-bbdb-423e-be08-58b38233befc",
+      "type": "http",
+      "documentation": "Refresh access and refresh tokens with new language",
+      "method": "post",
+      "endpoint": "auth/refresh-language",
+      "responses": [
+        {
+          "uuid": "7a1287d0-af69-4ba7-9320-2e8423baab68",
+          "body": "{\n  \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…\",\n  \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns new access and refresh tokens with sended language",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_refresh-language_TokensResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "0e26631d-e322-4537-946f-95b0dff1462c",
+          "body": "{\n  \"errorMsg\": \"This email isnt email please check it\",\n  \"errorSubCode\": \"INCORRECT_EMAIL\",\n  \"errorFields\": [\n    {\n      \"fieldCode\": \"email\",\n      \"errorMsg\": \"This email isnt email please check it\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 422,
+          "label": "Returns business top layer error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_auth_refresh-language_ErrorResponseDto-422.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "97222e4c-6a83-415b-a103-817d0c3709b3",
+      "type": "http",
+      "documentation": "Get user companies",
+      "method": "get",
+      "endpoint": "company/get-user-companies",
+      "responses": [
+        {
+          "uuid": "14a2a6be-c9ab-40cb-84d3-f75406291f26",
+          "body": "{\n  \"currentCompany\": {\n    \"companyId\": 666,\n    \"ownerId\": 777,\n    \"companyName\": \"\",\n    \"companyImageURL\": \"https://picsum.photos/seed/picsum/200/300\",\n    \"isPersonal\": {{faker 'datatype.boolean'}}\n  },\n  \"companies\": [\n    {\n      \"companyId\": 666,\n      \"ownerId\": 777,\n      \"companyName\": \"\",\n      \"companyImageURL\": \"https://picsum.photos/seed/picsum/200/300\",\n      \"isPersonal\": {{faker 'datatype.boolean'}}\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns user companies information",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_company_get-user-companies_GetUserCompaniesResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7cbcd17b-5f31-4618-b81e-8b3981ac86cc",
+      "type": "http",
+      "documentation": "Delete company",
+      "method": "delete",
+      "endpoint": "company/delete",
+      "responses": [
+        {
+          "uuid": "8b9bc635-54e9-445a-a5d3-239f558fed15",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Status of the action to delete company",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/DELETE_company_delete_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "04907507-e748-4561-b5ca-f9e6a09eba69",
+      "type": "http",
+      "documentation": "Get company data",
+      "method": "get",
+      "endpoint": "company/data",
+      "responses": [
+        {
+          "uuid": "08f2443f-9adf-4860-aa3a-8554be1907c2",
+          "body": "{\n  \"companyInfo\": {\n    \"companyId\": 666,\n    \"ownerId\": 777,\n    \"companyName\": \"\",\n    \"companyImageURL\": \"https://picsum.photos/seed/picsum/200/300\",\n    \"isPersonal\": {{faker 'datatype.boolean'}}\n  },\n  \"team\": [\n    {\n      \"userId\": 666,\n      \"userName\": \"John Wayne\",\n      \"userImageURL\": \"https://picsum.photos/200/300\",\n      \"email\": \"test@test.com\",\n      \"role\": \"{{oneOf (array 'owner' 'chief' 'barista')}}\",\n      \"about\": \"Some info about user\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns data of the company",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_company_data_GetCompanyDataResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "6304ac9c-74a6-4a8b-bb16-0e278d774390",
+      "type": "http",
+      "documentation": "Change current company",
+      "method": "post",
+      "endpoint": "company/change-current",
+      "responses": [
+        {
+          "uuid": "65c32da0-463a-4cba-9276-333dd0712b27",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Change current company",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_company_change-current_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "48cc1f19-0e58-4864-aaa4-9417e08afeb4",
+      "type": "http",
+      "documentation": "Edit or create company",
+      "method": "post",
+      "endpoint": "company/edit",
+      "responses": [
+        {
+          "uuid": "13f0fffe-7989-4abc-888d-154e510f033b",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Edit or create if id is empty company",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_company_edit_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f051d6b2-4392-4efc-b6d6-46d32efac6e0",
+      "type": "http",
+      "documentation": "Accept team invitation",
+      "method": "post",
+      "endpoint": "company/accept-team-invitation",
+      "responses": [
+        {
+          "uuid": "d2314547-8270-4c8a-af12-b201240970a8",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "User successfully join the team",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_company_accept-team-invitation_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "b7bd5268-3a11-4ada-9b3d-e9c8acc8de95",
+      "type": "http",
+      "documentation": "Create Cupping",
+      "method": "post",
+      "endpoint": "cupping/create",
+      "responses": [
+        {
+          "uuid": "90ace78b-e558-4da5-ac54-826fae53a133",
+          "body": "{\n  \"id\": 666\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Create Cupping with following DTO",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_cupping_create_SuccessIdResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "5d49c10d-db08-4aca-8655-8a2a79ec6142",
+      "type": "http",
+      "documentation": "Get cuppings list",
+      "method": "get",
+      "endpoint": "cupping/list",
+      "responses": [
+        {
+          "uuid": "00b66401-fb7b-43a5-bf2e-67f5a56d1e8e",
+          "body": "{\n  \"cuppings\": [\n    {\n      \"id\": 666,\n      \"title\": \"Cupping 1\",\n      \"creationDate\": \"2025-01-15T12:00:00Z\",\n      \"eventDate\": \"2025-02-01T00:00:00Z\",\n      \"status\": \"inProgress\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Get list of the all user cuppings",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_cupping_list_GetCuppingsListResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4e2f60b9-a572-488c-890e-4d0b87a3a938",
+      "type": "http",
+      "documentation": "Get Cupping",
+      "method": "get",
+      "endpoint": "cupping/get-cupping",
+      "responses": [
+        {
+          "uuid": "95a5507f-9e8f-47dd-a6df-e9468d653c0f",
+          "body": "{\n  \"status\": \"{{oneOf (array 'planned' 'inProgress' 'doneByCurrentUser' 'ended')}}\",\n  \"cuppingName\": \"\",\n  \"eventDate\": \"\",\n  \"endDate\": \"\",\n  \"canUserStartCupiing\": {{faker 'datatype.boolean'}},\n  \"canUserEndCupiing\": {{faker 'datatype.boolean'}},\n  \"samples\": [\n    {\n      \"sampleTypeId\": {{faker 'number.int' max=99999}},\n      \"hiddenSampleName\": \"\",\n      \"companyName\": \"\",\n      \"sampleName\": \"\",\n      \"beanOrigin\": {\n        \"type\": \"BEAN_ORIGIN\",\n        \"currentOption\": {\n          \"code\": {{faker 'number.int' max=99999}},\n          \"value\": \"Mono\"\n        },\n        \"options\": [\n          {\n            \"code\": {{faker 'number.int' max=99999}},\n            \"value\": \"Mono\"\n          }\n        ]\n      },\n      \"procecingMethod\": {\n        \"type\": \"BEAN_ORIGIN\",\n        \"currentOption\": {\n          \"code\": {{faker 'number.int' max=99999}},\n          \"value\": \"Mono\"\n        },\n        \"options\": [\n          {\n            \"code\": {{faker 'number.int' max=99999}},\n            \"value\": \"Mono\"\n          }\n        ]\n      },\n      \"roastType\": {{faker 'number.int' max=99999}},\n      \"grindType\": {{faker 'number.int' max=99999}},\n      \"packId\": {{faker 'number.int' max=99999}},\n      \"roastDate\": \"\",\n      \"openDate\": \"\",\n      \"weight\": {{faker 'number.int' max=99999}},\n      \"barCode\": \"\",\n      \"averageScore\": {{faker 'number.int' max=99999}},\n      \"test\": [\n        {\n          \"type\": \"\",\n          \"intensivityUserRate\": {{faker 'number.int' max=99999}},\n          \"intensivityAverageRate\": {{faker 'number.int' max=99999}},\n          \"intensivityChiefRate\": {{faker 'number.int' max=99999}},\n          \"qualityUserRate\": {{faker 'number.int' max=99999}},\n          \"qualityAverageRate\": {{faker 'number.int' max=99999}},\n          \"qualityChiefRate\": {{faker 'number.int' max=99999}},\n          \"commentUser\": \"\",\n          \"commentUsers\": [\n            \"\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Get cupping info",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_cupping_get-cupping_GetCuppingResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "bccea08d-5b12-4c72-a453-1409929eba2f",
+      "type": "http",
+      "documentation": "Get Cupping status",
+      "method": "get",
+      "endpoint": "cupping/get-cupping-status",
+      "responses": [
+        {
+          "uuid": "265cde15-ac9a-4af7-9bc2-73eedd779031",
+          "body": "{\n  \"status\": \"{{oneOf (array 'planned' 'inProgress' 'doneByCurrentUser' 'ended')}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Get cupping status after some changes",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_cupping_get-cupping-status_GetCuppingStatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "0d4e15a6-4c76-4fc3-808f-cc614a4c53b4",
+      "type": "http",
+      "documentation": "Set Cupping status by user who has permissions",
+      "method": "post",
+      "endpoint": "cupping/set-cupping-status",
+      "responses": [
+        {
+          "uuid": "c58607ec-806e-4406-9be2-2d5f31719503",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Get cupping status",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_cupping_set-cupping-status_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3572bd27-1999-4824-a07f-b58989143af9",
+      "type": "http",
+      "documentation": "Set Cupping tests",
+      "method": "post",
+      "endpoint": "cupping/set-cupping-test",
+      "responses": [
+        {
+          "uuid": "98bdb541-b32e-4c2b-909e-b40594fc3cb9",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Set cupping test info by user",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_cupping_set-cupping-test_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "636a6b31-ca9b-49f3-a77a-42db030da753",
+      "type": "http",
+      "documentation": "Get Onboarding response",
+      "method": "get",
+      "endpoint": "onboarding/page",
+      "responses": [
+        {
+          "uuid": "5698e86e-40dd-4233-9abb-b332b172e13c",
+          "body": "{\n  \"pages\": [\n    {\n      \"pageNumber\": \"Page number\",\n      \"subtitle\": \"Subtitle for the text\",\n      \"text\": \"Text options\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns a onboarding",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_onboarding_page_OnboardingResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "bae7ec47-7a56-4b2d-a5ed-f2591bf123df",
+      "type": "http",
+      "documentation": "Create Sample",
+      "method": "post",
+      "endpoint": "samples/create",
+      "responses": [
+        {
+          "uuid": "7ba6599e-9f9f-45f3-a81f-32cfae1d407b",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO of the sample after creation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_samples_create_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "d9e2e8d5-87f1-489e-9fdc-985ecc947c99",
+      "type": "http",
+      "documentation": "Update Sample",
+      "method": "post",
+      "endpoint": "samples/update",
+      "responses": [
+        {
+          "uuid": "de9c902e-0f09-4ec4-96bc-cee1c727bb26",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO of the sample after update",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_samples_update_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "49e6c323-28ed-4967-be0e-ccb77f365e87",
+      "type": "http",
+      "documentation": "Update Sample",
+      "method": "post",
+      "endpoint": "samples/archive",
+      "responses": [
+        {
+          "uuid": "345f7b40-9af1-415b-8ceb-00e912bcd11f",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO with status of sample archiving",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_samples_archive_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "a5956355-3db9-47bd-a147-977c4cd5faee",
+      "type": "http",
+      "documentation": "Get Sample type info",
+      "method": "get",
+      "endpoint": "samples/sample-info",
+      "responses": [
+        {
+          "uuid": "cc7b63d5-7db4-4d52-a31e-17f5a2cb6f83",
+          "body": "{\n  \"sampleTypeId\": 666,\n  \"companyName\": \"Tasty Coffee\",\n  \"sampleName\": \"Irgachiff 4\",\n  \"beanOrigin\": {\n    \"type\": \"BEAN_ORIGIN\",\n    \"currentOption\": {\n      \"code\": {{faker 'number.int' max=99999}},\n      \"value\": \"Mono\"\n    },\n    \"options\": [\n      {\n        \"code\": {{faker 'number.int' max=99999}},\n        \"value\": \"Mono\"\n      }\n    ]\n  },\n  \"procecingMethod\": {\n    \"type\": \"BEAN_ORIGIN\",\n    \"currentOption\": {\n      \"code\": {{faker 'number.int' max=99999}},\n      \"value\": \"Mono\"\n    },\n    \"options\": [\n      {\n        \"code\": {{faker 'number.int' max=99999}},\n        \"value\": \"Mono\"\n      }\n    ]\n  },\n  \"roastType\": 9,\n  \"grindType\": 7,\n  \"labels\": [\n    \"Decaf\",\n    \"Microlot\"\n  ],\n  \"packsInWarehouseDescription\": \"1 pack 250g\",\n  \"connectedPacksInfo\": [\n    {\n      \"id\": 666,\n      \"roastDate\": \"2025-01-01T00:00:00Z\",\n      \"openDate\": \"2025-01-01T00:00:00Z\",\n      \"weight\": 250,\n      \"barCode\": \"\",\n      \"packIsOver\": true\n    }\n  ],\n  \"isArchived\": {{faker 'datatype.boolean'}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO of the sample info",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_samples_sample-info_SampleTypeInfoResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "b21d43d0-b6ec-419e-a478-2892478bfa97",
+      "type": "http",
+      "documentation": "Get Sample types",
+      "method": "get",
+      "endpoint": "samples/types",
+      "responses": [
+        {
+          "uuid": "8a34dde9-fa29-4b55-add0-8f3cd6697fa0",
+          "body": "{\n  \"sampleTypesInfo\": [\n    {\n      \"sampleTypeId\": 666,\n      \"companyName\": \"Tasty Coffee\",\n      \"sampleName\": \"Irgachiff 4\",\n      \"beanOrigin\": {\n        \"type\": \"BEAN_ORIGIN\",\n        \"currentOption\": {\n          \"code\": {{faker 'number.int' max=99999}},\n          \"value\": \"Mono\"\n        },\n        \"options\": [\n          {\n            \"code\": {{faker 'number.int' max=99999}},\n            \"value\": \"Mono\"\n          }\n        ]\n      },\n      \"procecingMethod\": {\n        \"type\": \"BEAN_ORIGIN\",\n        \"currentOption\": {\n          \"code\": {{faker 'number.int' max=99999}},\n          \"value\": \"Mono\"\n        },\n        \"options\": [\n          {\n            \"code\": {{faker 'number.int' max=99999}},\n            \"value\": \"Mono\"\n          }\n        ]\n      },\n      \"roastType\": 9,\n      \"grindType\": 7,\n      \"labels\": [\n        \"Decaf\",\n        \"Microlot\"\n      ],\n      \"packsInWarehouseDescription\": \"1 pack 250g\",\n      \"connectedPacksInfo\": [\n        {\n          \"id\": 666,\n          \"roastDate\": \"2025-01-01T00:00:00Z\",\n          \"openDate\": \"2025-01-01T00:00:00Z\",\n          \"weight\": 250,\n          \"barCode\": \"\",\n          \"packIsOver\": true\n        }\n      ],\n      \"isArchived\": {{faker 'datatype.boolean'}}\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO of the sample types with comments about warehouse packs storage",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_samples_types_GetSampleTypesResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "fe8a2236-8b76-4372-8a3a-9f9dc7564595",
+      "type": "http",
+      "documentation": "Get Sample Creation Options",
+      "method": "get",
+      "endpoint": "samples/creation-options",
+      "responses": [
+        {
+          "uuid": "4a00423f-c9a7-435a-b7ee-b07442d2fc52",
+          "body": "{\n  \"options\": [\n    {\n      \"type\": \"BEAN_ORIGIN\",\n      \"currentOption\": {\n        \"code\": {{faker 'number.int' max=99999}},\n        \"value\": \"Mono\"\n      },\n      \"options\": [\n        {\n          \"code\": {{faker 'number.int' max=99999}},\n          \"value\": \"Mono\"\n        }\n      ]\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO with options for creating a sample",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_samples_creation-options_GetSampleCreationOptionsResponseDTO-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4472f4ce-49bc-4083-bbbf-5cfbbae8e2d1",
+      "type": "http",
+      "documentation": "Get Coffee packs",
+      "method": "get",
+      "endpoint": "samples/coffee-packs-info",
+      "responses": [
+        {
+          "uuid": "6f066e75-9a6e-48b6-99df-fc1c78af650d",
+          "body": "{\n  \"coffeePacksInfo\": [\n    {\n      \"id\": 666,\n      \"roastDate\": \"2025-01-01T00:00:00Z\",\n      \"openDate\": \"2025-01-01T00:00:00Z\",\n      \"weight\": 250,\n      \"barCode\": \"\",\n      \"packIsOver\": true\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO of the coffee packs by their ids",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_samples_coffee-packs-info_GetCoffeePacksInfoResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "23172045-dcf0-43c1-b4fe-31f47f97f532",
+      "type": "http",
+      "documentation": "Get user settings",
+      "method": "get",
+      "endpoint": "settings/user",
+      "responses": [
+        {
+          "uuid": "f3354a78-0339-4c85-b1dd-6c8ceb75775d",
+          "body": "{\n  \"userInfo\": {\n    \"userId\": 666,\n    \"userName\": \"John Wayne\",\n    \"userImageURL\": \"https://picsum.photos/200/300\",\n    \"email\": \"test@test.com\",\n    \"role\": \"{{oneOf (array 'owner' 'chief' 'barista')}}\",\n    \"about\": \"Some info about user\"\n  },\n  \"companyInfo\": {\n    \"companyId\": 666,\n    \"ownerId\": 777,\n    \"companyName\": \"\",\n    \"companyImageURL\": \"https://picsum.photos/seed/picsum/200/300\",\n    \"isPersonal\": {{faker 'datatype.boolean'}}\n  },\n  \"friendsBlock\": {\n    \"iconName\": \"ic_24_attention\",\n    \"text\": \"Текст\",\n    \"number\": 1\n  },\n  \"teamMatesBlock\": {\n    \"iconName\": \"ic_24_attention\",\n    \"text\": \"Текст\",\n    \"number\": 1\n  },\n  \"requestsBlock\": {\n    \"iconName\": \"ic_24_attention\",\n    \"text\": \"Текст\",\n    \"number\": 1\n  },\n  \"onboardingBlock\": {\n    \"iconName\": \"ic_24_attention\",\n    \"text\": \"Текст\",\n    \"number\": 1\n  },\n  \"isUserHaveNewNotifications\": true\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns detailed about availiable user settings",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_settings_user_GetUserSettingsResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "25fa4ad9-7504-44aa-890a-bc672950f64d",
+      "type": "http",
+      "documentation": "Save default cupping settings",
+      "method": "post",
+      "endpoint": "settings/save-cupping-settings",
+      "responses": [
+        {
+          "uuid": "7edbf890-04e4-402f-ab21-80389151094a",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Save new cupping settings",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_settings_save-cupping-settings_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "efc47cae-f8ad-417e-a7f8-8f03c3f03b3a",
+      "type": "http",
+      "documentation": "Get default cupping settings",
+      "method": "get",
+      "endpoint": "settings/get-cupping-settings",
+      "responses": [
+        {
+          "uuid": "dda45e83-1ede-4ad1-8078-59dbc4a1b0b5",
+          "body": "{\n  \"defaultCuppingName\": \"Cupping Name\",\n  \"randomSamplesOrder\": true,\n  \"openSampleNameCupping\": true,\n  \"singleUserCupping\": true,\n  \"inviteAllTeammates\": true\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns current default cupping settings",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_settings_get-cupping-settings_GetDefaultCuppingSettingsResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7fd65ff3-e9e6-4dd6-ae3d-4cc49704adb8",
+      "type": "http",
+      "documentation": "Get Settings of the current cupping",
+      "method": "get",
+      "endpoint": "settings/current-cupping-settings",
+      "responses": [
+        {
+          "uuid": "32ab9e8c-5373-4d25-b5cb-036a86ca22c8",
+          "body": "{\n  \"cuppingNumber\": \"123\",\n  \"chosenUsersAmount\": 6\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Get Cupping settings",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_settings_current-cupping-settings_GetCurrentCuppingSettingsResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "353645eb-e56a-4c0c-964b-2aaa699611c7",
+      "type": "http",
+      "documentation": "Get availiable rules for user to change",
+      "method": "get",
+      "endpoint": "settings/get-company-rules",
+      "responses": [
+        {
+          "uuid": "462743d3-c42e-4996-bd4d-647817134b4a",
+          "body": "{\n  \"companyName\": \"\",\n  \"rulesForOwner\": [\n    {\n      \"id\": 123456789,\n      \"name\": \"Can Chief make Chief\",\n      \"value\": true\n    }\n  ],\n  \"rulesForChief\": [\n    {\n      \"id\": 123456789,\n      \"name\": \"Can Chief make Chief\",\n      \"value\": true\n    }\n  ],\n  \"rulesForBarista\": [\n    {\n      \"id\": 123456789,\n      \"name\": \"Can Chief make Chief\",\n      \"value\": true\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns list of rules for user",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_settings_get-company-rules_GetCompanyRulesResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "9589852e-fecd-4e6e-8210-4b11d5925e67",
+      "type": "http",
+      "documentation": "Save rules for the company",
+      "method": "post",
+      "endpoint": "settings/save-company-rules",
+      "responses": [
+        {
+          "uuid": "0a9938dd-81de-4a58-bcbe-e5eb7a86501a",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Save list of changed fules by user",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_settings_save-company-rules_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "34b5f502-cecb-437e-a4d1-c603c7bc2a82",
+      "type": "http",
+      "documentation": "Search for users",
+      "method": "get",
+      "endpoint": "user/search",
+      "responses": [
+        {
+          "uuid": "11092a17-44cc-4137-bc8d-28104ea1fe1b",
+          "body": "{\n  \"users\": [\n    {\n      \"userId\": 666,\n      \"userName\": \"John Wayne\",\n      \"userImageURL\": \"https://picsum.photos/200/300\",\n      \"email\": \"test@test.com\",\n      \"role\": \"{{oneOf (array 'owner' 'chief' 'barista')}}\",\n      \"about\": \"Some info about user\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO with users search result array",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_user_search_SearchUsersResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4e31806a-79ca-4bf4-b066-426a8acca5f9",
+      "type": "http",
+      "documentation": "Get Users list",
+      "method": "get",
+      "endpoint": "user/list",
+      "responses": [
+        {
+          "uuid": "73d1b33c-4e84-4f23-bebe-f51b773c780c",
+          "body": "{\n  \"users\": [\n    {\n      \"userId\": 666,\n      \"userName\": \"John Wayne\",\n      \"userImageURL\": \"https://picsum.photos/200/300\",\n      \"email\": \"test@test.com\",\n      \"role\": \"{{oneOf (array 'owner' 'chief' 'barista')}}\",\n      \"about\": \"Some info about user\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO with users list",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_user_list_SearchUsersResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4042db4c-bd4e-46f7-81cc-c8482a32e8ce",
+      "type": "http",
+      "documentation": "Get User",
+      "method": "get",
+      "endpoint": "user/get-card",
+      "responses": [
+        {
+          "uuid": "5c9a9a40-b671-467a-a1ac-90903b975025",
+          "body": "{\n  \"userInfo\": {\n    \"userId\": 666,\n    \"userName\": \"John Wayne\",\n    \"userImageURL\": \"https://picsum.photos/200/300\",\n    \"email\": \"test@test.com\",\n    \"role\": \"{{oneOf (array 'owner' 'chief' 'barista')}}\",\n    \"about\": \"Some info about user\"\n  },\n  \"status\": \"Friend, teammate\",\n  \"actions\": [\n    {\n      \"type\": \"{{oneOf (array 'addToFriends' 'addToTeam' 'removeFromFriends' 'removeFromTeam' 'makeChief' 'acceptFriendRequest' 'acceptTeamRequest')}}\",\n      \"title\": \"Add to Friends\",\n      \"isEnabled\": true,\n      \"switchIsOn\": {{faker 'datatype.boolean'}}\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO with user",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_user_get-card_GetUserCardResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "9b7ce9b5-bf4f-4dc2-bded-af891570aec1",
+      "type": "http",
+      "documentation": "Get self User data",
+      "method": "get",
+      "endpoint": "user/info",
+      "responses": [
+        {
+          "uuid": "d48bcdd5-c9c0-4804-94ad-95d4fdc7fbfc",
+          "body": "{\n  \"userId\": 666,\n  \"userName\": \"John Wayne\",\n  \"userImageURL\": \"https://picsum.photos/200/300\",\n  \"email\": \"test@test.com\",\n  \"role\": \"{{oneOf (array 'owner' 'chief' 'barista')}}\",\n  \"about\": \"Some info about user\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO of the current user",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_user_info_UserInfoResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "b46a08a3-b02f-4654-bcd4-4385cd1eae91",
+      "type": "http",
+      "documentation": "Get user sended requests",
+      "method": "get",
+      "endpoint": "user/requests",
+      "responses": [
+        {
+          "uuid": "46ef1628-1359-4570-af21-561e0b138eaa",
+          "body": "{\n  \"requests\": [\n    {\n      \"requestId\": 666,\n      \"requestDate\": \"2025-01-01T00:00:00Z\",\n      \"description\": \"Friend request to John\",\n      \"type\": \"friend\",\n      \"status\": \"pending\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO of the requests sended by user",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_user_requests_GetUserSendedRequestsResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "84add40d-b0a6-4699-b587-0481a1cfe5d6",
+      "type": "http",
+      "documentation": "Get user notifications",
+      "method": "get",
+      "endpoint": "user/notifications",
+      "responses": [
+        {
+          "uuid": "91473104-c570-4ecc-81c8-cd3deba739b9",
+          "body": "{\n  \"notifications\": [\n    {\n      \"notificationId\": 666,\n      \"notificationDate\": \"2025-01-01T00:00:00Z\",\n      \"iconName\": \"trash\",\n      \"description\": \"… description …\",\n      \"type\": \"{{oneOf (array 'friendRequest' 'teamInvitation' 'cuppingInvitation' 'teamStatusChanged')}}\",\n      \"senderId\": 666,\n      \"cuppingId\": 666,\n      \"wasLoadedByReceiver\": {{faker 'datatype.boolean'}}\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO of the user notifications",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/GET_user_notifications_GetUserNotificationsResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3b0970d6-c3b5-4c6c-81c7-4e889e5cb488",
+      "type": "http",
+      "documentation": "Some action made by user",
+      "method": "post",
+      "endpoint": "user/action",
+      "responses": [
+        {
+          "uuid": "81b5d35e-940b-4de4-8fe3-f4d050adef8d",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns status of user interaction",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_user_action_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "48a891b6-25c7-4709-aa05-e4134f81c9db",
+      "type": "http",
+      "documentation": "Reject user sended request",
+      "method": "post",
+      "endpoint": "user/reject",
+      "responses": [
+        {
+          "uuid": "1bb4230a-8a02-4bd0-a8ea-6804e12fbb1f",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns status of user request rejection",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_user_reject_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "371cbcb4-c8bf-4f64-b27b-45a307f26078",
+      "type": "http",
+      "documentation": "Edit user info",
+      "method": "post",
+      "endpoint": "user/edit",
+      "responses": [
+        {
+          "uuid": "800e3935-8979-459f-aa3a-2735381db940",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns DTO with status of edit operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_user_edit_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "6a162915-299b-41f4-a568-134ed92b720b",
+      "type": "http",
+      "documentation": "Verify OTP to change users email",
+      "method": "post",
+      "endpoint": "user/verify-new-email",
+      "responses": [
+        {
+          "uuid": "e4016379-f644-43dc-a449-6addbc7a07a1",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns status of email change",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_user_verify-new-email_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "fe995e9b-9584-4c87-910b-a04e5403cf09",
+          "body": "{\n  \"errorMsg\": \"This email isnt email please check it\",\n  \"errorSubCode\": \"INCORRECT_EMAIL\",\n  \"errorFields\": [\n    {\n      \"fieldCode\": \"email\",\n      \"errorMsg\": \"This email isnt email please check it\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 422,
+          "label": "Returns business top layer error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_user_verify-new-email_ErrorResponseDto-422.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "4d4991ff-5252-428c-9b17-c88dc168db10",
+      "type": "http",
+      "documentation": "Resend OTP and update it for user",
+      "method": "post",
+      "endpoint": "user/resend-new-email-otp",
+      "responses": [
+        {
+          "uuid": "ce15b1fb-469e-46e6-aec8-5731aca294da",
+          "body": "{\n  \"status\": \"{{oneOf (array 'Successful' 'In Progress' 'Denied')}}\",\n  \"description\": \"Some text about status\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns operation status",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_user_resend-new-email-otp_StatusResponseDto-200.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "09e5b17e-4abf-4219-8f0a-2c2e8b5a50a8",
+          "body": "{\n  \"errorMsg\": \"This email isnt email please check it\",\n  \"errorSubCode\": \"INCORRECT_EMAIL\",\n  \"errorFields\": [\n    {\n      \"fieldCode\": \"email\",\n      \"errorMsg\": \"This email isnt email please check it\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 422,
+          "label": "Returns business top layer error",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "FILE",
+          "filePath": "./endpoints/POST_user_resend-new-email-otp_ErrorResponseDto-422.json",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "892f86ea-88df-44d8-87c6-18f106a234db"
+    },
+    {
+      "type": "route",
+      "uuid": "307f9f6b-2b38-49a3-893a-1ad180dc9f9a"
+    },
+    {
+      "type": "route",
+      "uuid": "73419f54-2bee-4409-8f4c-061ca01fca88"
+    },
+    {
+      "type": "route",
+      "uuid": "f83ff64f-b547-4e4f-ba2d-698cbd960ae7"
+    },
+    {
+      "type": "route",
+      "uuid": "3f16fdb5-109e-4bce-8c4d-d99cc0ce5330"
+    },
+    {
+      "type": "route",
+      "uuid": "47870273-3d96-493f-9b83-a817c6ccdaf9"
+    },
+    {
+      "type": "route",
+      "uuid": "aa415211-bbdb-423e-be08-58b38233befc"
+    },
+    {
+      "type": "route",
+      "uuid": "97222e4c-6a83-415b-a103-817d0c3709b3"
+    },
+    {
+      "type": "route",
+      "uuid": "7cbcd17b-5f31-4618-b81e-8b3981ac86cc"
+    },
+    {
+      "type": "route",
+      "uuid": "04907507-e748-4561-b5ca-f9e6a09eba69"
+    },
+    {
+      "type": "route",
+      "uuid": "6304ac9c-74a6-4a8b-bb16-0e278d774390"
+    },
+    {
+      "type": "route",
+      "uuid": "48cc1f19-0e58-4864-aaa4-9417e08afeb4"
+    },
+    {
+      "type": "route",
+      "uuid": "f051d6b2-4392-4efc-b6d6-46d32efac6e0"
+    },
+    {
+      "type": "route",
+      "uuid": "b7bd5268-3a11-4ada-9b3d-e9c8acc8de95"
+    },
+    {
+      "type": "route",
+      "uuid": "5d49c10d-db08-4aca-8655-8a2a79ec6142"
+    },
+    {
+      "type": "route",
+      "uuid": "4e2f60b9-a572-488c-890e-4d0b87a3a938"
+    },
+    {
+      "type": "route",
+      "uuid": "bccea08d-5b12-4c72-a453-1409929eba2f"
+    },
+    {
+      "type": "route",
+      "uuid": "0d4e15a6-4c76-4fc3-808f-cc614a4c53b4"
+    },
+    {
+      "type": "route",
+      "uuid": "3572bd27-1999-4824-a07f-b58989143af9"
+    },
+    {
+      "type": "route",
+      "uuid": "636a6b31-ca9b-49f3-a77a-42db030da753"
+    },
+    {
+      "type": "route",
+      "uuid": "bae7ec47-7a56-4b2d-a5ed-f2591bf123df"
+    },
+    {
+      "type": "route",
+      "uuid": "d9e2e8d5-87f1-489e-9fdc-985ecc947c99"
+    },
+    {
+      "type": "route",
+      "uuid": "49e6c323-28ed-4967-be0e-ccb77f365e87"
+    },
+    {
+      "type": "route",
+      "uuid": "a5956355-3db9-47bd-a147-977c4cd5faee"
+    },
+    {
+      "type": "route",
+      "uuid": "b21d43d0-b6ec-419e-a478-2892478bfa97"
+    },
+    {
+      "type": "route",
+      "uuid": "fe8a2236-8b76-4372-8a3a-9f9dc7564595"
+    },
+    {
+      "type": "route",
+      "uuid": "4472f4ce-49bc-4083-bbbf-5cfbbae8e2d1"
+    },
+    {
+      "type": "route",
+      "uuid": "23172045-dcf0-43c1-b4fe-31f47f97f532"
+    },
+    {
+      "type": "route",
+      "uuid": "25fa4ad9-7504-44aa-890a-bc672950f64d"
+    },
+    {
+      "type": "route",
+      "uuid": "efc47cae-f8ad-417e-a7f8-8f03c3f03b3a"
+    },
+    {
+      "type": "route",
+      "uuid": "7fd65ff3-e9e6-4dd6-ae3d-4cc49704adb8"
+    },
+    {
+      "type": "route",
+      "uuid": "353645eb-e56a-4c0c-964b-2aaa699611c7"
+    },
+    {
+      "type": "route",
+      "uuid": "9589852e-fecd-4e6e-8210-4b11d5925e67"
+    },
+    {
+      "type": "route",
+      "uuid": "34b5f502-cecb-437e-a4d1-c603c7bc2a82"
+    },
+    {
+      "type": "route",
+      "uuid": "4e31806a-79ca-4bf4-b066-426a8acca5f9"
+    },
+    {
+      "type": "route",
+      "uuid": "4042db4c-bd4e-46f7-81cc-c8482a32e8ce"
+    },
+    {
+      "type": "route",
+      "uuid": "9b7ce9b5-bf4f-4dc2-bded-af891570aec1"
+    },
+    {
+      "type": "route",
+      "uuid": "b46a08a3-b02f-4654-bcd4-4385cd1eae91"
+    },
+    {
+      "type": "route",
+      "uuid": "84add40d-b0a6-4699-b587-0481a1cfe5d6"
+    },
+    {
+      "type": "route",
+      "uuid": "3b0970d6-c3b5-4c6c-81c7-4e889e5cb488"
+    },
+    {
+      "type": "route",
+      "uuid": "48a891b6-25c7-4709-aa05-e4134f81c9db"
+    },
+    {
+      "type": "route",
+      "uuid": "371cbcb4-c8bf-4f64-b27b-45a307f26078"
+    },
+    {
+      "type": "route",
+      "uuid": "6a162915-299b-41f4-a568-134ed92b720b"
+    },
+    {
+      "type": "route",
+      "uuid": "4d4991ff-5252-428c-9b17-c88dc168db10"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

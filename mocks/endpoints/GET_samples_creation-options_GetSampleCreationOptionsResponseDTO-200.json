@@ -1,0 +1,17 @@
+{
+  "options": [
+    {
+      "type": "BEAN_ORIGIN",
+      "currentOption": {
+        "code": 0,
+        "value": "Mono"
+      },
+      "options": [
+        {
+          "code": 0,
+          "value": "Mono"
+        }
+      ]
+    }
+  ]
+}

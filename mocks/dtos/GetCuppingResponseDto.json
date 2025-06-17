@@ -1,0 +1,63 @@
+{
+  "status": "planned",
+  "cuppingName": "codemla",
+  "eventDate": "seg",
+  "endDate": "menur",
+  "canUserStartCupiing": false,
+  "canUserEndCupiing": false,
+  "samples": [
+    {
+      "sampleTypeId": 81,
+      "hiddenSampleName": "felimwew",
+      "companyName": "vab",
+      "sampleName": "joz",
+      "beanOrigin": {
+        "type": "BEAN_ORIGIN",
+        "currentOption": {
+          "code": 0,
+          "value": "Mono"
+        },
+        "options": [
+          {
+            "code": 0,
+            "value": "Mono"
+          }
+        ]
+      },
+      "procecingMethod": {
+        "type": "BEAN_ORIGIN",
+        "currentOption": {
+          "code": 0,
+          "value": "Mono"
+        },
+        "options": [
+          {
+            "code": 0,
+            "value": "Mono"
+          }
+        ]
+      },
+      "roastType": 20,
+      "grindType": 30,
+      "packId": 54,
+      "roastDate": "hap",
+      "openDate": "muwaco",
+      "weight": 27,
+      "barCode": "be",
+      "averageScore": 49,
+      "test": [
+        {
+          "type": "vujzub",
+          "intensivityUserRate": 16,
+          "intensivityAverageRate": 42,
+          "intensivityChiefRate": 88,
+          "qualityUserRate": 45,
+          "qualityAverageRate": 4,
+          "qualityChiefRate": 8,
+          "commentUser": "ra",
+          "commentUsers": []
+        }
+      ]
+    }
+  ]
+}

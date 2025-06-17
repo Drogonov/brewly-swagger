@@ -1,0 +1,24 @@
+{
+  "companyName": "kuwhuk",
+  "rulesForOwner": [
+    {
+      "id": 123456789,
+      "name": "Can Chief make Chief",
+      "value": true
+    }
+  ],
+  "rulesForChief": [
+    {
+      "id": 123456789,
+      "name": "Can Chief make Chief",
+      "value": true
+    }
+  ],
+  "rulesForBarista": [
+    {
+      "id": 123456789,
+      "name": "Can Chief make Chief",
+      "value": true
+    }
+  ]
+}

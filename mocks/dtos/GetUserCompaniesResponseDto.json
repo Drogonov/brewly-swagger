@@ -1,0 +1,18 @@
+{
+  "currentCompany": {
+    "companyId": 666,
+    "ownerId": 777,
+    "companyName": "og",
+    "companyImageURL": "https://picsum.photos/seed/picsum/200/300",
+    "isPersonal": false
+  },
+  "companies": [
+    {
+      "companyId": 666,
+      "ownerId": 777,
+      "companyName": "og",
+      "companyImageURL": "https://picsum.photos/seed/picsum/200/300",
+      "isPersonal": false
+    }
+  ]
+}

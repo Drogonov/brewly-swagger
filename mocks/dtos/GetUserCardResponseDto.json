@@ -1,0 +1,19 @@
+{
+  "userInfo": {
+    "userId": 666,
+    "userName": "John Wayne",
+    "userImageURL": "https://picsum.photos/200/300",
+    "email": "test@test.com",
+    "role": "owner",
+    "about": "Some info about user"
+  },
+  "status": "Friend, teammate",
+  "actions": [
+    {
+      "type": "addToFriends",
+      "title": "Add to Friends",
+      "isEnabled": true,
+      "switchIsOn": false
+    }
+  ]
+}

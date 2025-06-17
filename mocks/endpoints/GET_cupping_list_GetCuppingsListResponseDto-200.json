@@ -1,0 +1,11 @@
+{
+  "cuppings": [
+    {
+      "id": 666,
+      "title": "Cupping 1",
+      "creationDate": "2025-01-15T12:00:00Z",
+      "eventDate": "2025-02-01T00:00:00Z",
+      "status": "inProgress"
+    }
+  ]
+}

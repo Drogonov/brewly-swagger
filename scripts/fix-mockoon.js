@@ -58,6 +58,15 @@ const envPath = 'mocks/mockoon.json';
   // Write updated environment
   await fs.writeJson(envPath, env, { spaces: 2 });
   console.log('✅ Cleaned up and pruned mockoon.json');
-(envPath, env, { spaces: 2 });
+  (envPath, env, { spaces: 2 });
   console.log('✅ Cleaned up and pruned mockoon.json');
+
+  const filePath = './swagger-linked.json';
+  fs.rm(filePath, (err) => {
+    if (err) {
+      console.error(`❌ Error deleting file: ${err}`);
+      return;
+    }
+    console.log(`✅ File ${filePath} deleted successfully.`);
+  });
 })();

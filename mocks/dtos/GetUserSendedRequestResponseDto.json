@@ -1,0 +1,7 @@
+{
+  "requestId": 666,
+  "requestDate": "2025-01-01T00:00:00Z",
+  "description": "Friend request to John",
+  "type": "friend",
+  "status": "pending"
+}

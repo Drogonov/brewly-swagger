@@ -1,0 +1,13 @@
+{
+  "sampleTypeId": 666,
+  "companyName": "Tasty Coffee",
+  "sampleName": "Irgachiff 4",
+  "beanOriginCode": 1,
+  "processingMethodCode": 2,
+  "roastType": 3,
+  "grindType": 1,
+  "labels": [
+    "Microlot",
+    "Decaf"
+  ]
+}

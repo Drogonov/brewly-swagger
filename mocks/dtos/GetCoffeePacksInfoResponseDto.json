@@ -1,0 +1,12 @@
+{
+  "coffeePacksInfo": [
+    {
+      "id": 666,
+      "roastDate": "2025-01-01T00:00:00Z",
+      "openDate": "2025-01-01T00:00:00Z",
+      "weight": 250,
+      "barCode": "zijimo",
+      "packIsOver": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "companyId": 42,
+  "rules": [
+    {
+      "id": 123456789,
+      "name": "Can Chief change rules?",
+      "value": true
+    }
+  ]
+}

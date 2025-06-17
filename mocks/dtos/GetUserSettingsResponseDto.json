@@ -1,0 +1,38 @@
+{
+  "userInfo": {
+    "userId": 666,
+    "userName": "John Wayne",
+    "userImageURL": "https://picsum.photos/200/300",
+    "email": "test@test.com",
+    "role": "owner",
+    "about": "Some info about user"
+  },
+  "companyInfo": {
+    "companyId": 666,
+    "ownerId": 777,
+    "companyName": "og",
+    "companyImageURL": "https://picsum.photos/seed/picsum/200/300",
+    "isPersonal": false
+  },
+  "friendsBlock": {
+    "iconName": "ic_24_attention",
+    "text": "Текст",
+    "number": 1
+  },
+  "teamMatesBlock": {
+    "iconName": "ic_24_attention",
+    "text": "Текст",
+    "number": 1
+  },
+  "requestsBlock": {
+    "iconName": "ic_24_attention",
+    "text": "Текст",
+    "number": 1
+  },
+  "onboardingBlock": {
+    "iconName": "ic_24_attention",
+    "text": "Текст",
+    "number": 1
+  },
+  "isUserHaveNewNotifications": true
+}

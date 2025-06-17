@@ -1,6 +1,5 @@
 name: Generate Route-Based Mocks & Mockoon Export
 
-# Trigger only when the swagger or scripts change
 on:
   push:
     paths:
@@ -9,7 +8,6 @@ on:
       - 'package.json'
       - 'package-lock.json'
 
-# Give the workflow permission to push back
 permissions:
   contents: write
 
@@ -34,10 +32,24 @@ jobs:
           NODE_ENV: development
         run: npm ci
 
+      - name: Check if swagger.json changed
+        id: check_diff
+        run: |
+          git fetch origin
+          if git diff --quiet origin/HEAD -- swagger.json; then
+            echo "Swagger did not change."
+            echo "continue=false" >> $GITHUB_OUTPUT
+          else
+            echo "Swagger changed."
+            echo "continue=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Generate route-based JSON files
+        if: steps.check_diff.outputs.continue == 'true'
         run: npm run generate
 
       - name: Commit generated mocks
+        if: steps.check_diff.outputs.continue == 'true'
         uses: EndBug/add-and-commit@v9
         with:
           author_name: 'github-actions'

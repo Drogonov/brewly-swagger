@@ -1,0 +1,16 @@
+{
+  "tests": [
+    {
+      "cuppingId": 1,
+      "coffeePackId": 10,
+      "properties": [
+        {
+          "testPropertyType": "aroma",
+          "intensity": 5,
+          "quality": 5,
+          "comment": "Nice aromas"
+        }
+      ]
+    }
+  ]
+}
