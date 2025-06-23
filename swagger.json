@@ -1,7 +1,35 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/auth/local/sign-up": {
+    "/privacy-policy": {
+      "get": {
+        "operationId": "PublicPagesController_servePrivacy",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "PublicPages"
+        ]
+      }
+    },
+    "/support": {
+      "get": {
+        "operationId": "PublicPagesController_serveSupport",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "PublicPages"
+        ]
+      }
+    },
+    "/api/auth/local/sign-up": {
       "post": {
         "operationId": "AuthController_signupLocal",
         "parameters": [],
@@ -39,11 +67,11 @@
         },
         "summary": "Sign up with email and password",
         "tags": [
-          "auth"
+          "api/auth"
         ]
       }
     },
-    "/auth/local/verify-otp": {
+    "/api/auth/local/verify-otp": {
       "post": {
         "operationId": "AuthController_verifyOTP",
         "parameters": [],
@@ -81,11 +109,11 @@
         },
         "summary": "Verify OTP and authenticate user",
         "tags": [
-          "auth"
+          "api/auth"
         ]
       }
     },
-    "/auth/local/resend-otp": {
+    "/api/auth/local/resend-otp": {
       "post": {
         "operationId": "AuthController_resendOTP",
         "parameters": [],
@@ -123,11 +151,11 @@
         },
         "summary": "Resend OTP and update it for user",
         "tags": [
-          "auth"
+          "api/auth"
         ]
       }
     },
-    "/auth/local/sign-in": {
+    "/api/auth/local/sign-in": {
       "post": {
         "operationId": "AuthController_signinLocal",
         "parameters": [],
@@ -165,11 +193,11 @@
         },
         "summary": "Sign in with email and password",
         "tags": [
-          "auth"
+          "api/auth"
         ]
       }
     },
-    "/auth/local/logout": {
+    "/api/auth/local/logout": {
       "post": {
         "operationId": "AuthController_logout",
         "parameters": [],
@@ -202,11 +230,11 @@
         ],
         "summary": "Log out from current session",
         "tags": [
-          "auth"
+          "api/auth"
         ]
       }
     },
-    "/auth/refresh": {
+    "/api/auth/refresh": {
       "post": {
         "operationId": "AuthController_refreshTokens",
         "parameters": [],
@@ -239,11 +267,11 @@
         ],
         "summary": "Refresh access and refresh tokens",
         "tags": [
-          "auth"
+          "api/auth"
         ]
       }
     },
-    "/auth/refresh-language": {
+    "/api/auth/refresh-language": {
       "post": {
         "operationId": "AuthController_refreshTokensWithLanguage",
         "parameters": [
@@ -285,11 +313,11 @@
         ],
         "summary": "Refresh access and refresh tokens with new language",
         "tags": [
-          "auth"
+          "api/auth"
         ]
       }
     },
-    "/company/get-user-companies": {
+    "/api/company/get-user-companies": {
       "get": {
         "operationId": "CompanyController_getUserCompanies",
         "parameters": [],
@@ -312,11 +340,11 @@
         ],
         "summary": "Get user companies",
         "tags": [
-          "company"
+          "api/company"
         ]
       }
     },
-    "/company/delete": {
+    "/api/company/delete": {
       "delete": {
         "operationId": "CompanyController_deleteCompany",
         "parameters": [
@@ -348,11 +376,11 @@
         ],
         "summary": "Delete company",
         "tags": [
-          "company"
+          "api/company"
         ]
       }
     },
-    "/company/data": {
+    "/api/company/data": {
       "get": {
         "operationId": "CompanyController_getCompanyData",
         "parameters": [
@@ -384,11 +412,11 @@
         ],
         "summary": "Get company data",
         "tags": [
-          "company"
+          "api/company"
         ]
       }
     },
-    "/company/change-current": {
+    "/api/company/change-current": {
       "post": {
         "operationId": "CompanyController_changeCurrentCompany",
         "parameters": [
@@ -420,11 +448,11 @@
         ],
         "summary": "Change current company",
         "tags": [
-          "company"
+          "api/company"
         ]
       }
     },
-    "/company/edit": {
+    "/api/company/edit": {
       "post": {
         "operationId": "CompanyController_editCompany",
         "parameters": [],
@@ -457,11 +485,11 @@
         ],
         "summary": "Edit or create company",
         "tags": [
-          "company"
+          "api/company"
         ]
       }
     },
-    "/company/accept-team-invitation": {
+    "/api/company/accept-team-invitation": {
       "post": {
         "operationId": "CompanyController_acceptTeamInvitation",
         "parameters": [
@@ -493,11 +521,11 @@
         ],
         "summary": "Accept team invitation",
         "tags": [
-          "company"
+          "api/company"
         ]
       }
     },
-    "/cupping/create": {
+    "/api/cupping/create": {
       "post": {
         "operationId": "CuppingController_createCupping",
         "parameters": [],
@@ -530,11 +558,11 @@
         ],
         "summary": "Create Cupping",
         "tags": [
-          "cupping"
+          "api/cupping"
         ]
       }
     },
-    "/cupping/list": {
+    "/api/cupping/list": {
       "get": {
         "operationId": "CuppingController_getCuppingsList",
         "parameters": [],
@@ -557,11 +585,11 @@
         ],
         "summary": "Get cuppings list",
         "tags": [
-          "cupping"
+          "api/cupping"
         ]
       }
     },
-    "/cupping/get-cupping": {
+    "/api/cupping/get-cupping": {
       "get": {
         "operationId": "CuppingController_getCupping",
         "parameters": [
@@ -593,11 +621,11 @@
         ],
         "summary": "Get Cupping",
         "tags": [
-          "cupping"
+          "api/cupping"
         ]
       }
     },
-    "/cupping/get-cupping-status": {
+    "/api/cupping/get-cupping-status": {
       "get": {
         "operationId": "CuppingController_getCuppingStatus",
         "parameters": [
@@ -629,11 +657,11 @@
         ],
         "summary": "Get Cupping status",
         "tags": [
-          "cupping"
+          "api/cupping"
         ]
       }
     },
-    "/cupping/set-cupping-status": {
+    "/api/cupping/set-cupping-status": {
       "post": {
         "operationId": "CuppingController_setCuppingStatus",
         "parameters": [],
@@ -666,11 +694,11 @@
         ],
         "summary": "Set Cupping status by user who has permissions",
         "tags": [
-          "cupping"
+          "api/cupping"
         ]
       }
     },
-    "/cupping/set-cupping-test": {
+    "/api/cupping/set-cupping-test": {
       "post": {
         "operationId": "CuppingController_setCuppingTests",
         "parameters": [],
@@ -703,11 +731,11 @@
         ],
         "summary": "Set Cupping tests",
         "tags": [
-          "cupping"
+          "api/cupping"
         ]
       }
     },
-    "/onboarding/page": {
+    "/api/onboarding/page": {
       "get": {
         "operationId": "OnboardingController_getOnboarding",
         "parameters": [],
@@ -725,11 +753,11 @@
         },
         "summary": "Get Onboarding response",
         "tags": [
-          "onboarding"
+          "api/onboarding"
         ]
       }
     },
-    "/samples/create": {
+    "/api/samples/create": {
       "post": {
         "operationId": "SamplesController_createSample",
         "parameters": [],
@@ -762,11 +790,11 @@
         ],
         "summary": "Create Sample",
         "tags": [
-          "samples"
+          "api/samples"
         ]
       }
     },
-    "/samples/update": {
+    "/api/samples/update": {
       "post": {
         "operationId": "SamplesController_updateSample",
         "parameters": [],
@@ -799,11 +827,11 @@
         ],
         "summary": "Update Sample",
         "tags": [
-          "samples"
+          "api/samples"
         ]
       }
     },
-    "/samples/archive": {
+    "/api/samples/archive": {
       "post": {
         "operationId": "SamplesController_archiveSample",
         "parameters": [],
@@ -836,11 +864,11 @@
         ],
         "summary": "Update Sample",
         "tags": [
-          "samples"
+          "api/samples"
         ]
       }
     },
-    "/samples/sample-info": {
+    "/api/samples/sample-info": {
       "get": {
         "operationId": "SamplesController_getSampleInfo",
         "parameters": [
@@ -872,11 +900,11 @@
         ],
         "summary": "Get Sample type info",
         "tags": [
-          "samples"
+          "api/samples"
         ]
       }
     },
-    "/samples/types": {
+    "/api/samples/types": {
       "get": {
         "operationId": "SamplesController_getSampleTypes",
         "parameters": [],
@@ -899,11 +927,11 @@
         ],
         "summary": "Get Sample types",
         "tags": [
-          "samples"
+          "api/samples"
         ]
       }
     },
-    "/samples/creation-options": {
+    "/api/samples/creation-options": {
       "get": {
         "operationId": "SamplesController_getSampleCreationOptions",
         "parameters": [],
@@ -926,11 +954,11 @@
         ],
         "summary": "Get Sample Creation Options",
         "tags": [
-          "samples"
+          "api/samples"
         ]
       }
     },
-    "/samples/coffee-packs-info": {
+    "/api/samples/coffee-packs-info": {
       "get": {
         "operationId": "SamplesController_getCoffeePacksInfo",
         "parameters": [
@@ -965,11 +993,11 @@
         ],
         "summary": "Get Coffee packs",
         "tags": [
-          "samples"
+          "api/samples"
         ]
       }
     },
-    "/settings/user": {
+    "/api/settings/user": {
       "get": {
         "operationId": "SettingsController_getUserSettings",
         "parameters": [],
@@ -992,11 +1020,11 @@
         ],
         "summary": "Get user settings",
         "tags": [
-          "settings"
+          "api/settings"
         ]
       }
     },
-    "/settings/save-cupping-settings": {
+    "/api/settings/save-cupping-settings": {
       "post": {
         "operationId": "SettingsController_saveDefaultCuppingSettings",
         "parameters": [],
@@ -1029,11 +1057,11 @@
         ],
         "summary": "Save default cupping settings",
         "tags": [
-          "settings"
+          "api/settings"
         ]
       }
     },
-    "/settings/get-cupping-settings": {
+    "/api/settings/get-cupping-settings": {
       "get": {
         "operationId": "SettingsController_getDefaultCuppingSettings",
         "parameters": [],
@@ -1056,11 +1084,11 @@
         ],
         "summary": "Get default cupping settings",
         "tags": [
-          "settings"
+          "api/settings"
         ]
       }
     },
-    "/settings/current-cupping-settings": {
+    "/api/settings/current-cupping-settings": {
       "get": {
         "operationId": "SettingsController_getCurrentCuppingSettings",
         "parameters": [],
@@ -1083,11 +1111,11 @@
         ],
         "summary": "Get Settings of the current cupping",
         "tags": [
-          "settings"
+          "api/settings"
         ]
       }
     },
-    "/settings/get-company-rules": {
+    "/api/settings/get-company-rules": {
       "get": {
         "operationId": "SettingsController_getCompanyRules",
         "parameters": [
@@ -1121,11 +1149,11 @@
         ],
         "summary": "Get availiable rules for user to change",
         "tags": [
-          "settings"
+          "api/settings"
         ]
       }
     },
-    "/settings/save-company-rules": {
+    "/api/settings/save-company-rules": {
       "post": {
         "operationId": "SettingsController_saveCompanyRules",
         "parameters": [],
@@ -1158,11 +1186,11 @@
         ],
         "summary": "Save rules for the company",
         "tags": [
-          "settings"
+          "api/settings"
         ]
       }
     },
-    "/user/search": {
+    "/api/user/search": {
       "get": {
         "operationId": "UserController_searchUsers",
         "parameters": [
@@ -1204,11 +1232,11 @@
         ],
         "summary": "Search for users",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     },
-    "/user/list": {
+    "/api/user/list": {
       "get": {
         "operationId": "UserController_getUsersList",
         "parameters": [
@@ -1240,11 +1268,11 @@
         ],
         "summary": "Get Users list",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     },
-    "/user/get-card": {
+    "/api/user/get-card": {
       "get": {
         "operationId": "UserController_getUserCard",
         "parameters": [
@@ -1286,11 +1314,11 @@
         ],
         "summary": "Get User",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     },
-    "/user/info": {
+    "/api/user/info": {
       "get": {
         "operationId": "UserController_getUserInfo",
         "parameters": [],
@@ -1313,11 +1341,11 @@
         ],
         "summary": "Get self User data",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     },
-    "/user/requests": {
+    "/api/user/requests": {
       "get": {
         "operationId": "UserController_getUserSendedRequests",
         "parameters": [],
@@ -1340,11 +1368,11 @@
         ],
         "summary": "Get user sended requests",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     },
-    "/user/notifications": {
+    "/api/user/notifications": {
       "get": {
         "operationId": "UserController_getUserNotifications",
         "parameters": [],
@@ -1367,11 +1395,11 @@
         ],
         "summary": "Get user notifications",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     },
-    "/user/action": {
+    "/api/user/action": {
       "post": {
         "operationId": "UserController_makeUserAction",
         "parameters": [],
@@ -1404,11 +1432,11 @@
         ],
         "summary": "Some action made by user",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     },
-    "/user/reject": {
+    "/api/user/reject": {
       "post": {
         "operationId": "UserController_rejectUserSendedRequest",
         "parameters": [],
@@ -1441,11 +1469,11 @@
         ],
         "summary": "Reject user sended request",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     },
-    "/user/edit": {
+    "/api/user/edit": {
       "post": {
         "operationId": "UserController_saveEditUser",
         "parameters": [],
@@ -1478,11 +1506,11 @@
         ],
         "summary": "Edit user info",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     },
-    "/user/verify-new-email": {
+    "/api/user/verify-new-email": {
       "post": {
         "operationId": "UserController_verifyNewEmail",
         "parameters": [],
@@ -1525,11 +1553,11 @@
         ],
         "summary": "Verify OTP to change users email",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     },
-    "/user/resend-new-email-otp": {
+    "/api/user/resend-new-email-otp": {
       "post": {
         "operationId": "UserController_resendNewEmailOTP",
         "parameters": [],
@@ -1572,7 +1600,7 @@
         ],
         "summary": "Resend OTP and update it for user",
         "tags": [
-          "user"
+          "api/user"
         ]
       }
     }
