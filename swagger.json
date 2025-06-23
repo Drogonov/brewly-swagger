@@ -1,34 +1,6 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/privacy-policy": {
-      "get": {
-        "operationId": "PublicPagesController_servePrivacy",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "PublicPages"
-        ]
-      }
-    },
-    "/support": {
-      "get": {
-        "operationId": "PublicPagesController_serveSupport",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "PublicPages"
-        ]
-      }
-    },
     "/api/auth/local/sign-up": {
       "post": {
         "operationId": "AuthController_signupLocal",
@@ -1601,6 +1573,146 @@
         "summary": "Resend OTP and update it for user",
         "tags": [
           "api/user"
+        ]
+      }
+    },
+    "/privacy-policy": {
+      "get": {
+        "operationId": "PublicPagesController_servePrivacy",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "PublicPages"
+        ]
+      }
+    },
+    "/support": {
+      "get": {
+        "operationId": "PublicPagesController_serveSupport",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "PublicPages"
+        ]
+      }
+    },
+    "/": {
+      "get": {
+        "operationId": "PublicPagesController_serveRoot",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "PublicPages"
+        ]
+      }
+    },
+    "/*": {
+      "get": {
+        "operationId": "NotFoundController_handle404_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NotFound"
+        ]
+      },
+      "post": {
+        "operationId": "NotFoundController_handle404_post",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NotFound"
+        ]
+      },
+      "put": {
+        "operationId": "NotFoundController_handle404_put",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NotFound"
+        ]
+      },
+      "delete": {
+        "operationId": "NotFoundController_handle404_delete",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NotFound"
+        ]
+      },
+      "patch": {
+        "operationId": "NotFoundController_handle404_patch",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NotFound"
+        ]
+      },
+      "options": {
+        "operationId": "NotFoundController_handle404_options",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NotFound"
+        ]
+      },
+      "head": {
+        "operationId": "NotFoundController_handle404_head",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NotFound"
+        ]
+      },
+      "search": {
+        "operationId": "NotFoundController_handle404_search",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NotFound"
         ]
       }
     }
