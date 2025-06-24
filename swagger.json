@@ -1618,6 +1618,20 @@
         ]
       }
     },
+    "/offline": {
+      "get": {
+        "operationId": "PublicPagesController_serveOffline",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "PublicPages"
+        ]
+      }
+    },
     "/*": {
       "get": {
         "operationId": "NotFoundController_handle404_get",
