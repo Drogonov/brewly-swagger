@@ -1576,6 +1576,20 @@
         ]
       }
     },
+    "/": {
+      "get": {
+        "operationId": "PublicPagesController_serveIndex",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "PublicPages"
+        ]
+      }
+    },
     "/privacy-policy": {
       "get": {
         "operationId": "PublicPagesController_servePrivacy",
@@ -1593,20 +1607,6 @@
     "/support": {
       "get": {
         "operationId": "PublicPagesController_serveSupport",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "PublicPages"
-        ]
-      }
-    },
-    "/": {
-      "get": {
-        "operationId": "PublicPagesController_serveRoot",
         "parameters": [],
         "responses": {
           "200": {
