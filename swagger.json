@@ -1482,6 +1482,33 @@
         ]
       }
     },
+    "/api/user/delete": {
+      "delete": {
+        "operationId": "UserController_deleteUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns DTO with status of delete operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Delete user info",
+        "tags": [
+          "api/user"
+        ]
+      }
+    },
     "/api/user/verify-new-email": {
       "post": {
         "operationId": "UserController_verifyNewEmail",
